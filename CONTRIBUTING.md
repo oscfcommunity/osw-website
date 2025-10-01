@@ -8,6 +8,37 @@ OSCF serves as a platform for developers, enthusiasts, and organizations to come
 
 This project and everyone participating in it is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. 
 
+## Prerequisites
+
+Before contributing, ensure you have the following installed and set up:
+
+- **Node.js** (latest LTS version recommended)
+- **npm** (Node Package Manager, comes with Node.js)
+- **Git** (for version control)
+- A GitHub account
+
+## Getting Started
+
+To contribute, follow these steps:
+
+1. **Fork the Repository**: Click the "Fork" button at the top right of the repository page to create your own copy of the repository.
+2. **Clone Your Fork**: Clone your forked repository to your local machine:
+   ```bash
+   git clone https://github.com/<your-username>/osw-website.git
+   ```
+3. **Navigate to the Project Directory**:
+   ```bash
+   cd osw-website
+   ```
+4. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+5. **Create a New Branch**: Always create a new branch for your changes:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
 ## Ways to Contribute
 There are many ways to contribute to the OSW website:
 
@@ -30,88 +61,37 @@ There are many ways to contribute to the OSW website:
 - Enhance mobile experience
 - Design new page layouts
 
-## Getting Started
+## Best Practices for Open Source Contribution
 
-### Prerequisites
+### General Guidelines
+- Always create an issue before starting work on a new feature or bug fix. This ensures that the work is aligned with the project goals and avoids duplication of effort.
+- Follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit messages. This helps maintain a clean and understandable commit history.
+- Write clear and concise documentation for any new features or changes.
+- Ensure your code is well-tested and includes unit tests where applicable.
+- Respect the project's coding standards and style guides.
+- Be responsive to feedback during the code review process.
 
-Before contributing, ensure you have:
-- Node.js - `v18.20.8` or `v20.3.0`, `v22.0.0` or higher. (`v19` and `v21` are not supported.)
-- Terminal - Astro is accessed through its command-line interface (CLI).
-- Git - For version control and collaboration (Verify installation: `git --version`)
+### Branching and Merging
+- Use descriptive branch names following the conventions outlined in the "Branch Naming Conventions" section.
+- Before merging any branch, perform an interactive rebase to clean up the commit history:
+  ```bash
+  git rebase -i main
+  ```
+  This ensures a clean and meaningful commit history.
+- Always update your branch with the latest changes from `main` before creating a pull request:
+  ```bash
+  git checkout main
+  git pull origin main
+  git checkout your-branch
+  git rebase main
+  ```
 
-### Initial Setup
-
-**1. Fork and Clone the Repository**
-
-```bash
-# clone your forked repo
-git clone https://github.com/YOUR-USERNAME/osw-website
-cd osw-website
-
-# setup remote upstream 
-git remote add upstream https://github.com/oscfcommunity/osw-website
-```
-
-**2. Install dependencies**
-
-```bash
-npm install
-```
-
-**3. Start development server**
-
-```bash
-npm run dev
-```
-
-## Development Workflow
-
-### Before You Start
-
-Make sure to do `git checkout main` and `git pull origin main` to avoid conflicts.
-
-### Step-by-Step Process
-
-**1. Create a new branch from the latest `develop`**
-
-```bash
-git checkout -b feature/your-feature-name
-```
-
-**2. Make Your Changes**
-
-Write clean, well-documented code that follows project standards and includes meaningful comments, then test thoroughly by running the development server to verify all functionality works as expected. Ensure responsive design works across mobile and desktop devices, and always build successfully with `npm run build` before submitting.
-
-**3. Test Comprehensively**
-
-Run local testing with `npm run dev` and production builds using `npm run build` && `npm run preview` to verify functionality in both environments. Test across multiple browsers (Chrome, Firefox, Safari, Edge) and various screen sizes to ensure consistent appearance and behavior.
-
-**4. Commit Your Work**
-
-```bash
-git add .
-git commit -m "feat: descriptive commit message"
-```
-
-**5. Push and Create Pull Request**
-
-```bash
-git push origin feature/your-feature-name
-```
-
-**Note** : Before starting to work on any issues, be sure to do `git checkout main` and `git pull origin main` to avoid conflicts.
-
-## Guidelines
-
-### Branch Naming Conventions
-
-Use descriptive branch names following this pattern:
-
-- **Features**: `feature/add-speaker-section`
-- **Bug fixes**: `fix/navigation-responsive-issue`
-- **Documentation**: `docs/update-contributing-guide`
-- **Styling**: `style/improve-mobile-layout`
-- **Components**: `component/create-event-card`
+### Pull Requests
+- Keep pull requests small and focused. Avoid bundling multiple unrelated changes in a single PR.
+- Include a clear and detailed description of the changes in the pull request.
+- Reference the issue(s) your pull request addresses.
+- Ensure all tests pass and the build succeeds before submitting a pull request.
+- Request reviews from relevant contributors or maintainers.
 
 ### Commit Message Guidelines
 
@@ -136,15 +116,14 @@ Use descriptive branch names following this pattern:
 - `ci`: CI/CD changes (`ci: add automated testing`)
 - `chore`: Maintenance tasks (`chore: update dependencies`)
 
-**Code Style**
+### Code Style
+- Write clean, readable code with meaningful variable names.
+- Add comments for complex logic.
+- Follow existing code patterns and structure.
+- Ensure all builds pass without warnings.
+- Test responsive design on multiple devices.
 
-- Write clean, readable code with meaningful variable names
-- Add comments for complex logic
-- Follow existing code patterns and structure
-- Ensure all builds pass without warnings
-- Test responsive design on multiple devices
-
-### Useful Resources
+## Useful Resources
 
 - [Astro Documentation](https://docs.astro.build/)
 - [Open Source Weekend Events](https://osd.opensourceweekend.org)
@@ -156,6 +135,3 @@ Use descriptive branch names following this pattern:
 Thank you for being part of the Open Source Weekend community and helping us create amazing experiences for developers and tech enthusiasts worldwide!
 
 **Happy Contributing!**  🚀
-
-
-
