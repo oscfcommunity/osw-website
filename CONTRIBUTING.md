@@ -13,9 +13,14 @@ This project and everyone participating in it is governed by the [Code of Conduc
 Before contributing, ensure you have the following installed and set up:
 
 - **Node.js** (latest LTS version recommended)
-- **npm** (Node Package Manager, comes with Node.js)
+- **pnpm** (recommended for faster installs and improved developer experience)
 - **Git** (for version control)
 - A GitHub account
+
+> If you don't have pnpm installed, you can install it globally:
+> ```bash
+> npm install -g pnpm
+> ```
 
 ## Getting Started
 
@@ -32,7 +37,7 @@ To contribute, follow these steps:
    ```
 4. **Install Dependencies**:
    ```bash
-   npm install
+   pnpm install
    ```
 5. **Create a New Branch**: Always create a new branch for your changes:
    ```bash
