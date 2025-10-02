@@ -1,0 +1,87 @@
+---
+import Container from "./Container.astro";
+
+const navLinks = [
+  { name: "Home", href: "#" },
+  { name: "Pages", href: "#" },
+  { name: "Events", href: "#" },
+  { name: "Speakers", href: "#" },
+  { name: "Blog", href: "#" },
+  { name: "Shop", href: "#" },
+];
+---
+
+<Container fluid>
+  {/* Skip to content link for accessibility */}
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only btn btn-sm btn-primary absolute top-2 left-2 z-50"
+  >
+    Skip to main content
+  </a>
+  <header class="navbar bg-base-100 border-y-2 border-base py-0">
+    <div class="navbar-start">
+      {/* Mobile Hamburger */}
+      <div class="dropdown lg:hidden">
+        <button
+          tabindex="0"
+          class="btn btn-ghost btn-square"
+          aria-label="Open menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h8m-8 6h16"></path>
+          </svg>
+        </button>
+        <ul
+          tabindex="0"
+          class="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10"
+        >
+          {
+            navLinks.map((link) => (
+              <li>
+                <a href={link.href}>{link.name}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <a href="/" class="ml-2 flex items-center gap-2">
+        <img
+          src="/public/assets/brands/OSWBlack.svg"
+          width="92"
+          height="51"
+          alt="OSW Logo"
+        />
+        <span class="sr-only">Open Source Weekend</span>
+      </a>
+    </div>
+
+    <nav class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-2">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="navbar-end gap-2">
+      <a href="#" class="btn btn-ghost btn-sm font-normal">Cart (0)</a>
+      <button class="btn btn-ghost btn-sm font-normal">Search</button>
+      <a href="#" class="btn btn-outline btn-sm font-normal">More</a>
+    </div>
+  </header>
+</Container>
