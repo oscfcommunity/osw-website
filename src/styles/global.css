@@ -1,2 +1,15 @@
+@import url("./utils.css");
+@import url("./font.css");
+
+/* Third party styles start */
 @import "tailwindcss";
+@import url("./theme.css");
 @plugin "daisyui";
+/* Third party styles end */
+
+/* Custom tweaks start*/
+@theme {
+  --font-sans: "Poppins", system-ui, sans-serif;
+  --font-display: "Anton", sans-serif;
+}
+/* Custom tweaks end */
