@@ -1,43 +1,54 @@
-# Astro Starter Kit: Minimal
+# OSW Website
 
-```sh
-pnpm create astro@latest -- --template minimal
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white)](https://twitter.com/oscfcommunity)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/oscfcommunity/)
+[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?logo=telegram&logoColor=white)](https://t.me/oscfcommunity)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?logo=instagram&logoColor=white)](https://www.instagram.com/oscf.community/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/oscfcommunity)
+<br />
+
+## 🌐 About
+
+The Open Source Weekend (OSW) Website is the central hub for the OSW community, providing information about events, resources, and opportunities to collaborate on open-source projects. OSW is a community-driven initiative that promotes open source technologies through events, workshops, and celebrations. The website aims to connect developers, enthusiasts, and organizations, making open source accessible and inclusive for everyone.
+
+## 🛠️ Tech Stack
+- **Astro**: Modern static site builder
+- **Tailwind CSS**: Utility-first CSS framework
+- **daisyUI**: UI component library for Tailwind CSS
+- **pnpm**: Fast, disk space-efficient package manager
+- **Node.js**: JavaScript runtime
+
+## 🧑‍💻 Contributing
+
+We welcome contributions from everyone! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before making changes.
+
+## 📁 Project Structure
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
 ├── public/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   └── styles/
+├── package.json
+└── README.md
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **public/**: Static assets (images, icons, etc.)
+- **src/components/**: Reusable UI components
+- **src/layouts/**: Layout templates
+- **src/pages/**: Site pages (routes)
+- **src/styles/**: CSS files
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 📚 Resources
+- [Astro Documentation](https://docs.astro.build/)
+- [Open Source Weekend Events](https://osd.opensourceweekend.org)
+- [Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🛡️ License
+This project is open source and available under the MIT License.
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                    | Action                                           |
-| :------------------------- | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm run dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm run build`           | Build your production site to `./dist/`          |
-| `pnpm run preview`         | Preview your build locally, before deploying     |
-| `pnpm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Thank you for being part of the Open Source Weekend community! 🚀
