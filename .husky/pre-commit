@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run Prettier check on staged files
+npx lint-staged
+
+# If there are any formatting issues, the commit will be aborted
+echo "✅ Pre-commit checks passed!"
