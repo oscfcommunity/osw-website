@@ -1,0 +1,30 @@
+page:
+  title: "OSW - Open Source Weekend"
+  description: "Join the open source community"
+
+sections:
+  hero:
+    enabled: true
+  
+  buttonDemo:
+    enabled: true
+  
+  jobs:
+    enabled: true
+    title: "Latest Job Opportunities"
+    subtitle: "Discover exciting career opportunities in the open source community"
+    
+    # Display settings
+    showCount: 3
+    showFeaturedOnly: false
+    
+    # CTA Button
+    ctaButton:
+      text: "View All Jobs"
+      link: "/jobs"
+      style: "primary"      # DaisyUI: primary/secondary/accent
+      size: "lg"            # DaisyUI: sm/md/lg
+    
+    # Section styling
+    sectionBackground: "bg-base-100"
+    useFluidContainer: false
