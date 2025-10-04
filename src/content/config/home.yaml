@@ -21,7 +21,7 @@ sections:
     # CTA Button
     ctaButton:
       text: "View All Jobs"
-      link: "/jobs"
+      link: "#"
       style: "primary"      # DaisyUI: primary/secondary/accent
       size: "lg"            # DaisyUI: sm/md/lg
     

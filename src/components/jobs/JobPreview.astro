@@ -1,0 +1,63 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+import Container from '../Container.astro';
+import JobCard from './JobCard.astro';
+
+const homeConfig = await getEntry('homeConfig', 'home');
+const jobsSection = homeConfig?.data.sections.jobs;
+
+if (!jobsSection?.enabled) {
+  return null;
+}
+
+const allJobs = await getCollection('jobs', ({ data }) => 
+  data.status === 'ACTIVE' && (!jobsSection.showFeaturedOnly || data.featured)
+);
+
+const jobs = allJobs
+  .sort((a, b) => b.data.datePosted.getTime() - a.data.datePosted.getTime())
+  .slice(0, jobsSection.showCount);
+
+if (jobs.length === 0) {
+  return null;
+}
+
+const responsiveBtnSize = jobsSection.ctaButton.size === 'lg' 
+  ? 'btn-md md:btn-lg' 
+  : jobsSection.ctaButton.size === 'md'
+  ? 'btn-sm md:btn-md'
+  : 'btn-sm';
+---
+
+<section class={jobsSection.sectionBackground} aria-labelledby="jobs-heading">
+  <Container fluid={jobsSection.useFluidContainer}>
+    
+    <div class="text-center mb-8 md:mb-12">
+      <h2 id="jobs-heading" class="text-3xl md:text-4xl font-bold text-base-content mb-3">
+        {jobsSection.title}
+      </h2>
+      {jobsSection.subtitle && (
+        <p class="text-base md:text-lg text-base-content/70 max-w-2xl mx-auto">
+          {jobsSection.subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class="flex flex-col gap-4 md:gap-5 mb-8 md:mb-12">
+      {jobs.map((job) => (
+        <JobCard job={job} />
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a 
+        href={jobsSection.ctaButton.link}
+        class={`btn btn-${jobsSection.ctaButton.style} ${responsiveBtnSize} gap-2 rounded-md`}
+        aria-label="View all available job openings"
+      >
+        {jobsSection.ctaButton.text}
+      </a>
+    </div>
+
+  </Container>
+</section>
