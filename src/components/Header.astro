@@ -1,13 +1,13 @@
 ---
-import Container from "./Container.astro";
+import Container from './Container.astro';
 
 const navLinks = [
-  { name: "Home", href: "#" },
-  { name: "Pages", href: "#" },
-  { name: "Events", href: "#" },
-  { name: "Speakers", href: "#" },
-  { name: "Blog", href: "#" },
-  { name: "Shop", href: "#" },
+  { name: 'Home', href: '/' },
+  { name: 'Pages', href: '#' },
+  { name: 'Events', href: '/events' },
+  { name: 'Speakers', href: '#' },
+  { name: 'Blog', href: '#' },
+  { name: 'Shop', href: '#' },
 ];
 ---
 
@@ -47,7 +47,7 @@ const navLinks = [
           class="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10"
         >
           {
-            navLinks.map((link) => (
+            navLinks.map(link => (
               <li>
                 <a href={link.href}>{link.name}</a>
               </li>
@@ -69,7 +69,7 @@ const navLinks = [
     <nav class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal gap-2">
         {
-          navLinks.map((link) => (
+          navLinks.map(link => (
             <li>
               <a href={link.href}>{link.name}</a>
             </li>

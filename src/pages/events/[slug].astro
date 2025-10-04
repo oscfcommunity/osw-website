@@ -1,0 +1,504 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+
+export async function getStaticPaths() {
+  const eventEntries = await getCollection('events');
+  return eventEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'events'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { data } = entry;
+
+// Format date
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(new Date(date));
+};
+
+const formatTime = (date: Date) => {
+  return new Intl.DateTimeFormat('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: 'short',
+  }).format(new Date(date));
+};
+
+// Get status styling
+const getStatusStyle = (status: string) => {
+  switch (status) {
+    case 'upcoming':
+      return 'badge-success';
+    case 'ongoing':
+      return 'badge-warning';
+    case 'completed':
+      return 'badge-neutral';
+    case 'cancelled':
+      return 'badge-error';
+    default:
+      return 'badge-ghost';
+  }
+};
+
+// Get event type emoji
+const getEventTypeEmoji = (type: string) => {
+  switch (type) {
+    case 'workshop':
+      return '🛠️';
+    case 'meetup':
+      return '🤝';
+    case 'hackathon':
+      return '🚀';
+    case 'conference':
+      return '📊';
+    case 'webinar':
+      return '💻';
+    case 'networking':
+      return '🌐';
+    default:
+      return '📅';
+  }
+};
+---
+
+<Layout title={`${data.title} - OSW Events`}>
+  <main class="min-h-screen bg-base-100">
+    {/* Hero Section */}
+    <section class="relative">
+      {
+        (data.coverImage && (
+          <div
+            class="hero min-h-[60vh]"
+            style={`background-image: url(${data.coverImage});`}
+          >
+            <div class="hero-overlay bg-opacity-60" />
+            <Container>
+              <div class="hero-content text-neutral-content text-center">
+                <div class="max-w-4xl">
+                  {/* Event Type Badge */}
+                  <div class="mb-4">
+                    <span class="badge badge-lg badge-primary font-bold">
+                      {getEventTypeEmoji(data.eventType)}{' '}
+                      {data.eventType.toUpperCase()}
+                    </span>
+                  </div>
+
+                  <h1 class="mb-6 text-4xl md:text-6xl font-bold">
+                    {data.title}
+                  </h1>
+                  <p class="mb-8 text-xl opacity-90">{data.description}</p>
+
+                  {/* Quick Action Buttons */}
+                  <div class="flex flex-wrap gap-4 justify-center">
+                    {data.registrationLink && data.status === 'upcoming' && (
+                      <a
+                        href={data.registrationLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary btn-lg"
+                      >
+                        Register Now
+                      </a>
+                    )}
+                    <button
+                      onclick="document.getElementById('event-details').scrollIntoView({behavior: 'smooth'})"
+                      class="btn btn-outline btn-primary-content btn-lg"
+                    >
+                      Event Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          </div>
+        )) || (
+          <div class="hero bg-gradient-to-r from-primary to-secondary text-primary-content py-20">
+            <Container>
+              <div class="hero-content text-center">
+                <div class="max-w-4xl">
+                  <div class="mb-4">
+                    <span class="badge badge-lg badge-primary-content font-bold">
+                      {getEventTypeEmoji(data.eventType)}{' '}
+                      {data.eventType.toUpperCase()}
+                    </span>
+                  </div>
+                  <h1 class="mb-6 text-4xl md:text-6xl font-bold">
+                    {data.title}
+                  </h1>
+                  <p class="mb-8 text-xl opacity-90">{data.description}</p>
+                </div>
+              </div>
+            </Container>
+          </div>
+        )
+      }
+    </section>
+
+    {/* Event Info Cards */}
+    <section class="py-16" id="event-details">
+      <Container>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {/* Event Status Card */}
+          <div class="card bg-base-200 shadow-xl">
+            <div class="card-body text-center">
+              <h3 class="card-title justify-center mb-4">Event Status</h3>
+              <div class="flex justify-center mb-2">
+                <div
+                  class={`badge badge-lg ${getStatusStyle(data.status)} font-bold`}
+                >
+                  {data.status.charAt(0).toUpperCase() + data.status.slice(1)}
+                </div>
+              </div>
+              {
+                data.status === 'upcoming' && (
+                  <p class="text-sm text-base-content/70">
+                    Registration may be required
+                  </p>
+                )
+              }
+            </div>
+          </div>
+
+          {/* Date & Time Card */}
+          <div class="card bg-base-200 shadow-xl">
+            <div class="card-body text-center">
+              <h3 class="card-title justify-center mb-4">Date & Time</h3>
+              <div class="space-y-2">
+                <p class="font-semibold">{formatDate(data.date)}</p>
+                <p class="text-base-content/70">{formatTime(data.date)}</p>
+                {
+                  data.endDate && (
+                    <p class="text-sm text-base-content/60">
+                      Ends: {formatTime(data.endDate)}
+                    </p>
+                  )
+                }
+              </div>
+            </div>
+          </div>
+
+          {/* Location Card */}
+          <div class="card bg-base-200 shadow-xl">
+            <div class="card-body text-center">
+              <h3 class="card-title justify-center mb-4">Location</h3>
+              <p class="font-semibold">{data.location}</p>
+              {
+                data.venue && (
+                  <p class="text-base-content/70 text-sm">{data.venue}</p>
+                )
+              }
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content Grid */}
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div class="lg:col-span-2">
+            {/* Event Description */}
+            <div class="card bg-base-100 shadow-xl mb-8">
+              <div class="card-body">
+                <h2 class="card-title text-2xl mb-6">About This Event</h2>
+                <div class="prose max-w-none prose-lg">
+                  <Content />
+                </div>
+              </div>
+            </div>
+
+            {/* Agenda */}
+            {
+              data.agenda && data.agenda.length > 0 && (
+                <div class="card bg-base-100 shadow-xl mb-8">
+                  <div class="card-body">
+                    <h2 class="card-title text-2xl mb-6">Event Agenda</h2>
+                    <div class="space-y-3">
+                      {data.agenda.map((item, index) => (
+                        <div class="flex gap-4 p-4 bg-base-200 rounded-lg hover:bg-base-300 transition-colors">
+                          <div class="text-primary font-bold min-w-fit text-sm md:text-base">
+                            {item.time}
+                          </div>
+                          <div class="flex-1">
+                            <h4 class="font-semibold text-base md:text-lg">
+                              {item.topic}
+                            </h4>
+                            {item.speaker && (
+                              <p class="text-base-content/70 text-sm mt-1">
+                                <span class="font-medium">Speaker:</span>{' '}
+                                {item.speaker}
+                              </p>
+                            )}
+                            {item.track && (
+                              <span class="badge badge-outline badge-sm mt-2">
+                                {item.track}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
+            {/* Resources */}
+            {
+              data.resources && data.resources.length > 0 && (
+                <div class="card bg-base-100 shadow-xl mb-8" id="resources">
+                  <div class="card-body">
+                    <h2 class="card-title text-2xl mb-6">Event Resources</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {data.resources.map(resource => (
+                        <a
+                          href={resource.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="card bg-base-200 hover:bg-base-300 transition-colors"
+                        >
+                          <div class="card-body p-4">
+                            <div class="flex items-center gap-3">
+                              <div
+                                class={`badge ${resource.type === 'github' ? 'badge-neutral' : resource.type === 'slides' ? 'badge-primary' : resource.type === 'video' ? 'badge-secondary' : 'badge-accent'}`}
+                              >
+                                {resource.type}
+                              </div>
+                              <span class="font-semibold">
+                                {resource.title}
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+          </div>
+
+          {/* Sidebar */}
+          <div class="space-y-6">
+            {/* Event Details */}
+            <div class="card bg-base-100 shadow-xl">
+              <div class="card-body">
+                <h3 class="card-title mb-4">Event Details</h3>
+
+                {/* Organizers */}
+                {
+                  data.organizers && data.organizers.length > 0 && (
+                    <div class="mb-4">
+                      <h4 class="font-semibold mb-2">Organizers</h4>
+                      <div class="space-y-1">
+                        {data.organizers.map(organizer => (
+                          <p class="text-base-content/80 text-sm">
+                            {organizer}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                }
+
+                {/* Max Participants */}
+                {
+                  data.maxParticipants && (
+                    <div class="mb-4">
+                      <h4 class="font-semibold mb-2">Capacity</h4>
+                      <p class="text-base-content/80 text-sm">
+                        {data.maxParticipants} participants
+                      </p>
+                    </div>
+                  )
+                }
+
+                {/* Prerequisites */}
+                {
+                  data.prerequisites && data.prerequisites.length > 0 && (
+                    <div class="mb-4">
+                      <h4 class="font-semibold mb-2">Prerequisites</h4>
+                      <ul class="list-disc list-inside space-y-1">
+                        {data.prerequisites.map(prereq => (
+                          <li class="text-base-content/80 text-sm">{prereq}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )
+                }
+
+                {/* Tags */}
+                {
+                  data.tags && data.tags.length > 0 && (
+                    <div>
+                      <h4 class="font-semibold mb-2">Topics</h4>
+                      <div class="flex flex-wrap gap-2">
+                        {data.tags.map(tag => (
+                          <span class="badge badge-outline badge-sm">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
+            </div>
+
+            {/* Speakers */}
+            {
+              data.speakers && data.speakers.length > 0 && (
+                <div class="card bg-base-100 shadow-xl">
+                  <div class="card-body">
+                    <h3 class="card-title mb-4">Speakers</h3>
+                    <div class="space-y-4">
+                      {data.speakers.map(speaker => (
+                        <div class="flex gap-3">
+                          {speaker.avatar && (
+                            <div class="avatar">
+                              <div class="w-12 rounded-full">
+                                <img src={speaker.avatar} alt={speaker.name} />
+                              </div>
+                            </div>
+                          )}
+                          <div class="flex-1">
+                            <h4 class="font-semibold">{speaker.name}</h4>
+                            {speaker.bio && (
+                              <p class="text-base-content/70 text-sm">
+                                {speaker.bio}
+                              </p>
+                            )}
+                            {speaker.social && (
+                              <div class="flex gap-2 mt-2">
+                                {speaker.social.linkedin && (
+                                  <a
+                                    href={speaker.social.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="btn btn-ghost btn-xs"
+                                  >
+                                    LinkedIn
+                                  </a>
+                                )}
+                                {speaker.social.github && (
+                                  <a
+                                    href={speaker.social.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="btn btn-ghost btn-xs"
+                                  >
+                                    GitHub
+                                  </a>
+                                )}
+                                {speaker.social.twitter && (
+                                  <a
+                                    href={speaker.social.twitter}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="btn btn-ghost btn-xs"
+                                  >
+                                    Twitter
+                                  </a>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
+            {/* Action Card */}
+            <div class="card bg-primary text-primary-content shadow-xl">
+              <div class="card-body text-center">
+                {
+                  data.registrationLink && data.status === 'upcoming' ? (
+                    <>
+                      <h3 class="card-title justify-center mb-4">
+                        Ready to Join?
+                      </h3>
+                      <p class="mb-4 opacity-90">
+                        Secure your spot at this amazing event!
+                      </p>
+                      <a
+                        href={data.registrationLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary-content btn-block"
+                      >
+                        Register Now
+                      </a>
+                    </>
+                  ) : data.status === 'completed' ? (
+                    <>
+                      <h3 class="card-title justify-center mb-4">
+                        Event Completed
+                      </h3>
+                      <p class="mb-4 opacity-90">
+                        Thanks to everyone who participated!
+                      </p>
+                      {data.resources && data.resources.length > 0 && (
+                        <button
+                          onclick="document.getElementById('resources').scrollIntoView({behavior: 'smooth'})"
+                          class="btn btn-primary-content btn-block"
+                        >
+                          View Resources
+                        </button>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <h3 class="card-title justify-center mb-4">
+                        Stay Updated
+                      </h3>
+                      <p class="mb-4 opacity-90">
+                        Get notified about similar events!
+                      </p>
+                      <a
+                        href="https://discord.gg/osw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary-content btn-block"
+                      >
+                        Join Community
+                      </a>
+                    </>
+                  )
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    {/* Related Events */}
+    <section class="py-16 bg-base-200">
+      <Container>
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">More Events</h2>
+          <p class="text-base-content/70">
+            Discover other exciting events from our community
+          </p>
+        </div>
+        <div class="text-center">
+          <a href="/events" class="btn btn-primary btn-lg"> View All Events </a>
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>
