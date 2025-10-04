@@ -1,7 +1,7 @@
 ---
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import "../styles/global.css";
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/global.css';
 ---
 
 <html lang="en" data-theme="osw">
@@ -13,10 +13,10 @@ import "../styles/global.css";
     <slot name="head" />
   </head>
   <body class="bg-base-200 grid grid-cols-1 gap-6">
-    <!-- Add Header component -->
+    {/* Add Header component */}
     <Header />
     <slot />
-    <!-- Footer component -->
+    {/* Footer component */}
     <Footer />
   </body>
 </html>

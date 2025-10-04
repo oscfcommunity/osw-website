@@ -1,0 +1,17 @@
+# Run Prettier check on staged files
+npx lint-staged
+
+# Run build to ensure project compiles successfully
+echo "🔨 Building project..."
+npm run build
+
+# If build fails, the commit will be aborted
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed! Commit aborted."
+  exit 1
+fi
+
+# Add built files to staging area for deployment
+git add dist/
+
+echo "✅ Pre-commit checks and build completed successfully!"
