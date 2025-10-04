@@ -5,6 +5,37 @@ page:
 sections:
   hero:
     enabled: true
+    
+    badge:
+      text: "Open Source Day 2025 on 5th October"
+      icon: "🎉"
+      showIcon: false
+    
+    headline:
+      line1: "Open Source"
+      line2: "Weekend"
+      subtitle: "A Community-Driven Initiative"
+      description: "Empowering developers through events, workshops, and celebrations of open source technology"
+    
+    cta:
+      primary:
+        text: "Register for OSD 2025"
+        link: "https://osd.opensourceweekend.org/"
+        external: true
+      secondary:
+        text: "Learn More"
+        link: "#about"
+        external: false
+    
+    stats:
+      - value: "500+"
+        label: "Contributors"
+      - value: "50+"
+        label: "Projects"
+      - value: "20+"
+        label: "Events"
+    
+    showTerminal: true
   
   buttonDemo:
     enabled: true
@@ -13,18 +44,14 @@ sections:
     enabled: true
     title: "Latest Job Opportunities"
     subtitle: "Discover exciting career opportunities in the open source community"
-    
-    # Display settings
     showCount: 3
     showFeaturedOnly: false
     
-    # CTA Button
     ctaButton:
       text: "View All Jobs"
       link: "/jobs"
-      style: "primary"      # DaisyUI: primary/secondary/accent
-      size: "lg"            # DaisyUI: sm/md/lg
+      style: "primary"
+      size: "lg"
     
-    # Section styling
     sectionBackground: "bg-base-100"
     useFluidContainer: false

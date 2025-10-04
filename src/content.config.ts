@@ -196,27 +196,117 @@ const homeConfig = defineCollection({
   }),
   schema: z.object({
     page: z.object({
-      title: z.string(),
-      description: z.string().optional(),
+      title: z.string()
+        .min(5, 'Page title must be at least 5 characters')
+        .max(60, 'Page title must not exceed 60 characters for SEO'),
+      description: z.string()
+        .max(160, 'Page description must not exceed 160 characters for SEO')
+        .optional(),
     }),
     sections: z.object({
-      hero: z.object({ enabled: z.boolean().default(true) }).optional(),
-      buttonDemo: z.object({ enabled: z.boolean().default(true) }).optional(),
+      // Hero Section Configuration
+      hero: z.object({
+        enabled: z.boolean().default(true),
+        
+        // Badge configuration
+        badge: z.object({
+          text: z.string()
+            .min(5, 'Badge text must be at least 5 characters')
+            .max(50, 'Badge text must not exceed 50 characters'),
+          icon: z.string()
+            .max(5, 'Icon should be a single emoji or short text')
+            .default('🎉'),
+          showIcon: z.boolean().default(false),
+        }),
+        
+        // Headline configuration
+        headline: z.object({
+          line1: z.string()
+            .min(3, 'Headline line 1 must be at least 3 characters')
+            .max(50, 'Headline line 1 must not exceed 50 characters'),
+          line2: z.string()
+            .min(3, 'Headline line 2 must be at least 3 characters')
+            .max(50, 'Headline line 2 must not exceed 50 characters'),
+          subtitle: z.string()
+            .min(10, 'Subtitle must be at least 10 characters')
+            .max(100, 'Subtitle must not exceed 100 characters'),
+          description: z.string()
+            .min(50, 'Description must be at least 50 characters')
+            .max(300, 'Description must not exceed 300 characters'),
+        }),
+        
+        // Call-to-action buttons
+        cta: z.object({
+          primary: z.object({
+            text: z.string()
+              .min(5, 'Button text must be at least 5 characters')
+              .max(30, 'Button text must not exceed 30 characters'),
+            link: z.string()
+              .url('Primary CTA link must be a valid URL'),
+            external: z.boolean().default(false),
+          }),
+          secondary: z.object({
+            text: z.string()
+              .min(5, 'Button text must be at least 5 characters')
+              .max(30, 'Button text must not exceed 30 characters'),
+            link: z.string(),
+            external: z.boolean().default(false),
+          }),
+        }),
+        
+        // Statistics
+        stats: z.array(
+          z.object({
+            value: z.string()
+              .min(1, 'Stat value is required')
+              .max(10, 'Stat value must not exceed 10 characters'),
+            label: z.string()
+              .min(3, 'Stat label must be at least 3 characters')
+              .max(30, 'Stat label must not exceed 30 characters'),
+          })
+        )
+        .min(1, 'At least one stat is required')
+        .max(4, 'Maximum 4 stats allowed for visual balance'),
+        
+        // Visual settings
+        showTerminal: z.boolean().default(true),
+      }).optional(),
+      
+      // Button Demo Section
+      buttonDemo: z.object({ 
+        enabled: z.boolean().default(true) 
+      }).optional(),
+      
+      // Jobs Section Configuration
       jobs: z.object({
         enabled: z.boolean().default(true),
-        title: z.string().min(5).max(100),
-        subtitle: z.string().max(200).optional(),
-        showCount: z.number().min(1).max(10).default(3),
+        title: z.string()
+          .min(5, 'Jobs section title must be at least 5 characters')
+          .max(100, 'Jobs section title must not exceed 100 characters'),
+        subtitle: z.string()
+          .max(200, 'Jobs section subtitle must not exceed 200 characters')
+          .optional(),
+        showCount: z.number()
+          .min(1, 'Must show at least 1 job')
+          .max(10, 'Cannot show more than 10 jobs')
+          .default(3),
         showFeaturedOnly: z.boolean().default(false),
         ctaButton: z.object({
-          text: z.string().min(5).max(30),
-          link: z.string().regex(/^\//),
-          style: z.enum(['primary', 'secondary', 'accent', 'neutral']).default('primary'),
-          size: z.enum(['sm', 'md', 'lg']).default('lg'),
+          text: z.string()
+            .min(5, 'Button text must be at least 5 characters')
+            .max(30, 'Button text must not exceed 30 characters'),
+          link: z.string()
+            .regex(/^\//, 'Link must start with / for internal links'),
+          style: z.enum(['primary', 'secondary', 'accent', 'neutral'])
+            .default('primary'),
+          size: z.enum(['sm', 'md', 'lg'])
+            .default('lg'),
         }),
-        sectionBackground: z.string().default('bg-base-100'),
+        sectionBackground: z.string()
+          .regex(/^bg-/, 'Background must be a valid Tailwind class starting with bg-')
+          .default('bg-base-100'),
         useFluidContainer: z.boolean().default(false),
-      }),
+      }).optional(),
     }),
   }),
 });
@@ -231,7 +321,8 @@ const jobCardConfig = defineCollection({
       z.string(), 
       z.enum(['primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error', 'neutral'])
     ),
-    defaultCategoryColor: z.enum(['primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error', 'neutral']).default('neutral'),
+    defaultCategoryColor: z.enum(['primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error', 'neutral'])
+      .default('neutral'),
     display: z.object({
       showCompanyLogo: z.boolean().default(true),
       showSalary: z.boolean().default(true),
@@ -241,9 +332,12 @@ const jobCardConfig = defineCollection({
       showPostedDate: z.boolean().default(true),
     }),
     button: z.object({
-      style: z.enum(['primary', 'secondary', 'accent', 'neutral']).default('primary'),
-      size: z.enum(['sm', 'md', 'lg']).default('md'),
-      text: z.string().default('View Job'),
+      style: z.enum(['primary', 'secondary', 'accent', 'neutral'])
+        .default('primary'),
+      size: z.enum(['sm', 'md', 'lg'])
+        .default('md'),
+      text: z.string()
+        .default('View Job'),
     }),
   }),
 });
