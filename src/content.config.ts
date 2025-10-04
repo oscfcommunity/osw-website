@@ -221,7 +221,35 @@ const homeConfig = defineCollection({
   }),
 });
 
+const jobCardConfig = defineCollection({
+  loader: glob({ 
+    pattern: 'job-card.yaml',
+    base: './src/content/config'
+  }),
+  schema: z.object({
+    categoryColors: z.record(
+      z.string(), 
+      z.enum(['primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error', 'neutral'])
+    ),
+    defaultCategoryColor: z.enum(['primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error', 'neutral']).default('neutral'),
+    display: z.object({
+      showCompanyLogo: z.boolean().default(true),
+      showSalary: z.boolean().default(true),
+      showLocation: z.boolean().default(true),
+      showCategories: z.boolean().default(true),
+      showEmploymentType: z.boolean().default(true),
+      showPostedDate: z.boolean().default(true),
+    }),
+    button: z.object({
+      style: z.enum(['primary', 'secondary', 'accent', 'neutral']).default('primary'),
+      size: z.enum(['sm', 'md', 'lg']).default('md'),
+      text: z.string().default('View Job'),
+    }),
+  }),
+});
+
 export const collections = { 
   jobs,
-  homeConfig
- };
+  homeConfig,
+  jobCardConfig,
+};
