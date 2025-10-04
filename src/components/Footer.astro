@@ -1,0 +1,134 @@
+---
+import Container from "./Container.astro";
+
+const {
+  logo = "/assets/brands/OSWBlack.svg",
+  logoAlt = "OSW Logo",
+  links = [
+    { href: "/about", label: "About us" },
+    { href: "/speakers", label: "Speakers" },
+    { href: "/events", label: "Events" },
+  ],
+  contact = {
+    location: "Ahmedabad, Gujarat",
+    phone: { href: "tel:+911174568932", label: "+91 11745 68932" },
+    email: { href: "mailto:osw@info.com", label: "osw@info.com" },
+  },
+  newsletter = {
+    title: "Newsletter",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius.",
+    placeholder: "Your email",
+    buttonLabel: "Subscribe",
+  },
+  socials = [
+    {
+      href: "#",
+      label: "Instagram",
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7 2C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2H7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="12" r="3.5" stroke-width="2"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg>`,
+    },
+    {
+      href: "#",
+      label: "Twitter",
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M22 5.924c-.793.352-1.646.59-2.543.697a4.48 4.48 0 0 0 1.964-2.47 8.94 8.94 0 0 1-2.828 1.082A4.48 4.48 0 0 0 11.5 9.5c0 .352.04.696.116 1.025A12.74 12.74 0 0 1 3.1 4.9a4.48 4.48 0 0 0 1.39 5.98A4.47 4.47 0 0 1 2.8 10.1v.056a4.48 4.48 0 0 0 3.6 4.39c-.396.108-.813.166-1.243.166-.304 0-.6-.03-.89-.085a4.48 4.48 0 0 0 4.18 3.11A8.98 8.98 0 0 1 2 19.54a12.7 12.7 0 0 0 6.88 2.02c8.26 0 12.78-6.84 12.78-12.78 0-.195-.004-.39-.013-.583A9.13 9.13 0 0 0 24 4.59a8.98 8.98 0 0 1-2.6.71Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`,
+    },
+  ],
+  ticket = { href: "/tickets", label: "Buy Ticket" },
+  copyright = "&copy; OSW - OPEN SOURCE WEEKEND | 2025",
+} = Astro.props;
+---
+
+<footer
+  class="footer sm:footer-horizontal bg-primary text-primary-content px-0 py-4"
+>
+  <Container fluid>
+    <div class="w-full flex flex-col gap-8">
+      <div
+        class="flex flex-col md:flex-row md:justify-between md:items-center gap-8"
+      >
+        <!-- Logo -->
+        <div class="flex items-center justify-center gap-2 md:w-1/3 max-h-44">
+          <img src={logo} alt={logoAlt} class="object-cover" width="232" />
+        </div>
+        <!-- Useful links -->
+        <nav class="flex flex-col gap-2 md:w-1/6">
+          <span class="footer-title">Useful links</span>
+          {
+            links.map((link: { href: string; label: string }) => (
+              <a href={link.href} class="link link-hover">
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+        <!-- Contact info -->
+        <nav class="flex flex-col gap-2 md:w-1/6">
+          <span class="footer-title">Contact info</span>
+          <span>{contact.location}</span>
+          <a href={contact.phone.href} class="link link-hover"
+            >{contact.phone.label}</a
+          >
+          <a href={contact.email.href} class="link link-hover"
+            >{contact.email.label}</a
+          >
+        </nav>
+        <!-- Newsletter -->
+        <form class="flex flex-col gap-2 md:w-1/3" aria-label="Newsletter">
+          <span class="footer-title">{newsletter.title}</span>
+          <span class="text-xs max-w-4/5">{newsletter.description}</span>
+          <label class="input input-bordered flex items-center gap-2 mt-2">
+            <input
+              type="email"
+              placeholder={newsletter.placeholder}
+              class="grow bg-transparent text-base-content"
+              aria-label={newsletter.placeholder}
+            />
+            <button
+              type="submit"
+              class="btn btn-neutral btn-sm"
+              aria-label={newsletter.buttonLabel}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+              >
+            </button>
+          </label>
+        </form>
+      </div>
+      <!-- Divider -->
+      <div class="divider divider-secondary"></div>
+      <!-- Bottom row -->
+      <div
+        class="flex flex-col md:flex-row md:justify-between md:items-center gap-4"
+      >
+        <div class="text-xs opacity-70" set:html={copyright} />
+        <a href={ticket.href} class="btn btn-success rounded-full btn-sm"
+          >{ticket.label}</a
+        >
+        <div class="flex gap-3">
+          {
+            socials.map(
+              (social: { href: string; label: string; icon: string }) => (
+                <a
+                  href={social.href}
+                  aria-label={social.label}
+                  class="btn btn-ghost btn-xs px-2 aspect-square"
+                  set:html={social.icon}
+                />
+              )
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </Container>
+</footer>
