@@ -147,11 +147,11 @@ const getEventTypeEmoji = (type: string) => {
       }
     </section>
 
-    <!-- Event Info Cards -->
+    {/* Event Info Cards */}
     <section class="py-16" id="event-details">
       <Container>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <!-- Event Status Card -->
+          {/* Event Status Card */}
           <div class="card bg-base-200 shadow-xl">
             <div class="card-body text-center">
               <h3 class="card-title justify-center mb-4">Event Status</h3>
@@ -172,7 +172,7 @@ const getEventTypeEmoji = (type: string) => {
             </div>
           </div>
 
-          <!-- Date & Time Card -->
+          {/* Date & Time Card */}
           <div class="card bg-base-200 shadow-xl">
             <div class="card-body text-center">
               <h3 class="card-title justify-center mb-4">Date & Time</h3>
@@ -190,7 +190,7 @@ const getEventTypeEmoji = (type: string) => {
             </div>
           </div>
 
-          <!-- Location Card -->
+          {/* Location Card */}
           <div class="card bg-base-200 shadow-xl">
             <div class="card-body text-center">
               <h3 class="card-title justify-center mb-4">Location</h3>
@@ -204,11 +204,11 @@ const getEventTypeEmoji = (type: string) => {
           </div>
         </div>
 
-        <!-- Main Content Grid -->
+        {/* Main Content Grid */}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <!-- Main Content -->
+          {/* Main Content */}
           <div class="lg:col-span-2">
-            <!-- Event Description -->
+            {/* Event Description */}
             <div class="card bg-base-100 shadow-xl mb-8">
               <div class="card-body">
                 <h2 class="card-title text-2xl mb-6">About This Event</h2>
@@ -218,7 +218,7 @@ const getEventTypeEmoji = (type: string) => {
               </div>
             </div>
 
-            <!-- Agenda -->
+            {/* Agenda */}
             {
               data.agenda && data.agenda.length > 0 && (
                 <div class="card bg-base-100 shadow-xl mb-8">
@@ -254,7 +254,7 @@ const getEventTypeEmoji = (type: string) => {
               )
             }
 
-            <!-- Resources -->
+            {/* Resources */}
             {
               data.resources && data.resources.length > 0 && (
                 <div class="card bg-base-100 shadow-xl mb-8" id="resources">
@@ -289,14 +289,14 @@ const getEventTypeEmoji = (type: string) => {
             }
           </div>
 
-          <!-- Sidebar -->
+          {/* Sidebar */}
           <div class="space-y-6">
-            <!-- Event Details -->
+            {/* Event Details */}
             <div class="card bg-base-100 shadow-xl">
               <div class="card-body">
                 <h3 class="card-title mb-4">Event Details</h3>
 
-                <!-- Organizers -->
+                {/* Organizers */}
                 {
                   data.organizers && data.organizers.length > 0 && (
                     <div class="mb-4">
@@ -312,7 +312,7 @@ const getEventTypeEmoji = (type: string) => {
                   )
                 }
 
-                <!-- Max Participants -->
+                {/* Max Participants */}
                 {
                   data.maxParticipants && (
                     <div class="mb-4">
@@ -324,7 +324,7 @@ const getEventTypeEmoji = (type: string) => {
                   )
                 }
 
-                <!-- Prerequisites -->
+                {/* Prerequisites */}
                 {
                   data.prerequisites && data.prerequisites.length > 0 && (
                     <div class="mb-4">
@@ -338,7 +338,7 @@ const getEventTypeEmoji = (type: string) => {
                   )
                 }
 
-                <!-- Tags -->
+                {/* Tags */}
                 {
                   data.tags && data.tags.length > 0 && (
                     <div>
@@ -356,7 +356,7 @@ const getEventTypeEmoji = (type: string) => {
               </div>
             </div>
 
-            <!-- Speakers -->
+            {/* Speakers */}
             {
               data.speakers && data.speakers.length > 0 && (
                 <div class="card bg-base-100 shadow-xl">
@@ -422,7 +422,7 @@ const getEventTypeEmoji = (type: string) => {
               )
             }
 
-            <!-- Action Card -->
+            {/* Action Card */}
             <div class="card bg-primary text-primary-content shadow-xl">
               <div class="card-body text-center">
                 {
@@ -486,7 +486,7 @@ const getEventTypeEmoji = (type: string) => {
       </Container>
     </section>
 
-    <!-- Related Events -->
+    {/* Related Events */}
     <section class="py-16 bg-base-200">
       <Container>
         <div class="text-center mb-12">

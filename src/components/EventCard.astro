@@ -73,7 +73,7 @@ const isHappeningSoon = () => {
 <div
   class={`card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 ${featured ? 'ring-2 ring-primary ring-offset-2 ring-offset-base-100' : ''}`}
 >
-  <!-- Event Image -->
+  {/* Event Image */}
   {
     data.coverImage && (
       <figure class="relative">
@@ -99,7 +99,7 @@ const isHappeningSoon = () => {
   }
 
   <div class="card-body">
-    <!-- Event Type and Status Badges -->
+    {/* Event Type and Status Badges */}
     <div class="flex flex-wrap gap-2 mb-2">
       <div class={`badge ${getEventTypeColor(data.eventType)} badge-outline`}>
         {formatEventType(data.eventType)}
@@ -109,19 +109,19 @@ const isHappeningSoon = () => {
       </div>
     </div>
 
-    <!-- Event Title -->
+    {/* Event Title */}
     <h2 class="card-title text-xl mb-2 line-clamp-2">
       {data.title}
     </h2>
 
-    <!-- Event Description -->
+    {/* Event Description */}
     <p class="text-base-content/70 text-sm mb-4 line-clamp-3">
       {data.description}
     </p>
 
-    <!-- Event Details -->
+    {/* Event Details */}
     <div class="space-y-2 mb-4">
-      <!-- Date and Time -->
+      {/* Date and Time */}
       <div class="flex items-center gap-2 text-sm">
         <svg
           class="w-4 h-4 text-base-content/50"
@@ -141,7 +141,7 @@ const isHappeningSoon = () => {
         </span>
       </div>
 
-      <!-- Location -->
+      {/* Location */}
       <div class="flex items-center gap-2 text-sm">
         <svg
           class="w-4 h-4 text-base-content/50"
@@ -166,7 +166,7 @@ const isHappeningSoon = () => {
         </span>
       </div>
 
-      <!-- Organizers -->
+      {/* Organizers */}
       {
         data.organizers && data.organizers.length > 0 && (
           <div class="flex items-center gap-2 text-sm">
@@ -191,7 +191,7 @@ const isHappeningSoon = () => {
         )
       }
 
-      <!-- Max Participants -->
+      {/* Max Participants */}
       {
         data.maxParticipants && (
           <div class="flex items-center gap-2 text-sm">
@@ -216,7 +216,7 @@ const isHappeningSoon = () => {
       }
     </div>
 
-    <!-- Tags -->
+    {/* Tags */}
     {
       data.tags && data.tags.length > 0 && (
         <div class="flex flex-wrap gap-1 mb-4">
@@ -232,7 +232,7 @@ const isHappeningSoon = () => {
       )
     }
 
-    <!-- Action Buttons -->
+    {/* Action Buttons */}
     <div class="card-actions justify-between items-center mt-auto">
       <a href={`/events/${event.slug}`} class="btn btn-primary btn-sm">
         Learn More

@@ -22,7 +22,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
 
 <Layout title="Events - OSW Community">
   <main class="min-h-screen bg-base-100">
-    <!-- Hero Section -->
+    {/* Hero Section */}
     <section
       class="hero bg-gradient-to-r from-primary to-secondary text-primary-content py-20"
     >
@@ -51,7 +51,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
       </Container>
     </section>
 
-    <!-- Stats Section -->
+    {/* Stats Section */}
     <section class="py-16 bg-base-200">
       <Container>
         <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
@@ -76,7 +76,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
       </Container>
     </section>
 
-    <!-- Featured Events -->
+    {/* Featured Events */}
     {
       featuredEvents.length > 0 && (
         <section class="py-16">
@@ -97,7 +97,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
       )
     }
 
-    <!-- Upcoming Events -->
+    {/* Upcoming Events */}
     <section id="upcoming" class="py-16 bg-base-200">
       <Container>
         <div class="text-center mb-12">
@@ -139,7 +139,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
       </Container>
     </section>
 
-    <!-- Past Events -->
+    {/* Past Events */}
     <section id="past" class="py-16">
       <Container>
         <div class="text-center mb-12">
@@ -167,7 +167,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
       </Container>
     </section>
 
-    <!-- Event Types Filter -->
+    {/* Event Types Filter */}
     <section class="py-16 bg-base-200">
       <Container>
         <div class="text-center mb-12">
@@ -178,7 +178,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Workshop Card -->
+          {/* Workshop Card */}
           <div
             class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
           >
@@ -195,7 +195,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
             </div>
           </div>
 
-          <!-- Meetup Card -->
+          {/* Meetup Card */}
           <div
             class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
           >
@@ -212,7 +212,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
             </div>
           </div>
 
-          <!-- Hackathon Card -->
+          {/* Hackathon Card */}
           <div
             class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
           >
@@ -232,7 +232,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
       </Container>
     </section>
 
-    <!-- Call to Action -->
+    {/* Call to Action */}
     <section class="py-16">
       <Container>
         <div
