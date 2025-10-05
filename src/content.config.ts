@@ -245,28 +245,21 @@ const homeConfig = defineCollection({
               .url('Primary CTA link must be a valid URL'),
             external: z.boolean().default(false),
           }),
-          secondary: z.object({
-            text: z.string()
-              .min(5, 'Button text must be at least 5 characters')
-              .max(30, 'Button text must not exceed 30 characters'),
-            link: z.string(),
-            external: z.boolean().default(false),
-          }),
         }),
         
         // Statistics
-        stats: z.array(
-          z.object({
-            value: z.string()
-              .min(1, 'Stat value is required')
-              .max(10, 'Stat value must not exceed 10 characters'),
-            label: z.string()
-              .min(3, 'Stat label must be at least 3 characters')
-              .max(30, 'Stat label must not exceed 30 characters'),
-          })
-        )
-        .min(1, 'At least one stat is required')
-        .max(4, 'Maximum 4 stats allowed for visual balance'),
+        // stats: z.array(
+        //   z.object({
+        //     value: z.string()
+        //       .min(1, 'Stat value is required')
+        //       .max(10, 'Stat value must not exceed 10 characters'),
+        //     label: z.string()
+        //       .min(3, 'Stat label must be at least 3 characters')
+        //       .max(30, 'Stat label must not exceed 30 characters'),
+        //   })
+        // )
+        // .min(1, 'At least one stat is required')
+        // .max(4, 'Maximum 4 stats allowed for visual balance'),
         
         // Visual settings
         showTerminal: z.boolean().default(true),
