@@ -44,8 +44,8 @@ sections:
     enabled: true
     title: "Upcoming Events"
     subtitle: "Join us at our upcoming workshops, hackathons, and community meetups"
-    showCount: 3
-    showFeaturedOnly: true
+    showCount: 2
+    showFeaturedOnly: false
     
     ctaButton:
       text: "View All Events"
