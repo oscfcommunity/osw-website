@@ -13,7 +13,7 @@ sections:
     
     headline:
       line1: "Open Source"
-      line2: "Weekend"
+      line2: "Day"
       subtitle: "A Community-Driven Initiative"
       description: "Empowering developers through events, workshops, and celebrations of open source technology"
     
@@ -22,18 +22,18 @@ sections:
         text: "Register for OSD 2025"
         link: "https://osd.opensourceweekend.org/"
         external: true
-      secondary:
-        text: "Learn More"
-        link: "#about"
-        external: false
+      # secondary:
+      #   text: "Learn More"
+      #   link: "#about"
+      #   external: false
     
-    stats:
-      - value: "500+"
-        label: "Contributors"
-      - value: "50+"
-        label: "Projects"
-      - value: "20+"
-        label: "Events"
+    # stats:
+    #   - value: "500+"
+    #     label: "Contributors"
+    #   - value: "50+"
+    #     label: "Projects"
+    #   - value: "20+"
+    #     label: "Events"
     
     showTerminal: true
   
