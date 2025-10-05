@@ -1,32 +1,32 @@
 page:
-  title: "OSW - Open Source Weekend"
-  description: "Join the open source community"
+  title: 'OSW - Open Source Weekend'
+  description: 'Join the open source community'
 
 sections:
   hero:
     enabled: true
-    
+
     badge:
-      text: "Open Source Day 2025 on 5th October"
-      icon: "🎉"
+      text: 'Open Source Day 2025 on 5th October'
+      icon: '🎉'
       showIcon: false
-    
+
     headline:
-      line1: "Open Source"
-      line2: "Day"
-      subtitle: "A Community-Driven Initiative"
-      description: "Empowering developers through events, workshops, and celebrations of open source technology"
-    
+      line1: 'Open Source'
+      line2: 'Day'
+      subtitle: 'A Community-Driven Initiative'
+      description: 'Empowering developers through events, workshops, and celebrations of open source technology'
+
     cta:
       primary:
-        text: "Register for OSD 2025"
-        link: "https://osd.opensourceweekend.org/"
+        text: 'Register for OSD 2025'
+        link: 'https://osd.opensourceweekend.org/'
         external: true
       # secondary:
       #   text: "Learn More"
       #   link: "#about"
       #   external: false
-    
+
     # stats:
     #   - value: "500+"
     #     label: "Contributors"
@@ -34,24 +34,24 @@ sections:
     #     label: "Projects"
     #   - value: "20+"
     #     label: "Events"
-    
+
     showTerminal: true
-  
+
   buttonDemo:
     enabled: true
-  
+
   jobs:
     enabled: true
-    title: "Latest Job Opportunities"
-    subtitle: "Discover exciting career opportunities in the open source community"
+    title: 'Latest Job Opportunities'
+    subtitle: 'Discover exciting career opportunities in the open source community'
     showCount: 3
     showFeaturedOnly: false
-    
+
     ctaButton:
-      text: "View All Jobs"
-      link: "/jobs"
-      style: "primary"
-      size: "lg"
-    
-    sectionBackground: "bg-base-100"
+      text: 'View All Jobs'
+      link: '/'
+      style: 'primary'
+      size: 'lg'
+
+    sectionBackground: 'bg-base-100'
     useFluidContainer: false
