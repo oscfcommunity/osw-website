@@ -231,7 +231,7 @@ const homeConfig = defineCollection({
             .min(10, 'Subtitle must be at least 10 characters')
             .max(100, 'Subtitle must not exceed 100 characters'),
           description: z.string()
-            .min(50, 'Description must be at least 50 characters')
+            .min(50, '<Description must be at least 50 characters')
             .max(300, 'Description must not exceed 300 characters'),
         }),
         
@@ -300,6 +300,37 @@ const homeConfig = defineCollection({
           .default('bg-base-100'),
         useFluidContainer: z.boolean().default(false),
       }).optional(),
+
+      // Events Section Configuration
+      events: z.object({
+        enabled: z.boolean().default(true),
+        title: z.string()
+          .min(5, 'Events section title must be at least 5 characters')
+          .max(100, 'Events section title must not exceed 100 characters'),
+        subtitle: z.string()
+          .max(200, 'Events section subtitle must not exceed 200 characters')
+          .optional(),
+        showCount: z.number()
+          .min(1, 'Must show at least 1 event')
+          .max(10, 'Cannot show more than 10 events')
+          .default(3),
+        showFeaturedOnly: z.boolean().default(false),
+        ctaButton: z.object({
+          text: z.string()
+            .min(5, 'Button text must be at least 5 characters')
+            .max(30, 'Button text must not exceed 30 characters'),
+          link: z.string()
+            .regex(/^\//, 'Link must start with / for internal links'),
+          style: z.enum(['primary', 'secondary', 'accent', 'neutral', 'info'])
+            .default('secondary'),
+          size: z.enum(['sm', 'md', 'lg'])
+            .default('lg'),
+        }),
+        sectionBackground: z.string()
+          .regex(/^bg-/, 'Background must be a valid Tailwind class starting with bg-')
+          .default('bg-base-200'),
+        useFluidContainer: z.boolean().default(false),
+      }).optional(),
     }),
   }),
 });
@@ -335,8 +366,116 @@ const jobCardConfig = defineCollection({
   }),
 });
 
+const events = defineCollection({
+  loader: glob({ 
+    pattern: '**/*.md',
+    base: './src/content/events'
+  }),
+  schema: z.object({
+    title: z.string()
+      .min(10, 'Title must be at least 10 characters')
+      .max(100, 'Title must not exceed 100 characters'),
+    
+    description: z.string()
+      .min(50, 'Description must be at least 50 characters')
+      .max(500, 'Description must not exceed 500 characters'),
+    
+    date: z.string()
+      .or(z.date())
+      .transform((val) => new Date(val)),
+    
+    endDate: z.string()
+      .or(z.date())
+      .transform((val) => new Date(val))
+      .optional(),
+    
+    location: z.string()
+      .min(3, 'Location must be at least 3 characters'),
+    
+    venue: z.string().optional(),
+    
+    eventType: z.enum([
+      'workshop',
+      'meetup',
+      'hackathon',
+      'conference',
+      'webinar',
+      'networking',
+    ]),
+    
+    status: z.enum(['upcoming', 'ongoing', 'completed', 'cancelled'])
+      .default('upcoming'),
+    
+    speakers: z.array(z.string())
+      .optional(),
+    
+    registrationLink: z.string()
+      .url('Registration link must be a valid URL')
+      .optional(),
+    
+    maxParticipants: z.number()
+      .positive('Maximum participants must be a positive number')
+      .optional(),
+    
+    tags: z.array(z.string())
+      .default([]),
+    
+    featured: z.boolean()
+      .default(false),
+    
+    coverImage: z.string()
+      .url('Cover image must be a valid URL')
+      .optional(),
+    
+    agenda: z.array(
+      z.object({
+        time: z.string(),
+        title: z.string(),
+        speaker: z.string(),
+        type: z.string(),
+        room: z.string(),
+        start: z.string(),
+        end: z.string(),
+        isPanelLeft: z.boolean().optional(),
+        isPanelRight: z.boolean().optional(),
+      })
+    ).optional(),
+  }).refine(
+    (data) => !data.endDate || data.endDate >= data.date,
+    'Event end date must be after or equal to start date'
+  ),
+});
+
+const eventCardConfig = defineCollection({
+  loader: glob({ 
+    pattern: 'event-card.yaml',
+    base: './src/content/config'
+  }),
+  schema: z.object({
+    display: z.object({
+      showCoverImage: z.boolean().default(true),
+      showEventDate: z.boolean().default(true),
+      showEventType: z.boolean().default(true),
+      showLocation: z.boolean().default(true),
+      showTags: z.boolean().default(true),
+      showStatus: z.boolean().default(true),
+      showSpeakers: z.boolean().default(true),
+    }),
+    button: z.object({
+      style: z.enum(['primary', 'secondary', 'accent', 'neutral', 'info'])
+        .default('primary'),
+      size: z.enum(['sm', 'md', 'lg'])
+        .default('sm'),
+      text: z.string()
+        .default('View Event'),
+    }),
+  }),
+});
+
 export const collections = { 
   jobs,
   homeConfig,
   jobCardConfig,
+  events,
+  eventCardConfig
 };
