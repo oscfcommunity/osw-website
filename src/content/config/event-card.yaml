@@ -1,0 +1,12 @@
+display:
+  showEventDate: true
+  showEventType: true
+  showLocation: true
+  showTags: false
+  showStatus: true
+  showSpeakers: true
+
+button:
+  style: "primary"
+  size: "sm"
+  text: "View Event"

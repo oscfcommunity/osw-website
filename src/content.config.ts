@@ -7,7 +7,6 @@ const jobs = defineCollection({
     base: './src/content/jobs'
   }),
   schema: z.object({
-    // Core
     title: z.string()
       .min(10, 'Title must be at least 10 characters')
       .max(100, 'Title must not exceed 100 characters'),
@@ -24,7 +23,6 @@ const jobs = defineCollection({
       .or(z.date())
       .transform((val) => new Date(val)),
     
-    // Company
     company: z.object({
       name: z.string()
         .min(2, 'Company name must be at least 2 characters'),
@@ -48,7 +46,6 @@ const jobs = defineCollection({
         .optional(),
     }),
     
-    // Location
     location: z.object({
       city: z.string()
         .min(2, 'City name must be at least 2 characters'),
@@ -65,13 +62,11 @@ const jobs = defineCollection({
         .optional(),
     }),
     
-    // Employment
     employmentType: z.enum(
       ['FULL_TIME', 'PART_TIME', 'CONTRACT', 'TEMPORARY', 'INTERN'],
       { errorMap: () => ({ message: 'Invalid employment type' }) }
     ),
     
-    // Compensation
     salary: z.object({
       min: z.number()
         .positive('Minimum salary must be a positive number'),
@@ -91,7 +86,6 @@ const jobs = defineCollection({
       'Maximum salary must be greater than or equal to minimum salary'
     ),
     
-    // Qualifications
     experienceLevel: z.enum(
       ['ENTRY_LEVEL', 'MID_LEVEL', 'SENIOR', 'LEAD', 'EXECUTIVE']
     ).optional(),
@@ -123,14 +117,12 @@ const jobs = defineCollection({
     skills: z.array(z.string())
       .optional(),
     
-    // Benefits
     benefits: z.object({
       health: z.array(z.string()).optional(),
       timeOff: z.array(z.string()).optional(),
       other: z.array(z.string()).optional(),
     }).optional(),
     
-    // Application
     application: z.object({
       applyUrl: z.string()
         .url('Application URL must be a valid URL')
@@ -157,7 +149,6 @@ const jobs = defineCollection({
       'Must provide either applyUrl or applyEmail for applications'
     ),
     
-    // Metadata
     categories: z.array(z.string())
       .min(1, 'At least one category is required')
       .max(5, 'Maximum 5 categories allowed'),
@@ -174,7 +165,6 @@ const jobs = defineCollection({
       keywords: z.array(z.string()).optional(),
     }).optional(),
     
-    // Status
     status: z.enum(['ACTIVE', 'CLOSED', 'DRAFT'])
       .default('ACTIVE'),
     
@@ -189,12 +179,93 @@ const jobs = defineCollection({
   ),
 });
 
+const events = defineCollection({
+  loader: glob({ 
+    pattern: '**/*.md',
+    base: './src/content/events'
+  }),
+  schema: z.object({
+    title: z.string()
+      .min(10, 'Title must be at least 10 characters')
+      .max(100, 'Title must not exceed 100 characters'),
+    
+    description: z.string()
+      .min(50, 'Description must be at least 50 characters')
+      .max(500, 'Description must not exceed 500 characters'),
+    
+    date: z.string()
+      .or(z.date())
+      .transform((val) => new Date(val)),
+    
+    endDate: z.string()
+      .or(z.date())
+      .transform((val) => new Date(val))
+      .optional(),
+    
+    location: z.string()
+      .min(3, 'Location must be at least 3 characters'),
+    
+    venue: z.string().optional(),
+    
+    eventType: z.enum([
+      'workshop',
+      'meetup',
+      'hackathon',
+      'conference',
+      'webinar',
+      'networking',
+    ]),
+    
+    status: z.enum(['upcoming', 'ongoing', 'completed', 'cancelled'])
+      .default('upcoming'),
+    
+    speakers: z.array(z.string())
+      .optional(),
+    
+    registrationLink: z.string()
+      .url('Registration link must be a valid URL')
+      .optional(),
+    
+    maxParticipants: z.number()
+      .positive('Maximum participants must be a positive number')
+      .optional(),
+    
+    tags: z.array(z.string())
+      .default([]),
+    
+    featured: z.boolean()
+      .default(false),
+    
+    coverImage: z.string()
+      .url('Cover image must be a valid URL')
+      .optional(),
+    
+    agenda: z.array(
+      z.object({
+        time: z.string(),
+        title: z.string(),
+        speaker: z.string(),
+        type: z.string(),
+        room: z.string(),
+        start: z.string(),
+        end: z.string(),
+        isPanelLeft: z.boolean().optional(),
+        isPanelRight: z.boolean().optional(),
+      })
+    ).optional(),
+  }).refine(
+    (data) => !data.endDate || data.endDate >= data.date,
+    'Event end date must be after or equal to start date'
+  ),
+});
+
 const homeConfig = defineCollection({
   loader: glob({ 
     pattern: 'home.yaml',
     base: './src/content/config'
   }),
   schema: z.object({
+    // Page metadata
     page: z.object({
       title: z.string()
         .min(5, 'Page title must be at least 5 characters')
@@ -203,6 +274,7 @@ const homeConfig = defineCollection({
         .max(160, 'Page description must not exceed 160 characters for SEO')
         .optional(),
     }),
+    
     sections: z.object({
       // Hero Section Configuration
       hero: z.object({
@@ -245,21 +317,28 @@ const homeConfig = defineCollection({
               .url('Primary CTA link must be a valid URL'),
             external: z.boolean().default(false),
           }),
+          secondary: z.object({
+            text: z.string()
+              .min(5, 'Button text must be at least 5 characters')
+              .max(30, 'Button text must not exceed 30 characters'),
+            link: z.string(),
+            external: z.boolean().default(false),
+          }),
         }),
         
         // Statistics
-        // stats: z.array(
-        //   z.object({
-        //     value: z.string()
-        //       .min(1, 'Stat value is required')
-        //       .max(10, 'Stat value must not exceed 10 characters'),
-        //     label: z.string()
-        //       .min(3, 'Stat label must be at least 3 characters')
-        //       .max(30, 'Stat label must not exceed 30 characters'),
-        //   })
-        // )
-        // .min(1, 'At least one stat is required')
-        // .max(4, 'Maximum 4 stats allowed for visual balance'),
+        stats: z.array(
+          z.object({
+            value: z.string()
+              .min(1, 'Stat value is required')
+              .max(10, 'Stat value must not exceed 10 characters'),
+            label: z.string()
+              .min(3, 'Stat label must be at least 3 characters')
+              .max(30, 'Stat label must not exceed 30 characters'),
+          })
+        )
+        .min(1, 'At least one stat is required')
+        .max(4, 'Maximum 4 stats allowed for visual balance'),
         
         // Visual settings
         showTerminal: z.boolean().default(true),
@@ -268,6 +347,37 @@ const homeConfig = defineCollection({
       // Button Demo Section
       buttonDemo: z.object({ 
         enabled: z.boolean().default(true) 
+      }).optional(),
+      
+      // Events Section Configuration
+      events: z.object({
+        enabled: z.boolean().default(true),
+        title: z.string()
+          .min(5, 'Events section title must be at least 5 characters')
+          .max(100, 'Events section title must not exceed 100 characters'),
+        subtitle: z.string()
+          .max(200, 'Events section subtitle must not exceed 200 characters')
+          .optional(),
+        showCount: z.number()
+          .min(1, 'Must show at least 1 event')
+          .max(10, 'Cannot show more than 10 events')
+          .default(3),
+        showFeaturedOnly: z.boolean().default(false),
+        ctaButton: z.object({
+          text: z.string()
+            .min(5, 'Button text must be at least 5 characters')
+            .max(30, 'Button text must not exceed 30 characters'),
+          link: z.string()
+            .regex(/^\//, 'Link must start with / for internal links'),
+          style: z.enum(['primary', 'secondary', 'accent', 'neutral', 'info'])
+            .default('secondary'),
+          size: z.enum(['sm', 'md', 'lg'])
+            .default('lg'),
+        }),
+        sectionBackground: z.string()
+          .regex(/^bg-/, 'Background must be a valid Tailwind class starting with bg-')
+          .default('bg-base-200'),
+        useFluidContainer: z.boolean().default(false),
       }).optional(),
       
       // Jobs Section Configuration
@@ -335,8 +445,36 @@ const jobCardConfig = defineCollection({
   }),
 });
 
+const eventCardConfig = defineCollection({
+  loader: glob({ 
+    pattern: 'event-card.yaml',
+    base: './src/content/config'
+  }),
+  schema: z.object({
+    display: z.object({
+      showCoverImage: z.boolean().default(true),
+      showEventDate: z.boolean().default(true),
+      showEventType: z.boolean().default(true),
+      showLocation: z.boolean().default(true),
+      showTags: z.boolean().default(true),
+      showStatus: z.boolean().default(true),
+      showSpeakers: z.boolean().default(true),
+    }),
+    button: z.object({
+      style: z.enum(['primary', 'secondary', 'accent', 'neutral', 'info'])
+        .default('primary'),
+      size: z.enum(['sm', 'md', 'lg'])
+        .default('sm'),
+      text: z.string()
+        .default('View Event'),
+    }),
+  }),
+});
+
 export const collections = { 
   jobs,
+  events,
   homeConfig,
   jobCardConfig,
+  eventCardConfig
 };
