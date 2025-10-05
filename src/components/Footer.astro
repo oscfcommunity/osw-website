@@ -6,14 +6,17 @@ const {
   logo = '/assets/brands/OSWWhite.svg',
   logoAlt = 'OSW Logo',
   links = [
-    { href: '/about', label: 'About us' },
-    { href: '/speakers', label: 'Speakers' },
-    { href: '/events', label: 'Events' },
+    { href: '#events', label: 'Events' },
+    { href: '#jobs', label: 'Jobs' },
   ],
   contact = {
     location: 'Ahmedabad, Gujarat',
-    phone: { href: 'tel:+911174568932', label: '+91 11745 68932' },
-    email: { href: 'mailto:osw@info.com', label: 'osw@info.com' },
+    phone1: { href: 'tel:+918980808222', label: '+91 89 8080 8222' },
+    phone2: { href: 'tel:+918401339936', label: '+91 84 0133 9936' },
+    email: {
+      href: 'mailto:opensourceweekend@gmail.com',
+      label: 'opensourceweekend@gmail.com',
+    },
   },
   newsletter = {
     title: 'Newsletter',
@@ -24,12 +27,12 @@ const {
   },
   socials = [
     {
-      href: '#',
+      href: 'https://instagram.com/OSWeekend',
       label: 'Instagram',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7 2C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2H7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="12" r="3.5" stroke-width="2"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg>`,
     },
     {
-      href: '#',
+      href: 'https://twitter.com/OSWeekend',
       label: 'Twitter',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M22 5.924c-.793.352-1.646.59-2.543.697a4.48 4.48 0 0 0 1.964-2.47 8.94 8.94 0 0 1-2.828 1.082A4.48 4.48 0 0 0 11.5 9.5c0 .352.04.696.116 1.025A12.74 12.74 0 0 1 3.1 4.9a4.48 4.48 0 0 0 1.39 5.98A4.47 4.47 0 0 1 2.8 10.1v.056a4.48 4.48 0 0 0 3.6 4.39c-.396.108-.813.166-1.243.166-.304 0-.6-.03-.89-.085a4.48 4.48 0 0 0 4.18 3.11A8.98 8.98 0 0 1 2 19.54a12.7 12.7 0 0 0 6.88 2.02c8.26 0 12.78-6.84 12.78-12.78 0-.195-.004-.39-.013-.583A9.13 9.13 0 0 0 24 4.59a8.98 8.98 0 0 1-2.6.71Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`,
     },
@@ -45,7 +48,7 @@ const {
   <Container fluid>
     <div class="w-full flex flex-col gap-8">
       <div
-        class="flex flex-col md:flex-row md:justify-between md:items-center gap-8"
+        class="flex flex-col md:flex-row md:justify-between md:items-stretch gap-8"
       >
         {/* Logo */}
         <div class="flex items-center justify-center gap-2 md:w-1/3 max-h-44">
@@ -57,6 +60,20 @@ const {
             height="200"
           />
         </div>
+        {/* Contact info */}
+        <nav class="flex flex-col items-start gap-2 md:w-1/6">
+          <span class="footer-title">Contact info</span>
+          <span>{contact.location}</span>
+          <a href={contact.phone1.href} class="link link-hover"
+            >{contact.phone1.label}</a
+          >
+          <a href={contact.phone2.href} class="link link-hover"
+            >{contact.phone2.label}</a
+          >
+          <a href={contact.email.href} class="link link-hover"
+            >{contact.email.label}</a
+          >
+        </nav>
         {/* Useful links */}
         <nav class="flex flex-col gap-2 md:w-1/6">
           <span class="footer-title">Useful links</span>
@@ -68,19 +85,9 @@ const {
             ))
           }
         </nav>
-        {/* Contact info */}
-        <nav class="flex flex-col gap-2 md:w-1/6">
-          <span class="footer-title">Contact info</span>
-          <span>{contact.location}</span>
-          <a href={contact.phone.href} class="link link-hover"
-            >{contact.phone.label}</a
-          >
-          <a href={contact.email.href} class="link link-hover"
-            >{contact.email.label}</a
-          >
-        </nav>
+
         {/* Newsletter */}
-        <form class="flex flex-col gap-2 md:w-1/3" aria-label="Newsletter">
+        <!-- <form class="flex flex-col gap-2 md:w-1/3" aria-label="Newsletter">
           <span class="footer-title">{newsletter.title}</span>
           <span class="text-xs max-w-4/5">{newsletter.description}</span>
           <label class="input input-bordered flex items-center gap-2 mt-2">
@@ -109,32 +116,29 @@ const {
               >
             </button>
           </label>
-        </form>
+        </form> -->
       </div>
-      {/* Divider */}
-      <div class="divider divider-secondary"></div>
       {/* Bottom row */}
-      <div
-        class="flex flex-col md:flex-row md:justify-between md:items-center gap-4"
-      >
-        <div class="text-xs opacity-70" set:html={copyright} />
-        <a href={ticket.href} class="btn btn-success rounded-full btn-sm"
-          >{ticket.label}</a
+      <div class="border-t">
+        <Container
+          className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 pb-0"
         >
-        <div class="flex gap-3">
-          {
-            socials.map(
-              (social: { href: string; label: string; icon: string }) => (
-                <a
-                  href={social.href}
-                  aria-label={social.label}
-                  class="btn btn-ghost btn-xs px-2 aspect-square"
-                  set:html={social.icon}
-                />
+          <div class="text-xs opacity-70" set:html={copyright} />
+          <div class="flex gap-3">
+            {
+              socials.map(
+                (social: { href: string; label: string; icon: string }) => (
+                  <a
+                    href={social.href}
+                    aria-label={social.label}
+                    class="btn btn-ghost btn-xs px-2 aspect-square"
+                    set:html={social.icon}
+                  />
+                )
               )
-            )
-          }
-        </div>
+            }
+          </div>
+        </Container>
       </div>
     </div>
   </Container>
