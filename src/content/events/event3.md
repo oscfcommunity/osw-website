@@ -1,147 +1,133 @@
 ---
-title: 'OSW Winter Hackathon 2025'
-description: '48-hour hackathon focused on building innovative open source solutions for social good and community impact.'
-date: 2025-12-15T09:00:00Z
-endDate: 2025-12-17T18:00:00Z
-location: 'Hybrid (Multiple Cities)'
-venue: 'Innovation Centers & Online'
-eventType: 'hackathon'
-status: 'upcoming'
-organizers: ['OSW Community', 'Tech4Good Initiative', 'Innovation Hub Network']
+title: "OSW Winter Hackathon 2025"
+description: "48-hour hackathon focused on building innovative open source solutions for social good and community impact."
+date: "2025-12-15"
+endDate: "2025-12-17"
+location: "Hybrid (Multiple Cities)"
+venue: "Innovation Centers & Online"
+eventType: "hackathon"
+status: "upcoming"
 speakers:
-  - name: 'Dr. Sarah Chen'
-    bio: 'Director of Open Source Innovation at TechForGood'
-    avatar: '/assets/speakers/sarah-chen.jpg'
-    social:
-      linkedin: 'https://linkedin.com/in/sarahchen'
-      twitter: 'https://twitter.com/sarahchen_tech'
-  - name: 'Michael Rodriguez'
-    bio: 'Senior Engineer at GitHub and OSS Advocate'
-    avatar: '/assets/speakers/michael-rodriguez.jpg'
-    social:
-      linkedin: 'https://linkedin.com/in/michaelrodriguez'
-      github: 'https://github.com/mrodriguez'
-  - name: 'Priya Sharma'
-    bio: 'Product Manager at Mozilla and Community Builder'
-    avatar: '/assets/speakers/priya-sharma.jpg'
-    social:
-      linkedin: 'https://linkedin.com/in/priyasharma'
-      twitter: 'https://twitter.com/priya_builds'
-registrationLink: 'https://hackathon.osw.com/register'
+  - "Dr. Sarah Chen"
+  - "Michael Rodriguez"
+  - "Priya Sharma"
+  - "Expert Mentors Panel"
+registrationLink: "https://hackathon.osw.com/register"
 maxParticipants: 200
-tags: ['hackathon', 'innovation', 'social-good', 'collaboration', 'prizes']
+tags:
+  - "Hackathon"
+  - "Innovation"
+  - "Social Good"
+  - "Collaboration"
+  - "Prizes"
 featured: true
-coverImage: '/assets/events/winter-hackathon-2025.jpg'
-prerequisites:
-  - 'Programming experience in any language'
-  - 'Team of 2-4 members (individual participation allowed)'
-  - 'Laptop with development environment'
-  - 'Enthusiasm for social impact projects'
+coverImage: "https://placehold.co/800x400/10b981/white?text=Winter+Hackathon+2025"
 agenda:
-  - time: '9:00 AM (Dec 15)'
-    topic: 'Opening Ceremony & Theme Reveal'
-    speaker: 'OSW Organizers'
-  - time: '10:00 AM (Dec 15)'
-    topic: 'Keynote: Building Tech for Social Good'
-    speaker: 'Dr. Sarah Chen'
-  - time: '11:00 AM (Dec 15)'
-    topic: 'Team Formation & Ideation'
-  - time: '12:00 PM (Dec 15)'
-    topic: 'Hacking Begins!'
-  - time: '6:00 PM (Dec 16)'
-    topic: 'Mid-point Check-in & Mentorship'
-    speaker: 'All Mentors'
-  - time: '2:00 PM (Dec 17)'
-    topic: 'Project Submissions Due'
-  - time: '3:00 PM (Dec 17)'
-    topic: 'Project Presentations'
-  - time: '5:00 PM (Dec 17)'
-    topic: 'Judging & Awards Ceremony'
-    speaker: 'Panel of Judges'
-resources:
-  - title: 'Hackathon Guidelines'
-    url: 'https://hackathon.osw.com/guidelines'
-    type: 'docs'
-  - title: 'API Resources'
-    url: 'https://hackathon.osw.com/apis'
-    type: 'docs'
-  - title: 'GitHub Starter Templates'
-    url: 'https://github.com/oscfcommunity/hackathon-templates'
-    type: 'github'
+  - time: "09:00 AM"
+    title: "Opening Ceremony & Theme Reveal"
+    speaker: "OSW Organizers"
+    type: "opening"
+    room: "Main Virtual Stage"
+    start: "09:00"
+    end: "10:00"
+    isPanelLeft: true
+  - time: "10:00 AM"
+    title: "Keynote: Building Tech for Social Good"
+    speaker: "Dr. Sarah Chen"
+    type: "keynote"
+    room: "Main Virtual Stage"
+    start: "10:00"
+    end: "11:00"
+    isPanelLeft: true
+  - time: "11:00 AM"
+    title: "Team Formation & Ideation"
+    speaker: "Facilitators"
+    type: "workshop"
+    room: "Breakout Rooms"
+    start: "11:00"
+    end: "12:00"
+  - time: "12:00 PM"
+    title: "Hacking Begins!"
+    speaker: "All Teams"
+    type: "hacking"
+    room: "All Channels"
+    start: "12:00"
+    end: "18:00"
+  - time: "06:00 PM"
+    title: "Mid-point Check-in & Mentorship"
+    speaker: "All Mentors"
+    type: "mentoring"
+    room: "Various Rooms"
+    start: "18:00"
+    end: "20:00"
+    isPanelRight: true
+  - time: "02:00 PM"
+    title: "Project Submissions Due"
+    speaker: "Tech Team"
+    type: "deadline"
+    room: "Online Portal"
+    start: "14:00"
+    end: "14:00"
+  - time: "03:00 PM"
+    title: "Project Presentations"
+    speaker: "All Teams"
+    type: "demo"
+    room: "Main Virtual Stage"
+    start: "15:00"
+    end: "17:00"
+  - time: "05:00 PM"
+    title: "Judging & Awards Ceremony"
+    speaker: "Panel of Judges"
+    type: "ceremony"
+    room: "Main Virtual Stage"
+    start: "17:00"
+    end: "18:00"
+    isPanelLeft: true
 ---
 
 ## OSW Winter Hackathon 2025
 
-Get ready for the most exciting hackathon of the year! Join hundreds of passionate developers, designers, and innovators for 48 hours of intensive coding, collaboration, and creativity.
+Get ready for the most exciting hackathon of the year! Join 200+ passionate developers, designers, and innovators for 48 hours of intensive coding, collaboration, and creativity across multiple cities.
 
-## 🎯 Theme: Technology for Social Good
+## Event Highlights
 
-This year's hackathon focuses on creating open source solutions that make a positive impact on society. We're looking for projects that address real-world challenges in areas like:
+### 🎯 Theme: Technology for Social Good
 
-- **Education & Accessibility**
-- **Environmental Sustainability**
-- **Healthcare & Wellness**
-- **Community Building & Social Justice**
-- **Economic Empowerment**
-- **Digital Inclusion**
+Build open source solutions that make a positive impact on society in areas like:
 
-## 🏆 Prizes & Recognition
+- **Education & Accessibility** - Tools that make learning available to everyone
+- **Environmental Sustainability** - Solutions for climate action and conservation
+- **Healthcare & Wellness** - Apps that improve health outcomes
+- **Community Building** - Platforms that strengthen local communities
+- **Economic Empowerment** - Systems that create opportunities
+- **Digital Inclusion** - Technology that bridges the digital divide
 
-### Grand Prize Winner
+### 🏆 Prize Pool: ₹2,75,000+
 
-- **₹1,00,000 cash prize**
-- **Mentorship with industry leaders**
-- **Feature spotlight on OSW platforms**
-- **Conference speaking opportunity**
+**Grand Prize**: ₹1,00,000 + mentorship + conference speaking opportunity
 
-### Category Winners (6 categories)
+**6 Category Winners**: ₹25,000 each + OSW swag + project incubation
 
-- **₹25,000 cash prize each**
-- **OSW swag package**
-- **Project incubation opportunity**
-- **Open source project adoption**
+**Special Awards**: 
+- Best First-Time Team: ₹15,000
+- Most Innovative Use of AI: ₹15,000
+- People's Choice Award: ₹10,000
 
-### Special Awards
+### 🌟 World-Class Support
 
-- **Best First-Time Team**: ₹15,000 + mentorship
-- **Most Innovative Use of AI**: ₹15,000 + tech credits
-- **People's Choice Award**: ₹10,000 + community recognition
+- **Expert Mentors** from GitHub, Mozilla, and leading startups
+- **Premium Resources** including AWS/Azure/GCP credits, AI APIs, design tools
+- **24/7 Support** via Discord channels throughout the event
+- **In-Person & Virtual** participation options
 
-## 🌟 What Makes This Special
-
-### World-Class Mentors
-
-Get guidance from industry experts including:
-
-- **GitHub Staff Engineers**
-- **Mozilla Contributors**
-- **Startup Founders**
-- **Open Source Project Maintainers**
-
-### Cutting-Edge Resources
-
-Access to premium tools and APIs:
-
-- **Cloud computing credits** (AWS, Azure, GCP)
-- **AI/ML APIs** (OpenAI, Hugging Face)
-- **Design tools** (Figma Pro, Adobe Creative Suite)
-- **Development platforms** (Vercel, Netlify, Railway)
-
-### Global Community
-
-- **Multiple time zones** accommodated
-- **Multi-language support** (English, Hindi, Spanish)
-- **Cultural exchange** sessions between regions
-- **International judging panel**
-
-## 🚀 Event Format
+## Event Format
 
 ### Virtual Participation
 
-- **24/7 Discord support channels**
-- **Live streaming of keynotes**
-- **Virtual mentorship sessions**
-- **Online team collaboration tools**
+- Live streaming of all keynotes and ceremonies
+- Virtual mentorship sessions
+- Online collaboration tools
+- Discord support channels
 
 ### In-Person Hubs
 
@@ -151,9 +137,7 @@ Access to premium tools and APIs:
 - **Pune**: Engineering College Campus
 - **Chennai**: Tech City Complex
 
-## 🛠️ Technical Tracks
-
-Choose your focus area:
+## Technical Tracks
 
 1. **Web & Mobile Applications**
 2. **AI/ML & Data Science**
@@ -162,57 +146,53 @@ Choose your focus area:
 5. **AR/VR & Gaming**
 6. **Open Source Tools & Libraries**
 
-## 📋 How to Participate
+## How to Participate
 
-### Registration Process
+### Registration Steps
 
-1. **Sign up** on our hackathon platform
-2. **Form your team** (2-4 members) or join solo
-3. **Attend orientation** session (optional)
-4. **Submit your project** by deadline
-5. **Present** to judges during demo day
+1. Sign up on our hackathon platform
+2. Form your team (2-4 members) or join solo
+3. Attend orientation session (Dec 12)
+4. Build your project during the hackathon
+5. Submit and present to judges
 
-### Timeline
+### Important Dates
 
 - **Nov 15**: Registration opens
-- **Dec 1**: Early bird deadline (discounts)
+- **Dec 1**: Early bird deadline
 - **Dec 10**: Final registration deadline
 - **Dec 12**: Orientation session
 - **Dec 15-17**: Main hackathon event
 
-## 🎓 Learning Opportunities
+## What's Included
 
-Beyond the competition:
+- Access to all keynotes and workshops
+- Mentorship from industry experts
+- Premium development tools and credits
+- Certificate of participation
+- Networking with 200+ participants
+- Career opportunities with sponsors
 
-- **Workshop sessions** throughout the event
-- **Networking breakfasts** with sponsors
-- **Career fair** with hiring partners
-- **Open source contribution** workshops
-- **Tech talk series** by industry leaders
-
-## 🤝 Partners & Sponsors
-
-Thanks to our amazing partners:
+## Partners & Sponsors
 
 - **GitHub** (Platinum Sponsor)
 - **Mozilla** (Gold Sponsor)
 - **TechForGood Initiative** (Impact Partner)
 - **Innovation Hub Network** (Venue Partner)
-- **Local tech communities** worldwide
 
-## 📞 Contact & Support
+## Community Stats
 
-Have questions? We're here to help!
+- **200 participants** from across India
+- **50+ projects** expected
+- **20+ mentors** available
+- **6 technical tracks** to choose from
 
+## Get Started
+
+Ready to build something amazing? Register now and join India's premier social impact hackathon!
+
+- **Website**: hackathon.osw.com
 - **Discord**: Join #hackathon-support
 - **Email**: hackathon@osw.com
-- **Website**: hackathon.osw.com
-- **Phone**: +91-XXXX-HACKATHON
 
-## 🌍 Code of Conduct
-
-We're committed to creating an inclusive, safe, and welcoming environment for all participants. Please review our [Code of Conduct](https://osw.com/code-of-conduct) before participating.
-
-Ready to build something amazing? **[Register Now](https://hackathon.osw.com/register)** and be part of this incredible journey!
-
-Let's code for a better world! 🌟
+Let's code for a better world! 🚀

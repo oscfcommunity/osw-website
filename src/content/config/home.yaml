@@ -13,7 +13,7 @@ sections:
     
     headline:
       line1: "Open Source"
-      line2: "Day"
+      line2: "Weekend"
       subtitle: "A Community-Driven Initiative"
       description: "Empowering developers through events, workshops, and celebrations of open source technology"
     
@@ -22,23 +22,39 @@ sections:
         text: "Register for OSD 2025"
         link: "https://osd.opensourceweekend.org/"
         external: true
-      # secondary:
-      #   text: "Learn More"
-      #   link: "#about"
-      #   external: false
+      secondary:
+        text: "Learn More"
+        link: "#about"
+        external: false
     
-    # stats:
-    #   - value: "500+"
-    #     label: "Contributors"
-    #   - value: "50+"
-    #     label: "Projects"
-    #   - value: "20+"
-    #     label: "Events"
+    stats:
+      - value: "500+"
+        label: "Contributors"
+      - value: "50+"
+        label: "Projects"
+      - value: "20+"
+        label: "Events"
     
     showTerminal: true
   
   buttonDemo:
     enabled: true
+  
+  events:
+    enabled: true
+    title: "Upcoming Events"
+    subtitle: "Join us at our upcoming workshops, hackathons, and community meetups"
+    showCount: 2
+    showFeaturedOnly: false
+    
+    ctaButton:
+      text: "View All Events"
+      link: "/events"
+      style: "accent"
+      size: "lg"
+    
+    sectionBackground: "bg-base-200"
+    useFluidContainer: false
   
   jobs:
     enabled: true
