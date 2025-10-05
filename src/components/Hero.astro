@@ -1,0 +1,183 @@
+---
+import { getEntry } from 'astro:content';
+import Container from './Container.astro';
+import CodeTerminal from './CodeTerminal.astro';
+
+const homeConfig = await getEntry('homeConfig', 'home');
+const heroSection = homeConfig?.data.sections.hero;
+
+if (!heroSection?.enabled) {
+  return null;
+}
+
+const { badge, headline, cta, stats, showTerminal } = heroSection;
+---
+
+<section 
+  class="relative min-h-[90vh] flex items-center overflow-hidden"
+  aria-labelledby="hero-heading"
+>
+  <!-- Grid Background -->
+  <div class="absolute inset-0 bg-base-200 bg-[linear-gradient(to_right,#4f4f4f20_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f20_1px,transparent_1px)] bg-[size:45px_45px]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-base-200/30 to-base-200"></div>
+  
+  <Container>
+    <div class="relative z-10 w-full max-w-7xl mx-auto">
+      <div class:list={[
+        "grid gap-6 md:gap-8 lg:gap-12 items-center",
+        showTerminal ? "lg:grid-cols-2" : "grid-cols-1"
+      ]}>
+        
+        <!-- Content -->
+        <div class:list={[
+          "space-y-4 md:space-y-6",
+          !showTerminal && "max-w-4xl mx-auto text-center"
+        ]}>
+          
+          <!-- Badge -->
+          <div class:list={[
+            "flex",
+            showTerminal ? "justify-center lg:justify-start" : "justify-center"
+          ]}>
+            <div class="inline-flex items-center gap-2 bg-white/50 border border-green-300 rounded-full px-4 py-1 shadow-md transition-all">
+              {badge.showIcon && badge.icon && <span class="text-base">{badge.icon}</span>}
+              <span class="text-xs md:text-sm font-bold text-green-500 uppercase tracking-wider">{badge.text}</span>
+            </div>
+          </div>
+
+          <!-- Headline -->
+          <div class:list={[
+            "space-y-4 md:space-y-6",
+            showTerminal ? "text-center lg:text-left" : "text-center"
+          ]}>
+            <h1 
+              id="hero-heading"
+              class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight"
+            >
+              <span class="block text-base-content">{headline.line1}</span>
+              <span class="block bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 bg-clip-text text-transparent">{headline.line2}</span>
+            </h1>
+            <p class:list={[
+              "text-lg sm:text-xl md:text-2xl font-semibold text-base-content",
+              showTerminal ? "max-w-lg mx-auto lg:mx-0" : "max-w-3xl mx-auto"
+            ]}>{headline.subtitle}</p>
+          </div>
+
+          <!-- Description -->
+          <p class:list={[
+            "text-sm sm:text-base md:text-lg text-base-content/80 leading-relaxed",
+            showTerminal ? "max-w-xl mx-auto lg:mx-0 text-center lg:text-left" : "max-w-3xl mx-auto text-center"
+          ]}>{headline.description}</p>
+
+          <!-- CTA Buttons -->
+          <div class:list={[
+            "flex flex-col sm:flex-row gap-3 md:gap-4",
+            showTerminal ? "justify-center lg:justify-start" : "justify-center"
+          ]}>
+            <a 
+              href={cta.primary.link}
+              target={cta.primary.external ? "_blank" : undefined}
+              rel={cta.primary.external ? "noopener noreferrer" : undefined}
+              class="btn btn-primary btn-md sm:btn-lg gap-2 shadow-lg hover:shadow-xl hover:scale-102 transition-all"
+              aria-label={cta.primary.text}
+            >
+              <span class="text-sm sm:text-base">{cta.primary.text}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a 
+              href={cta.secondary.link}
+              target={cta.secondary.external ? "_blank" : undefined}
+              rel={cta.secondary.external ? "noopener noreferrer" : undefined}
+              class="btn btn-ghost btn-md sm:btn-lg gap-2 hover:bg-base-content/10"
+              aria-label={cta.secondary.text}
+            >
+              <span class="text-sm sm:text-base">{cta.secondary.text}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4 md:gap-6 pt-6 md:pt-8 max-w-3xl mx-auto">
+            {stats.map((stat) => (
+              <div class:list={[
+                showTerminal ? "text-center lg:text-left" : "text-center"
+              ]}>
+                <div 
+                  class="text-2xl sm:text-3xl lg:text-4xl font-black text-primary counter"
+                  data-target={stat.value}
+                >
+                  0
+                </div>
+                <div class="text-xs sm:text-sm text-base-content/60 mt-1 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        <!-- Terminal -->
+        {showTerminal && (
+          <div class="hidden lg:block">
+            <div class="relative">
+              <div class="absolute -top-10 -right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+              <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl"></div>
+              <div class="relative shadow-2xl">
+                <CodeTerminal />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </Container>
+</section>
+
+<script>
+  const easeOutQuad = (t: number): number => t * (2 - t);
+
+  const animateCounter = (element: HTMLElement) => {
+    const target = element.getAttribute('data-target') || '0';
+    const endValue = parseInt(target.replace(/\+/g, ''), 10);
+    const duration = 2000;
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutQuad(progress);
+      const current = Math.floor(easedProgress * endValue);
+
+      element.textContent = target.includes('+') ? `${current}+` : `${current}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        element.textContent = target;
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.counter').forEach((counter) => {
+      observer.observe(counter);
+    });
+  });
+</script>
