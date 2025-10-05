@@ -1,25 +1,22 @@
 ---
+import { Image } from 'astro:assets';
 import Container from './Container.astro';
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Pages', href: '#' },
   { name: 'Events', href: '/events' },
-  { name: 'Speakers', href: '#' },
-  { name: 'Blog', href: '#' },
-  { name: 'Shop', href: '#' },
+  { name: 'Jobs', href: '/jobs' },
 ];
 ---
 
-<Container fluid>
-  {/* Skip to content link for accessibility */}
+{/* Skip to content link for accessibility */}
+<header>
   <a
     href="#main-content"
     class="sr-only focus:not-sr-only btn btn-sm btn-primary absolute top-2 left-2 z-50"
   >
     Skip to main content
   </a>
-  <header class="navbar bg-base-100 border-y-2 border-base py-0">
+  <Container fluid className="navbar bg-base-100 shadow py-0">
     <div class="navbar-start">
       {/* Mobile Hamburger */}
       <div class="dropdown lg:hidden">
@@ -55,18 +52,29 @@ const navLinks = [
           }
         </ul>
       </div>
-      <a href="/" class="ml-2 flex items-center gap-2">
-        <img
-          src="/public/assets/brands/OSWBlack.svg"
-          width="92"
-          height="51"
+      <a href="/" class="ml-4 md:flex items-center gap-2 hidden">
+        <Image
+          src="/assets/brands/OSWBlack.svg"
+          width="80"
+          height="50"
+          alt="OSW Logo"
+        />
+        <span class="sr-only">Open Source Weekend</span>
+      </a>
+    </div>
+    <div class="navbar-end">
+      <a href="/" class="ml-4 flex items-center gap-2 md:hidden">
+        <Image
+          src="/assets/brands/OSWBlack.svg"
+          width="80"
+          height="50"
           alt="OSW Logo"
         />
         <span class="sr-only">Open Source Weekend</span>
       </a>
     </div>
 
-    <nav class="navbar-center hidden lg:flex">
+    <nav class="navbar-end hidden lg:flex">
       <ul class="menu menu-horizontal gap-2">
         {
           navLinks.map(link => (
@@ -77,11 +85,5 @@ const navLinks = [
         }
       </ul>
     </nav>
-
-    <div class="navbar-end gap-2">
-      <a href="#" class="btn btn-ghost btn-sm font-normal">Cart (0)</a>
-      <button class="btn btn-ghost btn-sm font-normal">Search</button>
-      <a href="#" class="btn btn-outline btn-sm font-normal">More</a>
-    </div>
-  </header>
-</Container>
+  </Container>
+</header>

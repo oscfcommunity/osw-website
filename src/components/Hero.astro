@@ -13,77 +13,125 @@ if (!heroSection?.enabled) {
 const { badge, headline, cta, showTerminal } = heroSection;
 ---
 
-<section 
+<section
   class="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden py-4"
   aria-labelledby="hero-heading"
 >
   <!-- Grid Background -->
-  <div class="absolute inset-0 bg-base-200 bg-[linear-gradient(to_right,#4f4f4f20_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f20_1px,transparent_1px)] bg-[size:45px_45px]"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-base-200/30 to-base-200"></div>
-  
+  <div
+    class="absolute inset-0 bg-base-200 bg-[linear-gradient(to_right,#4f4f4f20_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f20_1px,transparent_1px)] bg-[size:45px_45px]"
+  >
+  </div>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-transparent via-base-200/30 to-base-200"
+  >
+  </div>
+
   <Container>
     <div class="relative z-10 w-full max-w-7xl mx-auto">
-      <div class:list={[
-        "grid gap-6 md:gap-8 lg:gap-12 items-center",
-        showTerminal ? "lg:grid-cols-2" : "grid-cols-1"
-      ]}>
-        
+      <div
+        class:list={[
+          'grid gap-6 md:gap-8 lg:gap-12 items-center',
+          showTerminal ? 'lg:grid-cols-2' : 'grid-cols-1',
+        ]}
+      >
         <!-- Content -->
-        <div class:list={[
-          "space-y-4 md:space-y-6",
-          !showTerminal && "max-w-4xl mx-auto text-center"
-        ]}>
-          
+        <div
+          class:list={[
+            'space-y-4 md:space-y-6',
+            !showTerminal && 'max-w-4xl mx-auto text-center',
+          ]}
+        >
           <!-- Badge -->
-          <div class:list={[
-            "flex",
-            showTerminal ? "justify-center lg:justify-start" : "justify-center"
-          ]}>
-            <div class="inline-flex items-center gap-2 bg-white/50 border border-green-300 rounded-full px-4 py-1 shadow-md transition-all">
-              {badge.showIcon && badge.icon && <span class="text-base">{badge.icon}</span>}
-              <span class="text-xs md:text-sm font-bold text-green-500 uppercase tracking-wider">{badge.text}</span>
+          <div
+            class:list={[
+              'flex',
+              showTerminal
+                ? 'justify-center lg:justify-start'
+                : 'justify-center',
+            ]}
+          >
+            <div
+              class="inline-flex items-center gap-2 bg-white/50 border border-green-300 rounded-full px-4 py-1 shadow-md transition-all"
+            >
+              {
+                badge.showIcon && badge.icon && (
+                  <span class="text-base">{badge.icon}</span>
+                )
+              }
+              <span
+                class="text-xs md:text-sm font-bold text-green-500 uppercase tracking-wider"
+                >{badge.text}</span
+              >
             </div>
           </div>
 
           <!-- Headline -->
-          <div class:list={[
-            "space-y-4 md:space-y-6",
-            showTerminal ? "text-center lg:text-left" : "text-center"
-          ]}>
-            <h1 
+          <div
+            class:list={[
+              'space-y-4 md:space-y-6',
+              showTerminal ? 'text-center lg:text-left' : 'text-center',
+            ]}
+          >
+            <h1
               id="hero-heading"
               class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight"
             >
               <span class="block text-base-content">{headline.line1}</span>
-              <span class="block bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 bg-clip-text text-transparent">{headline.line2}</span>
+              <span
+                class="block bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 bg-clip-text text-transparent"
+                >{headline.line2}</span
+              >
             </h1>
-            <p class:list={[
-              "text-lg sm:text-xl md:text-2xl font-semibold text-base-content",
-              showTerminal ? "max-w-lg mx-auto lg:mx-0" : "max-w-3xl mx-auto"
-            ]}>{headline.subtitle}</p>
+            <p
+              class:list={[
+                'text-lg sm:text-xl md:text-2xl font-semibold text-base-content',
+                showTerminal ? 'max-w-lg mx-auto lg:mx-0' : 'max-w-3xl mx-auto',
+              ]}
+            >
+              {headline.subtitle}
+            </p>
           </div>
 
           <!-- Description -->
-          <p class:list={[
-            "text-sm sm:text-base md:text-lg text-base-content/80 leading-relaxed",
-            showTerminal ? "max-w-xl mx-auto lg:mx-0 text-center lg:text-left" : "max-w-3xl mx-auto text-center"
-          ]}>{headline.description}</p>
+          <p
+            class:list={[
+              'text-sm sm:text-base md:text-lg text-base-content/80 leading-relaxed',
+              showTerminal
+                ? 'max-w-xl mx-auto lg:mx-0 text-center lg:text-left'
+                : 'max-w-3xl mx-auto text-center',
+            ]}
+          >
+            {headline.description}
+          </p>
 
           <!-- CTA Buttons -->
-          <div class:list={[
-            "flex flex-col sm:flex-row gap-3 md:gap-4",
-            showTerminal ? "justify-center lg:justify-start" : "justify-center"
-          ]}>
-            <a 
+          <div
+            class:list={[
+              'flex flex-col sm:flex-row gap-3 md:gap-4',
+              showTerminal
+                ? 'justify-center lg:justify-start'
+                : 'justify-center',
+            ]}
+          >
+            <a
               href={cta.primary.link}
-              target={cta.primary.external ? "_blank" : undefined}
-              rel={cta.primary.external ? "noopener noreferrer" : undefined}
+              target={cta.primary.external ? '_blank' : undefined}
+              rel={cta.primary.external ? 'noopener noreferrer' : undefined}
               class="btn btn-primary btn-md sm:btn-lg gap-2 shadow-lg hover:shadow-xl hover:scale-102 transition-all"
               aria-label={cta.primary.text}
             >
               <span class="text-sm sm:text-base">{cta.primary.text}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 sm:h-5 sm:w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
               </svg>
             </a>
           </div>
@@ -98,27 +146,36 @@ const { badge, headline, cta, showTerminal } = heroSection;
                   class="text-2xl sm:text-3xl lg:text-4xl font-black text-primary counter"
                   data-target={stat.value}
                 >
-                  0
+                  <div
+                    class="text-2xl sm:text-3xl lg:text-4xl font-black text-primary counter"
+                    data-target={stat.value}
+                  >
+                    0
+                  </div>
+                  <div class="text-xs sm:text-sm text-base-content/60 mt-1 font-medium">
+                    {stat.label}
+                  </div>
                 </div>
                 <div class="text-xs sm:text-sm text-base-content/60 mt-1 font-medium">{stat.label}</div>
               </div>
             ))}
           </div> -->
-
         </div>
 
         <!-- Terminal -->
-        {showTerminal && (
-          <div class="hidden lg:block">
-            <div class="relative">
-              <div class="absolute -top-10 -right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
-              <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl"></div>
-              <div class="relative shadow-2xl">
-                <CodeTerminal />
+        {
+          showTerminal && (
+            <div class="hidden lg:block">
+              <div class="relative">
+                <div class="absolute -top-10 -right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+                <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl" />
+                <div class="relative shadow-2xl">
+                  <CodeTerminal />
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )
+        }
       </div>
     </div>
   </Container>
@@ -152,8 +209,8 @@ const { badge, headline, cta, showTerminal } = heroSection;
   };
 
   const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
+    entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           animateCounter(entry.target as HTMLElement);
           observer.unobserve(entry.target);
@@ -164,7 +221,7 @@ const { badge, headline, cta, showTerminal } = heroSection;
   );
 
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.counter').forEach((counter) => {
+    document.querySelectorAll('.counter').forEach(counter => {
       observer.observe(counter);
     });
   });

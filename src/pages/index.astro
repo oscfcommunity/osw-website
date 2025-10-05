@@ -1,14 +1,14 @@
 ---
-import Hero from "../components/Hero.astro";
-import JobPreview from "../components/jobs/JobPreview.astro";
-import Layout from "../layouts/Layout.astro";
+import Hero from '../components/Hero.astro';
+import JobPreview from '../components/jobs/JobPreview.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
   <slot name="head">
-    <title>Hello dynamic slot base title</title>
+    <title>Home</title>
   </slot>
-  <main>
+  <main id="main-content">
     <Hero />
     <JobPreview />
   </main>
