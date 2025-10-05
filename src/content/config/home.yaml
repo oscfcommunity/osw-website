@@ -55,3 +55,19 @@ sections:
 
     sectionBackground: 'bg-base-100'
     useFluidContainer: false
+
+  events:
+    enabled: true
+    title: 'Upcoming Events'
+    subtitle: 'Join us at our upcoming workshops, hackathons, and community meetups'
+    showCount: 2
+    showFeaturedOnly: false
+
+    ctaButton:
+      text: 'View All Events'
+      link: '/'
+      style: 'accent'
+      size: 'lg'
+
+    sectionBackground: 'bg-base-200'
+    useFluidContainer: false

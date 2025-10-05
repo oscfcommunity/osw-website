@@ -1,51 +1,63 @@
 ---
-title: 'OSW Community Meetup - October 2025'
-description: 'Monthly community meetup to discuss recent contributions, upcoming projects, and network with fellow developers.'
-date: 2025-10-03T18:00:00Z
-endDate: 2025-10-03T20:00:00Z
-location: 'Hybrid (Mumbai & Online)'
-venue: 'Tech Hub Mumbai / Google Meet'
-eventType: 'meetup'
-status: 'completed'
-organizers: ['OSW Community', 'Raj Patel', 'Rohit Chavda']
+title: "OSW Community Meetup - October 2025"
+description: "Monthly community meetup to discuss recent contributions, upcoming projects, and network with fellow developers."
+date: "2025-10-03"
+endDate: "2025-10-03"
+location: "Mumbai"
+venue: "Tech Hub Mumbai"
+eventType: "meetup"
+status: "completed"
 speakers:
-  - name: 'Raj Patel'
-    bio: 'Backend Developer and OSW Core Team Member'
-    avatar: '/assets/speakers/raj.jpg'
-    social:
-      linkedin: 'https://linkedin.com/in/rajpatel'
-      github: 'https://github.com/rajpatel'
-  - name: 'Community Members'
-    bio: 'Various community contributors sharing their experiences'
-tags: ['meetup', 'community', 'networking', 'projects']
+  - "Raj Patel"
+  - "Rohit Chavda"
+  - "Community Members"
+registrationLink: "https://forms.google.com/osw-october-meetup"
+maxParticipants: 80
+tags:
+  - "Meetup"
+  - "Community"
+  - "Networking"
+  - "Projects"
 featured: false
-coverImage: '/assets/events/october-meetup.jpg'
-gallery:
-  - '/assets/events/meetup-oct-1.jpg'
-  - '/assets/events/meetup-oct-2.jpg'
-  - '/assets/events/meetup-oct-3.jpg'
+coverImage: "https://placehold.co/800x400/6366f1/white?text=October+Meetup"
 agenda:
-  - time: '6:00 PM'
-    topic: 'Welcome & Introductions'
-    speaker: 'Raj Patel'
-  - time: '6:15 PM'
-    topic: 'Community Updates & New Projects'
-    speaker: 'Rohit Chavda'
-  - time: '6:45 PM'
-    topic: 'Spotlight: Jobs Feature Development'
-    speaker: 'Raj Patel'
-  - time: '7:15 PM'
-    topic: 'Open Floor - Project Pitches'
-    speaker: 'Community'
-  - time: '7:45 PM'
-    topic: 'Networking & Refreshments'
-resources:
-  - title: 'Meetup Recap'
-    url: 'https://blog.osw.com/october-2025-meetup'
-    type: 'docs'
-  - title: 'Project Showcase Videos'
-    url: 'https://youtube.com/osw-community'
-    type: 'video'
+  - time: "06:00 PM"
+    title: "Welcome & Introductions"
+    speaker: "Raj Patel"
+    type: "opening"
+    room: "Main Hall"
+    start: "18:00"
+    end: "18:15"
+    isPanelLeft: true
+  - time: "06:15 PM"
+    title: "Community Updates & New Projects"
+    speaker: "Rohit Chavda"
+    type: "talk"
+    room: "Main Hall"
+    start: "18:15"
+    end: "18:45"
+  - time: "06:45 PM"
+    title: "Spotlight: Jobs Feature Development"
+    speaker: "Raj Patel"
+    type: "demo"
+    room: "Main Hall"
+    start: "18:45"
+    end: "19:15"
+    isPanelRight: true
+  - time: "07:15 PM"
+    title: "Open Floor - Project Pitches"
+    speaker: "Community"
+    type: "discussion"
+    room: "Main Hall"
+    start: "19:15"
+    end: "19:45"
+  - time: "07:45 PM"
+    title: "Networking & Refreshments"
+    speaker: "OSW Team"
+    type: "networking"
+    room: "Lounge Area"
+    start: "19:45"
+    end: "20:00"
 ---
 
 ## October 2025 Community Meetup
