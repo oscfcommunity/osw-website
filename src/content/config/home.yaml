@@ -60,7 +60,7 @@ sections:
     enabled: true
     title: 'Upcoming Events'
     subtitle: 'Join us at our upcoming workshops, hackathons, and community meetups'
-    showCount: 2
+    showCount: 3
     showFeaturedOnly: false
 
     ctaButton:
