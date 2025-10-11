@@ -6,8 +6,8 @@ const {
   logo = '/assets/brands/OSWWhite.svg',
   logoAlt = 'OSW Logo',
   links = [
-    { href: '#events', label: 'Events' },
-    { href: '#jobs', label: 'Jobs' },
+    { href: 'events', label: 'Events' },
+    { href: 'jobs', label: 'Jobs' },
   ],
   contact = {
     location: 'Ahmedabad, Gujarat',
@@ -87,7 +87,8 @@ const {
         </nav>
 
         {/* Newsletter */}
-        <!-- <form class="flex flex-col gap-2 md:w-1/3" aria-label="Newsletter">
+        {
+          /* <form class="flex flex-col gap-2 md:w-1/3" aria-label="Newsletter">
           <span class="footer-title">{newsletter.title}</span>
           <span class="text-xs max-w-4/5">{newsletter.description}</span>
           <label class="input input-bordered flex items-center gap-2 mt-2">
@@ -116,7 +117,8 @@ const {
               >
             </button>
           </label>
-        </form> -->
+        </form> */
+        }
       </div>
       {/* Bottom row */}
       <div class="border-t">

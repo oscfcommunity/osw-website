@@ -3,12 +3,12 @@ import { Image } from 'astro:assets';
 import Container from './Container.astro';
 
 const navLinks = [
-  { name: 'Events', href: '#events' },
-  { name: 'Jobs', href: '#jobs' },
+  { name: 'Events', href: 'events' },
+  { name: 'Jobs', href: 'jobs' },
 ];
 ---
 
-{/* Skip to content link for accessibility */}
+<!-- Skip to content link for accessibility -->
 <header>
   <a
     href="#main-content"
@@ -18,7 +18,7 @@ const navLinks = [
   </a>
   <Container fluid className="navbar bg-base-100 shadow py-0">
     <div class="navbar-start">
-      {/* Mobile Hamburger */}
+      <!-- Mobile Hamburger -->
       <div class="dropdown lg:hidden">
         <button
           tabindex="0"
