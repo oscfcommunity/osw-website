@@ -12,6 +12,6 @@ if [ $? -ne 0 ]; then
 fi
 
 # Add built files to staging area for deployment
-git add dist/
+# git add dist/
 
 echo "✅ Pre-commit checks and build completed successfully!"
