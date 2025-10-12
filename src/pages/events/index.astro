@@ -22,115 +22,486 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
 
 <Layout title="Events - OSW Community">
   <main class="min-h-screen bg-base-100">
-    {/* Hero Section */}
+    {/* Hero Section with Animation */}
     <section
-      class="hero bg-gradient-to-r from-primary to-secondary text-primary-content py-20"
+      class="hero min-h-[80vh] bg-gradient-to-br from-primary via-secondary to-accent text-primary-content relative overflow-hidden"
     >
+      {/* Animated Background Elements */}
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div
+        class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-bounce delay-1000"
+      >
+      </div>
+      <div
+        class="absolute top-32 right-20 w-16 h-16 bg-white/10 rounded-full animate-pulse delay-500"
+      >
+      </div>
+      <div
+        class="absolute bottom-20 left-32 w-24 h-24 bg-white/10 rounded-full animate-bounce delay-700"
+      >
+      </div>
+      <div
+        class="absolute bottom-32 right-16 w-12 h-12 bg-white/10 rounded-full animate-pulse delay-300"
+      >
+      </div>
+
       <Container>
-        <div class="hero-content text-center">
-          <div class="max-w-4xl">
-            <h1 class="text-5xl font-bold mb-6">OSW Community Events</h1>
-            <p class="text-xl mb-8 opacity-90">
-              Join us for workshops, meetups, hackathons, and more! Connect with
-              fellow developers, learn new skills, and contribute to the open
-              source community.
+        <div class="hero-content text-center relative z-10">
+          <div class="max-w-5xl">
+            {/* Animated Title */}
+            <div class="mb-8">
+              <h1
+                class="text-6xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-primary-content bg-clip-text text-transparent animate-fade-in"
+              >
+                OSW Community
+              </h1>
+              <h1
+                class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in-up delay-300"
+              >
+                ✨ Events ✨
+              </h1>
+            </div>
+
+            <p
+              class="text-xl md:text-2xl mb-8 opacity-95 animate-fade-in-up delay-500 leading-relaxed"
+            >
+              🚀 Join us for workshops, meetups, hackathons, and more! Connect
+              with fellow developers, learn new skills, and contribute to the
+              open source community. 🌟
             </p>
-            <div class="flex flex-wrap gap-4 justify-center">
+
+            <div
+              class="flex flex-wrap gap-6 justify-center animate-fade-in-up delay-700"
+            >
               <a
                 href="#upcoming"
-                class="btn btn-lg btn-outline btn-primary-content"
+                class="btn btn-xl bg-white text-primary hover:bg-white/90 border-none shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
               >
-                View Upcoming Events
+                <svg
+                  class="w-6 h-6 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                Explore Events
               </a>
-              <a href="#past" class="btn btn-lg btn-ghost btn-primary-content">
-                Past Events
+              <a
+                href="#stats"
+                class="btn btn-xl btn-outline btn-primary-content border-2 hover:bg-white/20 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+              >
+                <svg
+                  class="w-6 h-6 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+                View Stats
               </a>
+            </div>
+
+            {/* Event Types Preview Icons */}
+            <div
+              class="flex justify-center gap-8 mt-12 animate-fade-in-up delay-1000"
+            >
+              <div class="text-center group cursor-pointer">
+                <div
+                  class="text-4xl mb-2 transform group-hover:scale-125 transition-transform duration-300"
+                >
+                  🛠️
+                </div>
+                <div class="text-sm opacity-80">Workshops</div>
+              </div>
+              <div class="text-center group cursor-pointer">
+                <div
+                  class="text-4xl mb-2 transform group-hover:scale-125 transition-transform duration-300"
+                >
+                  🤝
+                </div>
+                <div class="text-sm opacity-80">Meetups</div>
+              </div>
+              <div class="text-center group cursor-pointer">
+                <div
+                  class="text-4xl mb-2 transform group-hover:scale-125 transition-transform duration-300"
+                >
+                  🚀
+                </div>
+                <div class="text-sm opacity-80">Hackathons</div>
+              </div>
+              <div class="text-center group cursor-pointer">
+                <div
+                  class="text-4xl mb-2 transform group-hover:scale-125 transition-transform duration-300"
+                >
+                  🎯
+                </div>
+                <div class="text-sm opacity-80">Conferences</div>
+              </div>
             </div>
           </div>
         </div>
       </Container>
     </section>
 
-    {/* Stats Section */}
-    <section class="py-16 bg-base-200">
+    {/* Enhanced Stats Section */}
+    <section
+      id="stats"
+      class="py-20 bg-gradient-to-r from-base-200 to-base-300 relative"
+    >
+      {/* Background Pattern */}
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 left-0 w-full h-full"
+          style="background-image: radial-gradient(circle at 20% 50%, rgba(120,119,198,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%)"
+        >
+        </div>
+      </div>
+
       <Container>
-        <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
-          <div class="stat">
-            <div class="stat-title">Total Events</div>
-            <div class="stat-value text-primary">{allEvents.length}</div>
-            <div class="stat-desc">Since community launch</div>
+        <div class="text-center mb-16">
+          <h2
+            class="text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+          >
+            📊 Community Impact
+          </h2>
+          <p class="text-xl text-gray-700 font-medium">
+            Numbers that tell our story
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Total Events Card */}
+          <div
+            class="card bg-gradient-to-br from-primary to-primary/80 text-primary-content shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 transition-all duration-500 group"
+          >
+            <div class="card-body text-center relative overflow-hidden">
+              <div
+                class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-700"
+              >
+              </div>
+              <div class="text-6xl mb-4 animate-bounce">📅</div>
+              <div
+                class="stat-title text-primary-content/80 text-lg font-semibold"
+              >
+                Total Events
+              </div>
+              <div class="stat-value text-5xl font-bold mb-2 animate-pulse">
+                {allEvents.length}
+              </div>
+              <div class="stat-desc text-primary-content/70">
+                Since community launch
+              </div>
+              <div class="badge badge-outline badge-primary-content mt-4">
+                Growing Strong!
+              </div>
+            </div>
           </div>
 
-          <div class="stat">
-            <div class="stat-title">Upcoming Events</div>
-            <div class="stat-value text-secondary">{upcomingEvents.length}</div>
-            <div class="stat-desc">This quarter</div>
+          {/* Upcoming Events Card */}
+          <div
+            class="card bg-gradient-to-br from-secondary to-secondary/80 text-secondary-content shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 transition-all duration-500 group"
+          >
+            <div class="card-body text-center relative overflow-hidden">
+              <div
+                class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-700"
+              >
+              </div>
+              <div class="text-6xl mb-4 animate-bounce delay-200">⏰</div>
+              <div
+                class="stat-title text-secondary-content/80 text-lg font-semibold"
+              >
+                Upcoming Events
+              </div>
+              <div class="stat-value text-5xl font-bold mb-2 animate-pulse">
+                {upcomingEvents.length}
+              </div>
+              <div class="stat-desc text-secondary-content/70">
+                This quarter
+              </div>
+              <div class="badge badge-outline badge-secondary-content mt-4">
+                Join Us!
+              </div>
+            </div>
           </div>
 
-          <div class="stat">
-            <div class="stat-title">Community Impact</div>
-            <div class="stat-value text-accent">500+</div>
-            <div class="stat-desc">Developers reached</div>
+          {/* Community Impact Card */}
+          <div
+            class="card bg-gradient-to-br from-accent to-accent/80 text-accent-content shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 transition-all duration-500 group"
+          >
+            <div class="card-body text-center relative overflow-hidden">
+              <div
+                class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-700"
+              >
+              </div>
+              <div class="text-6xl mb-4 animate-bounce delay-400">🌟</div>
+              <div
+                class="stat-title text-accent-content/80 text-lg font-semibold"
+              >
+                Community Impact
+              </div>
+              <div class="stat-value text-5xl font-bold mb-2 animate-pulse">
+                500+
+              </div>
+              <div class="stat-desc text-accent-content/70">
+                Developers reached
+              </div>
+              <div class="badge badge-outline badge-accent-content mt-4">
+                Amazing!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Stats Row */}
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          <div
+            class="text-center p-6 bg-base-100/50 rounded-xl backdrop-blur-sm hover:bg-base-100/70 transition-colors duration-300"
+          >
+            <div class="text-3xl mb-2">🏆</div>
+            <div class="text-2xl font-bold text-primary">25+</div>
+            <div class="text-sm text-gray-600 font-medium">Success Stories</div>
+          </div>
+          <div
+            class="text-center p-6 bg-base-100/50 rounded-xl backdrop-blur-sm hover:bg-base-100/70 transition-colors duration-300"
+          >
+            <div class="text-3xl mb-2">🎯</div>
+            <div class="text-2xl font-bold text-secondary">98%</div>
+            <div class="text-sm text-gray-600 font-medium">
+              Satisfaction Rate
+            </div>
+          </div>
+          <div
+            class="text-center p-6 bg-base-100/50 rounded-xl backdrop-blur-sm hover:bg-base-100/70 transition-colors duration-300"
+          >
+            <div class="text-3xl mb-2">🌍</div>
+            <div class="text-2xl font-bold text-accent">15+</div>
+            <div class="text-sm text-gray-600 font-medium">Countries</div>
+          </div>
+          <div
+            class="text-center p-6 bg-base-100/50 rounded-xl backdrop-blur-sm hover:bg-base-100/70 transition-colors duration-300"
+          >
+            <div class="text-3xl mb-2">💡</div>
+            <div class="text-2xl font-bold text-info">100+</div>
+            <div class="text-sm text-gray-600 font-medium">
+              Projects Started
+            </div>
           </div>
         </div>
       </Container>
     </section>
 
-    {/* Featured Events */}
+    {/* Enhanced Featured Events */}
     {
       featuredEvents.length > 0 && (
-        <section class="py-16">
+        <section class="py-20 bg-base-100 relative overflow-hidden">
+          {/* Background Decoration */}
+          <div class="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -translate-x-32 -translate-y-32" />
+          <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full translate-x-48 translate-y-48" />
+
           <Container>
-            <div class="text-center mb-12">
-              <h2 class="text-4xl font-bold mb-4">Featured Events</h2>
-              <p class="text-lg text-base-content/70">
-                Don't miss these highlighted events from our community
+            <div class="text-center mb-16 relative z-10">
+              <div class="inline-block p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full mb-6">
+                <div class="text-4xl">⭐</div>
+              </div>
+              <h2 class="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Featured Events
+              </h2>
+              <p class="text-xl text-gray-700 font-medium max-w-2xl mx-auto leading-relaxed">
+                🎉 Don't miss these highlighted events from our community -
+                carefully curated experiences that define our journey! ✨
               </p>
+
+              {/* Animated decorative line */}
+              <div class="flex justify-center mt-8">
+                <div class="w-32 h-1 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse" />
+              </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredEvents.map(event => (
-                <EventCard event={event} featured={true} />
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+              {featuredEvents.map((event, index) => (
+                <div
+                  class={`transform hover:-translate-y-3 transition-all duration-500 animate-fade-in-up delay-${(index + 1) * 200}`}
+                >
+                  <EventCard event={event} featured={true} />
+                </div>
               ))}
+            </div>
+
+            {/* Call to action for featured events */}
+            <div class="text-center mt-16">
+              <div class="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 to-secondary/10 px-6 py-3 rounded-full">
+                <span class="text-lg font-medium">
+                  Want your event featured?
+                </span>
+                <a href="mailto:events@osw.com" class="btn btn-sm btn-primary">
+                  Contact Us
+                </a>
+              </div>
             </div>
           </Container>
         </section>
       )
     }
 
-    {/* Upcoming Events */}
-    <section id="upcoming" class="py-16 bg-base-200">
+    {/* Enhanced Upcoming Events */}
+    <section
+      id="upcoming"
+      class="py-20 bg-gradient-to-br from-base-200 via-base-200 to-base-300"
+    >
       <Container>
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Upcoming Events</h2>
-          <p class="text-lg text-base-content/70">
-            Join us at these exciting upcoming events
+        <div class="text-center mb-16">
+          <div
+            class="inline-block p-4 bg-gradient-to-r from-success/20 to-info/20 rounded-full mb-6 animate-pulse"
+          >
+            <div class="text-5xl">🚀</div>
+          </div>
+          <h2
+            class="text-5xl font-bold mb-6 bg-gradient-to-r from-success to-info bg-clip-text text-transparent"
+          >
+            Upcoming Events
+          </h2>
+          <p
+            class="text-xl text-gray-700 font-medium max-w-3xl mx-auto leading-relaxed"
+          >
+            🎯 Ready to level up? Join us at these exciting upcoming events and
+            connect with amazing developers from around the world! 🌟
           </p>
+
+          {/* Event timeline indicator */}
+          <div class="flex justify-center items-center gap-4 mt-8">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+              <span class="text-sm font-medium">This Week</span>
+            </div>
+            <div class="w-8 h-0.5 bg-gradient-to-r from-success to-info"></div>
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 bg-info rounded-full animate-pulse delay-300">
+              </div>
+              <span class="text-sm font-medium">This Month</span>
+            </div>
+          </div>
         </div>
 
         {
           upcomingEvents.length > 0 ? (
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {upcomingEvents.map(event => (
-                <EventCard event={event} />
-              ))}
-            </div>
+            <>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {upcomingEvents.map((event, index) => (
+                  <div
+                    class={`transform hover:-translate-y-2 hover:scale-105 transition-all duration-500 animate-fade-in-up delay-${(index + 1) * 150}`}
+                  >
+                    <EventCard event={event} />
+                  </div>
+                ))}
+              </div>
+
+              {/* Action buttons for upcoming events */}
+              <div class="text-center">
+                <div class="bg-base-100/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+                  <h3 class="text-2xl font-bold mb-4 text-gray-800">
+                    Don't Miss Out! 🎉
+                  </h3>
+                  <p class="text-gray-600 font-medium mb-6">
+                    Get notified about new events and exclusive community
+                    updates
+                  </p>
+                  <div class="flex flex-wrap gap-4 justify-center">
+                    <a
+                      href="https://discord.gg/osw"
+                      target="_blank"
+                      class="btn btn-primary btn-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <svg
+                        class="w-6 h-6 mr-2"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189z" />
+                      </svg>
+                      Join Discord
+                    </a>
+                    <a
+                      href="mailto:events@osw.com"
+                      class="btn btn-outline btn-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <svg
+                        class="w-6 h-6 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                      Get Notified
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </>
           ) : (
-            <div class="card bg-base-100 shadow-xl">
-              <div class="card-body text-center">
-                <h3 class="card-title justify-center text-2xl mb-4">
-                  No Upcoming Events
-                </h3>
-                <p class="text-base-content/70 mb-6">
-                  We're planning some exciting events! Check back soon or join
-                  our community to get notified.
-                </p>
-                <div class="card-actions justify-center">
-                  <a href="https://discord.gg/osw" class="btn btn-primary">
-                    Join Our Discord
-                  </a>
-                  <a href="mailto:events@osw.com" class="btn btn-outline">
-                    Suggest an Event
-                  </a>
+            <div class="max-w-2xl mx-auto">
+              <div class="card bg-gradient-to-br from-base-100 to-base-100/80 shadow-2xl backdrop-blur-sm">
+                <div class="card-body text-center p-12">
+                  <div class="text-8xl mb-6 animate-bounce">🔮</div>
+                  <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    Exciting Events Coming Soon!
+                  </h3>
+                  <p class="text-xl text-gray-700 font-medium mb-8 leading-relaxed">
+                    We're cooking up some incredible events! 🍳✨ Be the first
+                    to know when we announce our next workshops, hackathons, and
+                    community gatherings.
+                  </p>
+                  <div class="flex flex-wrap gap-4 justify-center">
+                    <a
+                      href="https://discord.gg/osw"
+                      target="_blank"
+                      class="btn btn-primary btn-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <svg
+                        class="w-6 h-6 mr-2"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189z" />
+                      </svg>
+                      Join Our Community
+                    </a>
+                    <a
+                      href="mailto:events@osw.com"
+                      class="btn btn-outline btn-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <svg
+                        class="w-6 h-6 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        />
+                      </svg>
+                      Suggest an Event
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -143,8 +514,8 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
     <section id="past" class="py-16">
       <Container>
         <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Past Events</h2>
-          <p class="text-lg text-base-content/70">
+          <h2 class="text-4xl font-bold mb-4 text-gray-800">Past Events</h2>
+          <p class="text-lg text-gray-600 font-medium">
             Explore our previous events and their impact on the community
           </p>
         </div>
@@ -158,7 +529,7 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
             </div>
           ) : (
             <div class="text-center py-12">
-              <p class="text-lg text-base-content/70">
+              <p class="text-lg text-gray-600 font-medium">
                 No past events to display yet.
               </p>
             </div>
@@ -167,98 +538,412 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
       </Container>
     </section>
 
-    {/* Event Types Filter */}
-    <section class="py-16 bg-base-200">
+    {/* Enhanced Event Categories */}
+    <section
+      class="py-20 bg-gradient-to-r from-base-100 via-base-200 to-base-100 relative overflow-hidden"
+    >
+      {/* Animated background elements */}
+      <div class="absolute top-0 left-0 w-full h-full opacity-10">
+        <div
+          class="absolute top-20 left-10 w-32 h-32 bg-primary rounded-full animate-float delay-1000"
+        >
+        </div>
+        <div
+          class="absolute top-40 right-20 w-24 h-24 bg-secondary rounded-full animate-float delay-500"
+        >
+        </div>
+        <div
+          class="absolute bottom-20 left-20 w-20 h-20 bg-accent rounded-full animate-float delay-700"
+        >
+        </div>
+        <div
+          class="absolute bottom-40 right-40 w-28 h-28 bg-info rounded-full animate-float delay-300"
+        >
+        </div>
+      </div>
+
       <Container>
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Event Categories</h2>
-          <p class="text-lg text-base-content/70">
-            Discover different types of events we organize
+        <div class="text-center mb-16 relative z-10">
+          <div
+            class="inline-block p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full mb-6 animate-pulse"
+          >
+            <div class="text-5xl">🎯</div>
+          </div>
+          <h2
+            class="text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
+          >
+            Event Categories
+          </h2>
+          <p
+            class="text-xl text-gray-700 font-medium max-w-3xl mx-auto leading-relaxed"
+          >
+            🌈 From hands-on workshops to intense hackathons - discover the
+            perfect learning experience that matches your passion and skill
+            level! ✨
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Workshop Card */}
-          <div
-            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
-          >
-            <div class="card-body text-center">
-              <div class="text-4xl mb-4">🛠️</div>
-              <h3 class="card-title justify-center">Workshops</h3>
-              <p class="text-base-content/70">
-                Hands-on learning sessions covering various technologies and
-                best practices.
-              </p>
-              <div class="badge badge-primary badge-outline mt-4">
-                {allEvents.filter(e => e.data.eventType === 'workshop').length} events
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10"
+        >
+          {/* Enhanced Workshop Card */}
+          <div class="group">
+            <div
+              class="card bg-gradient-to-br from-primary/5 to-primary/20 border border-primary/20 shadow-xl hover:shadow-3xl hover:shadow-primary/20 transition-all duration-500 transform hover:-translate-y-3 hover:rotate-1"
+            >
+              <div class="card-body text-center p-8">
+                <div
+                  class="text-6xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-float"
+                >
+                  🛠️
+                </div>
+                <h3
+                  class="card-title justify-center text-2xl mb-4 text-primary"
+                >
+                  Workshops
+                </h3>
+                <p
+                  class="text-gray-800 text-lg leading-relaxed mb-6 font-semibold"
+                >
+                  Hands-on learning sessions covering various technologies and
+                  best practices. Build real projects with expert guidance!
+                </p>
+                <div class="flex flex-wrap gap-2 justify-center mb-4">
+                  <div class="badge badge-primary badge-lg shadow-lg font-bold">
+                    {
+                      allEvents.filter(e => e.data.eventType === 'workshop')
+                        .length
+                    } events
+                  </div>
+                  <div class="badge badge-outline badge-primary font-semibold">
+                    Hands-on
+                  </div>
+                </div>
+                <div
+                  class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                >
+                  <div
+                    class="text-sm text-gray-800 font-bold bg-white/20 px-3 py-1 rounded-full"
+                  >
+                    💡 Learn by Doing
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Meetup Card */}
-          <div
-            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
-          >
-            <div class="card-body text-center">
-              <div class="text-4xl mb-4">🤝</div>
-              <h3 class="card-title justify-center">Meetups</h3>
-              <p class="text-base-content/70">
-                Regular community gatherings for networking and knowledge
-                sharing.
-              </p>
-              <div class="badge badge-secondary badge-outline mt-4">
-                {allEvents.filter(e => e.data.eventType === 'meetup').length} events
+          {/* Enhanced Meetup Card */}
+          <div class="group">
+            <div
+              class="card bg-gradient-to-br from-secondary/5 to-secondary/20 border border-secondary/20 shadow-xl hover:shadow-3xl hover:shadow-secondary/20 transition-all duration-500 transform hover:-translate-y-3 hover:-rotate-1"
+            >
+              <div class="card-body text-center p-8">
+                <div
+                  class="text-6xl mb-6 transform group-hover:scale-125 group-hover:-rotate-12 transition-all duration-500 animate-float delay-200"
+                >
+                  🤝
+                </div>
+                <h3
+                  class="card-title justify-center text-2xl mb-4 text-secondary"
+                >
+                  Meetups
+                </h3>
+                <p
+                  class="text-gray-800 text-lg leading-relaxed mb-6 font-semibold"
+                >
+                  Regular community gatherings for networking and knowledge
+                  sharing. Connect with like-minded developers!
+                </p>
+                <div class="flex flex-wrap gap-2 justify-center mb-4">
+                  <div
+                    class="badge badge-secondary badge-lg shadow-lg font-bold"
+                  >
+                    {
+                      allEvents.filter(e => e.data.eventType === 'meetup')
+                        .length
+                    } events
+                  </div>
+                  <div
+                    class="badge badge-outline badge-secondary font-semibold"
+                  >
+                    Social
+                  </div>
+                </div>
+                <div
+                  class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                >
+                  <div
+                    class="text-sm text-gray-800 font-bold bg-white/20 px-3 py-1 rounded-full"
+                  >
+                    🌟 Network & Grow
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Hackathon Card */}
-          <div
-            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
-          >
-            <div class="card-body text-center">
-              <div class="text-4xl mb-4">🚀</div>
-              <h3 class="card-title justify-center">Hackathons</h3>
-              <p class="text-base-content/70">
-                Intensive coding events where teams build innovative solutions.
-              </p>
-              <div class="badge badge-accent badge-outline mt-4">
-                {allEvents.filter(e => e.data.eventType === 'hackathon').length}
-                events
+          {/* Enhanced Hackathon Card */}
+          <div class="group">
+            <div
+              class="card bg-gradient-to-br from-accent/5 to-accent/20 border border-accent/20 shadow-xl hover:shadow-3xl hover:shadow-accent/20 transition-all duration-500 transform hover:-translate-y-3 hover:rotate-1"
+            >
+              <div class="card-body text-center p-8">
+                <div
+                  class="text-6xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-float delay-400"
+                >
+                  🚀
+                </div>
+                <h3 class="card-title justify-center text-2xl mb-4 text-accent">
+                  Hackathons
+                </h3>
+                <p
+                  class="text-gray-800 text-lg leading-relaxed mb-6 font-semibold"
+                >
+                  Intensive coding events where teams build innovative
+                  solutions. Transform ideas into reality in 24-48 hours!
+                </p>
+                <div class="flex flex-wrap gap-2 justify-center mb-4">
+                  <div class="badge badge-accent badge-lg shadow-lg font-bold">
+                    {
+                      allEvents.filter(e => e.data.eventType === 'hackathon')
+                        .length
+                    } events
+                  </div>
+                  <div class="badge badge-outline badge-accent font-semibold">
+                    Intense
+                  </div>
+                </div>
+                <div
+                  class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                >
+                  <div
+                    class="text-sm text-gray-800 font-bold bg-white/20 px-3 py-1 rounded-full"
+                  >
+                    ⚡ Build & Ship Fast
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Event Types */}
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+          {/* Conference */}
+          <div
+            class="text-center p-6 bg-gradient-to-br from-info/20 to-info/30 rounded-xl border-2 border-info/50 hover:border-info/70 transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            <div class="text-4xl mb-3 animate-bounce">🎤</div>
+            <h4 class="font-bold text-gray-800 mb-2 text-lg">Conferences</h4>
+            <div class="badge badge-info badge-md font-bold">
+              {allEvents.filter(e => e.data.eventType === 'conference').length}
+            </div>
+          </div>
+
+          {/* Webinar */}
+          <div
+            class="text-center p-6 bg-gradient-to-br from-success/20 to-success/30 rounded-xl border-2 border-success/50 hover:border-success/70 transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            <div class="text-4xl mb-3 animate-bounce delay-100">💻</div>
+            <h4 class="font-bold text-gray-800 mb-2 text-lg">Webinars</h4>
+            <div class="badge badge-success badge-md font-bold">
+              {allEvents.filter(e => e.data.eventType === 'webinar').length}
+            </div>
+          </div>
+
+          {/* Networking */}
+          <div
+            class="text-center p-6 bg-gradient-to-br from-warning/20 to-warning/30 rounded-xl border-2 border-warning/50 hover:border-warning/70 transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            <div class="text-4xl mb-3 animate-bounce delay-200">🎪</div>
+            <h4 class="font-bold text-gray-800 mb-2 text-lg">Networking</h4>
+            <div class="badge badge-warning badge-md font-bold">
+              {allEvents.filter(e => e.data.eventType === 'networking').length}
+            </div>
+          </div>
+
+          {/* All Events */}
+          <div
+            class="text-center p-6 bg-gradient-to-br from-error/20 to-error/30 rounded-xl border-2 border-error/50 hover:border-error/70 transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            <div class="text-4xl mb-3 animate-bounce delay-300">🎉</div>
+            <h4 class="font-bold text-gray-800 mb-2 text-lg">All Events</h4>
+            <div class="badge badge-error badge-md font-bold">
+              {allEvents.length}
             </div>
           </div>
         </div>
       </Container>
     </section>
 
-    {/* Call to Action */}
-    <section class="py-16">
-      <Container>
+    {/* Enhanced Call to Action */}
+    <section class="py-20 bg-base-100 relative overflow-hidden">
+      <!-- Dynamic background -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"
+      >
+      </div>
+      <div class="absolute top-0 left-0 w-full h-full opacity-10">
         <div
-          class="card bg-gradient-to-r from-primary to-secondary text-primary-content"
+          class="absolute animate-spin-slow top-10 left-10 w-16 h-16 border-4 border-primary/30 rounded-full"
         >
-          <div class="card-body text-center">
-            <h2 class="card-title justify-center text-3xl mb-4">
-              Want to Organize an Event?
-            </h2>
-            <p class="text-lg opacity-90 mb-6">
-              We're always looking for community members to help organize and
-              speak at events. Get in touch with us to discuss your ideas!
-            </p>
-            <div class="card-actions justify-center">
-              <a
-                href="mailto:events@osw.com"
-                class="btn btn-lg btn-outline btn-primary-content"
+        </div>
+        <div
+          class="absolute animate-spin-slow top-20 right-20 w-12 h-12 border-4 border-secondary/30 rounded-full"
+          style="animation-delay: -2s;"
+        >
+        </div>
+        <div
+          class="absolute animate-spin-slow bottom-20 left-20 w-20 h-20 border-4 border-accent/30 rounded-full"
+          style="animation-delay: -1s;"
+        >
+        </div>
+      </div>
+
+      <Container>
+        <div class="max-w-4xl mx-auto relative z-10">
+          <div
+            class="card bg-gradient-to-br from-primary via-secondary to-accent text-primary-content shadow-3xl relative overflow-hidden"
+          >
+            <!-- Animated background shapes -->
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 animate-pulse"
+            >
+            </div>
+            <div
+              class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12 animate-pulse delay-1000"
+            >
+            </div>
+            <div
+              class="absolute top-1/2 left-1/2 w-40 h-40 bg-white/5 rounded-full -ml-20 -mt-20 animate-spin-slow"
+            >
+            </div>
+
+            <div class="card-body text-center p-12 relative z-10">
+              <!-- Icon with animation -->
+              <div class="mb-8">
+                <div
+                  class="inline-block p-6 bg-white/20 rounded-full animate-bounce"
+                >
+                  <div class="text-6xl">🚀</div>
+                </div>
+              </div>
+
+              <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
+                Ready to Make an Impact?
+              </h2>
+              <h3
+                class="text-2xl md:text-3xl font-semibold mb-8 opacity-90 animate-fade-in delay-300"
               >
-                Contact Event Team
-              </a>
-              <a
-                href="/contribute"
-                class="btn btn-lg btn-ghost btn-primary-content"
+                ✨ Organize Your Own Event! ✨
+              </h3>
+
+              <p
+                class="text-xl md:text-2xl opacity-95 mb-8 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-500"
               >
-                Learn More
-              </a>
+                🎯 We're always looking for passionate community members to help
+                organize and speak at events. Share your expertise, build
+                connections, and shape the future of open source! 🌟
+              </p>
+
+              <!-- Benefits grid -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div
+                  class="bg-white/10 backdrop-blur-sm rounded-xl p-4 animate-fade-in delay-700"
+                >
+                  <div class="text-3xl mb-2">👥</div>
+                  <div class="text-lg font-semibold">Build Community</div>
+                  <div class="text-sm opacity-80">
+                    Connect with amazing developers
+                  </div>
+                </div>
+                <div
+                  class="bg-white/10 backdrop-blur-sm rounded-xl p-4 animate-fade-in delay-800"
+                >
+                  <div class="text-3xl mb-2">📚</div>
+                  <div class="text-lg font-semibold">Share Knowledge</div>
+                  <div class="text-sm opacity-80">Teach and learn together</div>
+                </div>
+                <div
+                  class="bg-white/10 backdrop-blur-sm rounded-xl p-4 animate-fade-in delay-900"
+                >
+                  <div class="text-3xl mb-2">🏆</div>
+                  <div class="text-lg font-semibold">Make Impact</div>
+                  <div class="text-sm opacity-80">Shape the tech community</div>
+                </div>
+              </div>
+
+              <div
+                class="flex flex-wrap gap-6 justify-center animate-fade-in delay-1000"
+              >
+                <a
+                  href="mailto:events@osw.com"
+                  class="btn btn-xl bg-white text-primary hover:bg-white/90 border-none shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  <svg
+                    class="w-6 h-6 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Contact Event Team
+                </a>
+                <a
+                  href="/contribute"
+                  class="btn btn-xl btn-outline btn-primary-content border-2 hover:bg-white/20 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  <svg
+                    class="w-6 h-6 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Learn More
+                </a>
+                <a
+                  href="https://discord.gg/osw"
+                  target="_blank"
+                  class="btn btn-xl btn-ghost btn-primary-content hover:bg-white/20 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  <svg
+                    class="w-6 h-6 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189z"
+                    ></path>
+                  </svg>
+                  Join Discord
+                </a>
+              </div>
+
+              <!-- Fun fact -->
+              <div class="mt-8 text-center animate-fade-in delay-1200">
+                <div
+                  class="inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full backdrop-blur-sm"
+                >
+                  <span class="text-2xl">💡</span>
+                  <span class="text-sm font-medium"
+                    >Fun fact: Our community has organized 50+ successful
+                    events!</span
+                  >
+                </div>
+              </div>
             </div>
           </div>
         </div>
