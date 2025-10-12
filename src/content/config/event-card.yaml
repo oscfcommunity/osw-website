@@ -7,6 +7,6 @@ display:
   showSpeakers: true
 
 button:
-  style: "primary"
-  size: "sm"
-  text: "View Event"
+  style: 'primary'
+  size: 'sm'
+  text: 'View Event'

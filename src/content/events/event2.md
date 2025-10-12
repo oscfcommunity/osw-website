@@ -11,7 +11,16 @@ speakers:
   - 'Ashish Patel'
 registrationLink: 'https://luma.com/pc0q0hm8'
 maxParticipants: 100
-tags: ['workshop', 'ai', 'machine-learning', 'open-source', 'hands-on', 'oracle', 'ai-agents']
+tags:
+  [
+    'workshop',
+    'ai',
+    'machine-learning',
+    'open-source',
+    'hands-on',
+    'oracle',
+    'ai-agents',
+  ]
 featured: true
 coverImage: 'https://placehold.co/1200x630/7c3aed/white?text=AI+Agents+Workshop'
 agenda:
@@ -131,11 +140,11 @@ The workshop received overwhelming positive responses:
 
 ### What Participants Said
 
-*"Ashish's teaching style made complex AI concepts accessible. I built my first working AI agent in just 3 hours!"*
+_"Ashish's teaching style made complex AI concepts accessible. I built my first working AI agent in just 3 hours!"_
 
-*"The hands-on approach was perfect. I learned by doing, not just listening to theory."*
+_"The hands-on approach was perfect. I learned by doing, not just listening to theory."_
 
-*"As someone new to AI, this workshop gave me the confidence to explore AI integration in my own projects."*
+_"As someone new to AI, this workshop gave me the confidence to explore AI integration in my own projects."_
 
 ## Resources & Next Steps
 

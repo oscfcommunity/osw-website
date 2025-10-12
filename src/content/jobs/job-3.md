@@ -1,87 +1,87 @@
 ---
-title: "AI/ML Developer - Machine Learning Engineer"
-description: "Join Metizsoft Solutions as an AI/ML Developer to design, develop, and deploy cutting-edge artificial intelligence and machine learning solutions. Work on innovative AI projects involving natural language processing, computer vision, and deep learning. Collaborate with cross-functional teams to build scalable AI applications that drive business transformation and deliver real-world impact across various industries."
-datePosted: "2025-09-15"
-validThrough: "2025-12-15"
+title: 'AI/ML Developer - Machine Learning Engineer'
+description: 'Join Metizsoft Solutions as an AI/ML Developer to design, develop, and deploy cutting-edge artificial intelligence and machine learning solutions. Work on innovative AI projects involving natural language processing, computer vision, and deep learning. Collaborate with cross-functional teams to build scalable AI applications that drive business transformation and deliver real-world impact across various industries.'
+datePosted: '2025-09-15'
+validThrough: '2025-12-15'
 
 company:
-  name: "Metizsoft Solutions Private Limited"
-  logo: "https://placehold.co/48x48/0066cc/white?text=MS"
-  website: "https://www.metizsoft.com"
-  about: "AI-driven software development company with 13+ years of experience delivering custom AI solutions, web and mobile applications to SMEs and MSMEs worldwide."
-  size: "SMALL"
+  name: 'Metizsoft Solutions Private Limited'
+  logo: 'https://placehold.co/48x48/0066cc/white?text=MS'
+  website: 'https://www.metizsoft.com'
+  about: 'AI-driven software development company with 13+ years of experience delivering custom AI solutions, web and mobile applications to SMEs and MSMEs worldwide.'
+  size: 'SMALL'
 
 location:
-  city: "Ahmedabad"
-  state: "Gujarat"
-  country: "India"
+  city: 'Ahmedabad'
+  state: 'Gujarat'
+  country: 'India'
   remote: false
-  remoteType: "ON_SITE"
+  remoteType: 'ON_SITE'
 
-employmentType: "FULL_TIME"
+employmentType: 'FULL_TIME'
 
 salary:
   min: 300000
   max: 600000
-  currency: "INR"
-  period: "YEAR"
+  currency: 'INR'
+  period: 'YEAR'
 
-experienceLevel: "ENTRY_LEVEL"
+experienceLevel: 'ENTRY_LEVEL'
 
 experience:
   min: 0
   max: 2
 
 education:
-  level: "BACHELOR_DEGREE"
-  field: "Computer Science, Information Technology, or related field"
+  level: 'BACHELOR_DEGREE'
+  field: 'Computer Science, Information Technology, or related field'
   required: true
 
 skills:
-  - "Python"
-  - "Machine Learning"
-  - "Deep Learning"
-  - "TensorFlow"
-  - "PyTorch"
-  - "Natural Language Processing"
-  - "Computer Vision"
-  - "Scikit-learn"
-  - "Data Analysis"
-  - "Neural Networks"
-  - "Database Management (MySQL, PostgreSQL, MongoDB)"
-  - "Big Data (Hadoop, Spark)"
-  - "AI Model Deployment"
-  - "Problem Solving"
+  - 'Python'
+  - 'Machine Learning'
+  - 'Deep Learning'
+  - 'TensorFlow'
+  - 'PyTorch'
+  - 'Natural Language Processing'
+  - 'Computer Vision'
+  - 'Scikit-learn'
+  - 'Data Analysis'
+  - 'Neural Networks'
+  - 'Database Management (MySQL, PostgreSQL, MongoDB)'
+  - 'Big Data (Hadoop, Spark)'
+  - 'AI Model Deployment'
+  - 'Problem Solving'
 
 benefits:
   other:
-    - "Professional development opportunities"
-    - "Exposure to cutting-edge AI technologies"
-    - "Work on diverse industry projects"
-    - "Collaborative work environment"
+    - 'Professional development opportunities'
+    - 'Exposure to cutting-edge AI technologies'
+    - 'Work on diverse industry projects'
+    - 'Collaborative work environment'
 
 application:
-  applyUrl: "https://www.linkedin.com/jobs/view/4288313840"
-  applyEmail: "hr@metizsoft.com"
-  instructions: "Submit your resume along with portfolio showcasing AI/ML projects. Include links to GitHub repositories or published work demonstrating hands-on experience with machine learning frameworks and models."
+  applyUrl: 'https://www.linkedin.com/jobs/view/4288313840'
+  applyEmail: 'hr@metizsoft.com'
+  instructions: 'Submit your resume along with portfolio showcasing AI/ML projects. Include links to GitHub repositories or published work demonstrating hands-on experience with machine learning frameworks and models.'
 
 categories:
-  - "Artificial Intelligence"
-  - "Machine Learning"
-  - "Software Development"
-  - "Engineering"
+  - 'Artificial Intelligence'
+  - 'Machine Learning'
+  - 'Software Development'
+  - 'Engineering'
 
 seo:
-  metaTitle: "AI/ML Developer Jobs in Ahmedabad | Metizsoft Solutions"
-  metaDescription: "Join Metizsoft Solutions as AI/ML Developer in Ahmedabad. Work on cutting-edge AI projects with TensorFlow, PyTorch, NLP and Computer Vision technologies."
+  metaTitle: 'AI/ML Developer Jobs in Ahmedabad | Metizsoft Solutions'
+  metaDescription: 'Join Metizsoft Solutions as AI/ML Developer in Ahmedabad. Work on cutting-edge AI projects with TensorFlow, PyTorch, NLP and Computer Vision technologies.'
   keywords:
-    - "AI Developer Jobs Ahmedabad"
-    - "Machine Learning Engineer"
-    - "Python AI Jobs"
-    - "Deep Learning Developer"
-    - "NLP Jobs India"
+    - 'AI Developer Jobs Ahmedabad'
+    - 'Machine Learning Engineer'
+    - 'Python AI Jobs'
+    - 'Deep Learning Developer'
+    - 'NLP Jobs India'
 
-status: "ACTIVE"
+status: 'ACTIVE'
 featured: false
 urgent: false
 ---

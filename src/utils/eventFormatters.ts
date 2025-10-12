@@ -2,12 +2,12 @@ import { format, formatDistance } from 'date-fns';
 
 export function formatEventDate(date: Date, endDate?: Date): string {
   const startStr = format(date, 'MMM d, yyyy');
-  
+
   if (endDate) {
     const endStr = format(endDate, 'MMM d, yyyy');
     return `${startStr} - ${endStr}`;
   }
-  
+
   return startStr;
 }
 
@@ -18,7 +18,7 @@ export function getStatusBadgeClass(status: string): string {
     completed: 'badge-neutral',
     cancelled: 'badge-error',
   };
-  
+
   return statusMap[status] || 'badge-neutral';
 }
 

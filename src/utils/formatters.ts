@@ -11,7 +11,7 @@ export function formatSalary(salary: {
   period: string;
 }): string {
   const { min, max, currency } = salary;
-  
+
   if (currency === 'INR') {
     if (min >= 100000) {
       const minL = (min / 100000).toFixed(min % 100000 === 0 ? 0 : 1);
@@ -20,10 +20,10 @@ export function formatSalary(salary: {
     }
     return `₹${min / 1000}K-${max / 1000}K`;
   }
-  
+
   if (currency === 'USD') return `$${min / 1000}K-${max / 1000}K`;
   if (currency === 'EUR') return `€${min / 1000}K-${max / 1000}K`;
-  
+
   return `${currency} ${min / 1000}K-${max / 1000}K`;
 }
 

@@ -29,13 +29,13 @@ We do not tolerate:
 - Sustained disruption of community activities
 - Other conduct inappropriate in a professional setting
 
-## Enforcement 
+## Enforcement
 
-### Reporting 
+### Reporting
 
 Tensions can occur between community members even when they are trying their best to collaborate. Not every conflict represents a code of conduct violation, and this Code of Conduct reinforces encouraged behaviors and norms that can help avoid conflicts and minimize harm.
 
-Report violations to project maintainers at **oscf.community@gmail.com**. 
+Report violations to project maintainers at **oscf.community@gmail.com**.
 
 ### Response
 
