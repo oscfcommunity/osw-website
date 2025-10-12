@@ -17,14 +17,20 @@ const { badge, headline, cta, showTerminal } = heroSection;
   class="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden py-4"
   aria-labelledby="hero-heading"
 >
-  <!-- Grid Background -->
-  <div
-    class="absolute inset-0 bg-base-200 bg-[linear-gradient(to_right,#4f4f4f20_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f20_1px,transparent_1px)] bg-[size:45px_45px]"
-  >
-  </div>
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-transparent via-base-200/30 to-base-200"
-  >
+  <!-- Animated Grid Background: More Visible -->
+  <div class="absolute inset-0 pointer-events-none z-0">
+    <div
+      class="w-full h-full animate-[gridMove_8s_linear_infinite]"
+      style="background-image:
+        linear-gradient(to right, rgba(16, 185, 129, 0.18) 2px, transparent 2px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.18) 2px, transparent 2px);
+        background-size: 48px 48px;"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/30 to-base-200"
+    >
+    </div>
   </div>
 
   <Container>
@@ -226,3 +232,18 @@ const { badge, headline, cta, showTerminal } = heroSection;
     });
   });
 </script>
+
+<style>
+  @keyframes gridMove {
+    0% {
+      background-position:
+        0 0,
+        0 0;
+    }
+    100% {
+      background-position:
+        48px 48px,
+        48px 48px;
+    }
+  }
+</style>
