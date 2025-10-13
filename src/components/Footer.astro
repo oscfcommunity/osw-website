@@ -141,20 +141,40 @@ const {
         }
       </div>
       {/* Bottom row */}
-      <div class="border-t">
+      <div class="border-t pt-4">
         <Container
           className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 pb-0"
         >
-          <div class="text-xs opacity-70" set:html={copyright} />
-          <div class="flex gap-3">
+          <div class="text-sm font-semibold opacity-80 flex items-center gap-2">
+            <span>Crafted with</span>
+            <span class="text-red-400">❤️</span>
+            <span>by contributors of</span>
+            <a
+              href="https://github.com/oscfcommunity"
+              class="link link-hover font-bold underline ml-1"
+              target="_blank"
+              rel="noopener"
+            >
+              Open Source Weekend (OSCF)
+            </a>
+          </div>
+          <div class="flex gap-3 justify-center md:justify-end">
             {
               socials.map(
-                (social: { href: string; label: string; icon: string }) => (
+                (
+                  social: { href: string; label: string; icon: string },
+                  idx
+                ) => (
                   <a
                     href={social.href}
+                    class="transition-transform duration-200 hover:scale-110 hover:text-accent"
+                    target="_blank"
+                    rel="noopener"
                     aria-label={social.label}
-                    class="btn btn-ghost btn-xs px-2 aspect-square"
-                    set:html={social.icon}
+                    key={social.label}
+                    dangerouslySetInnerHTML={{
+                      __html: social.icon.replace('h-4 w-4', 'h-6 w-6'),
+                    }}
                   />
                 )
               )
