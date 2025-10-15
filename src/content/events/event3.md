@@ -11,7 +11,16 @@ speakers:
   - 'Dhaval D.'
 registrationLink: 'https://luma.com/pc0q0hm8'
 maxParticipants: 100
-tags: ['workshop', 'open-source', 'github', 'git', 'community-building', 'project-management', 'hands-on']
+tags:
+  [
+    'workshop',
+    'open-source',
+    'github',
+    'git',
+    'community-building',
+    'project-management',
+    'hands-on',
+  ]
 featured: true
 coverImage: 'https://placehold.co/1200x630/10b981/white?text=Open+Source+Management'
 agenda:
@@ -147,11 +156,11 @@ By the end of the workshop, participants could:
 
 ## Participant Testimonials
 
-*"Dhaval's practical approach was exactly what I needed. I launched my first open source project the same day!"*
+_"Dhaval's practical approach was exactly what I needed. I launched my first open source project the same day!"_
 
-*"The hands-on exercises made everything clear. No more confusion about Git workflows!"*
+_"The hands-on exercises made everything clear. No more confusion about Git workflows!"_
 
-*"Best workshop on open source management I've attended. The community building strategies were gold."*
+_"Best workshop on open source management I've attended. The community building strategies were gold."_
 
 ## Resources Provided
 

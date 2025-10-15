@@ -28,7 +28,17 @@ speakers:
   - 'Jay Thakkar'
 registrationLink: 'https://osd.opensourceweekend.org'
 maxParticipants: 600
-tags: ['open-source', 'conference', 'community', 'ahmedabad', 'developers', 'networking', 'innovation', 'workshops']
+tags:
+  [
+    'open-source',
+    'conference',
+    'community',
+    'ahmedabad',
+    'developers',
+    'networking',
+    'innovation',
+    'workshops',
+  ]
 featured: true
 coverImage: 'https://placehold.co/1200x630/6366f1/white?text=Open+Source+Day+2025'
 agenda:

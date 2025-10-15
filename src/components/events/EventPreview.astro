@@ -10,47 +10,56 @@ if (!eventsSection?.enabled) {
   return null;
 }
 
-const allEvents = await getCollection('events', ({ data }) => 
-  (!eventsSection.showFeaturedOnly || data.featured)
+const allEvents = await getCollection(
+  'events',
+  ({ data }) => !eventsSection.showFeaturedOnly || data.featured
 );
 
 const events = allEvents
-  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime())
+  .sort(
+    (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
+  )
   .slice(0, eventsSection.showCount);
 
 if (events.length === 0) {
   return null;
 }
 
-const responsiveBtnSize = eventsSection.ctaButton.size === 'lg' 
-  ? 'btn-md md:btn-lg' 
-  : eventsSection.ctaButton.size === 'md'
-  ? 'btn-sm md:btn-md'
-  : 'btn-sm';
+const responsiveBtnSize =
+  eventsSection.ctaButton.size === 'lg'
+    ? 'btn-md md:btn-lg'
+    : eventsSection.ctaButton.size === 'md'
+      ? 'btn-sm md:btn-md'
+      : 'btn-sm';
 ---
 
-<section class:list={["py-16",eventsSection.sectionBackground]} aria-labelledby="events-heading">
+<section
+  class:list={['py-16', eventsSection.sectionBackground]}
+  aria-labelledby="events-heading"
+>
   <Container fluid={eventsSection.useFluidContainer}>
-    
     <div class="text-center mb-8 md:mb-12">
-      <h2 id="events-heading" class="text-3xl md:text-4xl font-bold text-base-content mb-3">
+      <h2
+        id="events-heading"
+        class="text-3xl md:text-4xl font-bold text-base-content mb-3"
+      >
         {eventsSection.title}
       </h2>
-      {eventsSection.subtitle && (
-        <p class="text-base md:text-lg text-base-content/70 max-w-2xl mx-auto">
-          {eventsSection.subtitle}
-        </p>
-      )}
+      {
+        eventsSection.subtitle && (
+          <p class="text-base md:text-lg text-base-content/70 max-w-2xl mx-auto">
+            {eventsSection.subtitle}
+          </p>
+        )
+      }
     </div>
 
     <div class="flex flex-col gap-4 md:gap-5 mb-8 md:mb-12">
-      {events.map((event) => (
-        <EventCard event={event} />
-      ))}
+      {events.map(event => <EventCard event={event} />)}
     </div>
 
     <div class="text-center">
-      <a 
+      <a
         href={eventsSection.ctaButton.link}
         class={`btn btn-${eventsSection.ctaButton.style} ${responsiveBtnSize} gap-2 rounded-md`}
         aria-label="View all upcoming events"
@@ -58,6 +67,5 @@ const responsiveBtnSize = eventsSection.ctaButton.size === 'lg'
         {eventsSection.ctaButton.text}
       </a>
     </div>
-
   </Container>
 </section>

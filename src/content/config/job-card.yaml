@@ -1,20 +1,20 @@
 categoryColors:
-  "Engineering": "primary"
-  "Design": "secondary"
-  "Frontend": "info"
-  "Backend": "info"
-  "Full Stack": "primary"
-  "Product": "success"
-  "Marketing": "warning"
-  "Sales": "accent"
-  "Support": "info"
-  "Customer Experience": "success"
-  "DevOps": "error"
-  "Data Science": "accent"
-  "Machine Learning": "secondary"
-  "Internship": "secondary"
+  'Engineering': 'primary'
+  'Design': 'secondary'
+  'Frontend': 'info'
+  'Backend': 'info'
+  'Full Stack': 'primary'
+  'Product': 'success'
+  'Marketing': 'warning'
+  'Sales': 'accent'
+  'Support': 'info'
+  'Customer Experience': 'success'
+  'DevOps': 'error'
+  'Data Science': 'accent'
+  'Machine Learning': 'secondary'
+  'Internship': 'secondary'
 
-defaultCategoryColor: "neutral"
+defaultCategoryColor: 'neutral'
 
 display:
   showCompanyLogo: true
@@ -25,6 +25,6 @@ display:
   showPostedDate: true
 
 button:
-  style: "primary"
-  size: "sm"
-  text: "More Details"
+  style: 'primary'
+  size: 'sm'
+  text: 'More Details'
