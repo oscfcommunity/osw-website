@@ -1,22 +1,63 @@
 ---
-import { getEntry } from 'astro:content';
 import {
   formatSalary,
   getCategoryBadgeClass,
   getRelativeTime,
-} from '../../utils/formatters';
+} from '../../utils';
 
 interface Props {
   job: any;
+  categoryColors?: Record<string, string>;
+  defaultCategoryColor?: string;
+  display?: {
+    showCompanyLogo?: boolean;
+    showSalary?: boolean;
+    showLocation?: boolean;
+    showCategories?: boolean;
+    showEmploymentType?: boolean;
+    showPostedDate?: boolean;
+  };
+  button?: {
+    style?: string;
+    size?: string;
+    text?: string;
+  };
 }
 
-const { job } = Astro.props;
+const { 
+  job,
+  categoryColors = {
+    'Engineering': 'primary',
+    'Design': 'secondary',
+    'Frontend': 'info',
+    'Backend': 'info',
+    'Full Stack': 'primary',
+    'Product': 'success',
+    'Marketing': 'warning',
+    'Sales': 'accent',
+    'Support': 'info',
+    'Customer Experience': 'success',
+    'DevOps': 'error',
+    'Data Science': 'accent',
+    'Machine Learning': 'secondary',
+    'Internship': 'secondary',
+  },
+  defaultCategoryColor = 'neutral',
+  display = {
+    showCompanyLogo: true,
+    showSalary: true,
+    showLocation: true,
+    showCategories: true,
+    showEmploymentType: true,
+    showPostedDate: true,
+  },
+  button = {
+    style: 'primary',
+    size: 'sm',
+    text: 'More Details',
+  },
+} = Astro.props;
 
-const configEntry = await getEntry('jobCardConfig', 'job-card');
-if (!configEntry) throw new Error('Job card config not found');
-
-const { categoryColors, defaultCategoryColor, display, button } =
-  configEntry.data;
 const btnSize = { sm: 'btn-sm', md: 'btn-md', lg: 'btn-lg' }[button.size];
 const jobUrl = `/jobs/${job.id}`;
 ---
@@ -148,12 +189,12 @@ const jobUrl = `/jobs/${job.id}`;
         }
       </div>
 
-      <!-- <a href={jobUrl} class={`btn btn-${button.style} ${btnSize} gap-1.5 rounded-sm`}>
+      <a href={jobUrl} class={`btn btn-${button.style} ${btnSize} gap-1.5 rounded-sm`}>
         {button.text}
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
-      </a> -->
+      </a>
     </div>
   </div>
 </article>

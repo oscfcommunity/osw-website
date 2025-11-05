@@ -1,44 +1,57 @@
 ---
-import { getEntry, getCollection } from 'astro:content';
-import Container from '../Container.astro';
+import { getCollection } from 'astro:content';
+import Container from '../layout/Container.astro';
 import EventCard from './EventCard.astro';
 
-const homeConfig = await getEntry('homeConfig', 'home');
-const eventsSection = homeConfig?.data.sections.events;
+const {
+  enabled = true,
+  title = 'Upcoming Events',
+  subtitle = 'Join us at our upcoming workshops, hackathons, and community meetups',
+  showCount = 3,
+  showFeaturedOnly = false,
+  ctaButton = {
+    text: 'View All Events',
+    link: '/events',
+    style: 'accent',
+    size: 'lg',
+  },
+  sectionBackground = 'bg-base-200',
+  useFluidContainer = false,
+} = Astro.props;
 
-if (!eventsSection?.enabled) {
+if (!enabled) {
   return null;
 }
 
 const allEvents = await getCollection('events', ({ data }) => 
-  (!eventsSection.showFeaturedOnly || data.featured)
+  (!showFeaturedOnly || data.featured)
 );
 
 const events = allEvents
   .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime())
-  .slice(0, eventsSection.showCount);
+  .slice(0, showCount);
 
 if (events.length === 0) {
   return null;
 }
 
-const responsiveBtnSize = eventsSection.ctaButton.size === 'lg' 
+const responsiveBtnSize = ctaButton.size === 'lg' 
   ? 'btn-md md:btn-lg' 
-  : eventsSection.ctaButton.size === 'md'
+  : ctaButton.size === 'md'
   ? 'btn-sm md:btn-md'
   : 'btn-sm';
 ---
 
-<section class:list={["py-16",eventsSection.sectionBackground]} aria-labelledby="events-heading">
-  <Container fluid={eventsSection.useFluidContainer}>
+<section class:list={["py-16", sectionBackground]} aria-labelledby="events-heading">
+  <Container fluid={useFluidContainer}>
     
     <div class="text-center mb-8 md:mb-12">
       <h2 id="events-heading" class="text-3xl md:text-4xl font-bold text-base-content mb-3">
-        {eventsSection.title}
+        {title}
       </h2>
-      {eventsSection.subtitle && (
+      {subtitle && (
         <p class="text-base md:text-lg text-base-content/70 max-w-2xl mx-auto">
-          {eventsSection.subtitle}
+          {subtitle}
         </p>
       )}
     </div>
@@ -51,11 +64,11 @@ const responsiveBtnSize = eventsSection.ctaButton.size === 'lg'
 
     <div class="text-center">
       <a 
-        href={eventsSection.ctaButton.link}
-        class={`btn btn-${eventsSection.ctaButton.style} ${responsiveBtnSize} gap-2 rounded-md`}
+        href={ctaButton.link}
+        class={`btn btn-${ctaButton.style} ${responsiveBtnSize} gap-2 rounded-md`}
         aria-label="View all upcoming events"
       >
-        {eventsSection.ctaButton.text}
+        {ctaButton.text}
       </a>
     </div>
 

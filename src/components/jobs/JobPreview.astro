@@ -1,53 +1,66 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-import Container from '../Container.astro';
+import { getCollection } from 'astro:content';
+import Container from '../layout/Container.astro';
 import JobCard from './JobCard.astro';
 
-const homeConfig = await getEntry('homeConfig', 'home');
-const jobsSection = homeConfig?.data.sections.jobs;
+const {
+  enabled = true,
+  title = 'Latest Job Opportunities',
+  subtitle = 'Discover exciting career opportunities in the open source community',
+  showCount = 3,
+  showFeaturedOnly = false,
+  ctaButton = {
+    text: 'View All Jobs',
+    link: '/jobs',
+    style: 'primary',
+    size: 'lg',
+  },
+  sectionBackground = 'bg-base-100',
+  useFluidContainer = false,
+} = Astro.props;
 
-if (!jobsSection?.enabled) {
+if (!enabled) {
   return null;
 }
 
 const allJobs = await getCollection(
   'jobs',
   ({ data }) =>
-    data.status === 'ACTIVE' && (!jobsSection.showFeaturedOnly || data.featured)
+    data.status === 'ACTIVE' && (!showFeaturedOnly || data.featured)
 );
 
 const jobs = allJobs
   .sort((a, b) => b.data.datePosted.getTime() - a.data.datePosted.getTime())
-  .slice(0, jobsSection.showCount);
+  .slice(0, showCount);
 
 if (jobs.length === 0) {
   return null;
 }
 
 const responsiveBtnSize =
-  jobsSection.ctaButton.size === 'lg'
+  ctaButton.size === 'lg'
     ? 'btn-md md:btn-lg'
-    : jobsSection.ctaButton.size === 'md'
+    : ctaButton.size === 'md'
       ? 'btn-sm md:btn-md'
       : 'btn-sm';
 ---
 
 <section
-  class:list={['py-16', jobsSection.sectionBackground]}
+  class:list={['py-16', sectionBackground]}
   aria-labelledby="jobs-heading"
 >
-  <Container fluid={jobsSection.useFluidContainer}>
+  <Container fluid={useFluidContainer}>
     <div class="text-center mb-8 md:mb-12">
       <h2
         id="jobs-heading"
         class="text-3xl md:text-4xl font-bold text-base-content mb-3"
       >
-        {jobsSection.title}
+        {title}
       </h2>
       {
-        jobsSection.subtitle && (
+        subtitle && (
           <p class="text-base md:text-lg text-base-content/70 max-w-2xl mx-auto">
-            {jobsSection.subtitle}
+            {subtitle}
           </p>
         )
       }
@@ -59,11 +72,11 @@ const responsiveBtnSize =
 
     <div class="text-center">
       <a
-        href={jobsSection.ctaButton.link}
-        class={`btn btn-${jobsSection.ctaButton.style} ${responsiveBtnSize} gap-2 rounded-md`}
+        href={ctaButton.link}
+        class={`btn btn-${ctaButton.style} ${responsiveBtnSize} gap-2 rounded-md`}
         aria-label="View all available job openings"
       >
-        {jobsSection.ctaButton.text}
+        {ctaButton.text}
       </a>
     </div>
   </Container>

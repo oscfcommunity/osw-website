@@ -1,24 +1,48 @@
 ---
-import { getEntry } from 'astro:content';
 import {
   formatEventDate,
   getStatusBadgeClass,
-} from '../../utils/eventFormatters';
+} from '../../utils';
 
 interface Props {
-  event: any;
+  event: CollectionEntry<'events'>;
+  display?: {
+    showEventDate?: boolean;
+    showEventType?: boolean;
+    showLocation?: boolean;
+    showTags?: boolean;
+    showStatus?: boolean;
+    showSpeakers?: boolean;
+  };
+  button?: {
+    style?: string;
+    size?: string;
+    text?: string;
+  };
 }
 
-const { event } = Astro.props;
+const { 
+  event,
+  display = {
+    showCoverImage: true,
+    showEventDate: true,
+    showEventType: true,
+    showLocation: true,
+    showTags: false,
+    showStatus: true,
+    showSpeakers: true,
+  },
+  button = {
+    style: 'primary',
+    size: 'sm',
+    text: 'View Event',
+  },
+} = Astro.props;
 
 if (!event || !event.data) {
   return null;
 }
 
-const configEntry = await getEntry('eventCardConfig', 'event-card');
-if (!configEntry) throw new Error('Event card config not found');
-
-const { display, button } = configEntry.data;
 const btnSize = { sm: 'btn-sm', md: 'btn-md', lg: 'btn-lg' }[button.size];
 
 // Calculate relative time
