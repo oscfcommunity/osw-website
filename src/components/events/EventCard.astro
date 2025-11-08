@@ -1,104 +1,148 @@
 ---
-import {
-  formatEventDate,
-  getStatusBadgeClass,
-} from '../../utils';
+import type { CollectionEntry } from 'astro:content';
+import { formatEventDate, formatTime } from '../../utils';
+
+type Variant = 'default' | 'compact' | 'minimal';
+
+interface DisplayOptions {
+  showCoverImage?: boolean;
+  showDescription?: boolean;
+  showBadges?: boolean;
+  showProfiles?: boolean;
+  showMaxParticipants?: boolean;
+  showTags?: boolean;
+  showRegistrationButton?: boolean;
+  showLearnMoreButton?: boolean;
+  descriptionLines?: number;
+}
 
 interface Props {
   event: CollectionEntry<'events'>;
-  display?: {
-    showEventDate?: boolean;
-    showEventType?: boolean;
-    showLocation?: boolean;
-    showTags?: boolean;
-    showStatus?: boolean;
-    showSpeakers?: boolean;
-  };
-  button?: {
-    style?: string;
-    size?: string;
-    text?: string;
-  };
+  variant?: Variant;
+  featured?: boolean;
+  display?: DisplayOptions;
 }
 
-const { 
+const {
   event,
-  display = {
-    showCoverImage: true,
-    showEventDate: true,
-    showEventType: true,
-    showLocation: true,
-    showTags: false,
-    showStatus: true,
-    showSpeakers: true,
-  },
-  button = {
-    style: 'primary',
-    size: 'sm',
-    text: 'View Event',
-  },
+  variant = 'default',
+  featured = false,
+  display: customDisplay,
 } = Astro.props;
 
-if (!event || !event.data) {
-  return null;
-}
+const { data } = event;
 
-const btnSize = { sm: 'btn-sm', md: 'btn-md', lg: 'btn-lg' }[button.size];
+const variantDefaults: Record<Variant, DisplayOptions> = {
+  default: {
+    showCoverImage: true,
+    showDescription: true,
+    showBadges: true,
+    showProfiles: true,
+    showMaxParticipants: true,
+    showTags: true,
+    showRegistrationButton: true,
+    showLearnMoreButton: true,
+    descriptionLines: 3,
+  },
+  compact: {
+    showCoverImage: true,
+    showDescription: true,
+    showBadges: true,
+    showProfiles: false,
+    showMaxParticipants: false,
+    showTags: false,
+    showRegistrationButton: true,
+    showLearnMoreButton: true,
+    descriptionLines: 2,
+  },
+  minimal: {
+    showCoverImage: false,
+    showDescription: false,
+    showBadges: true,
+    showProfiles: false,
+    showMaxParticipants: false,
+    showTags: false,
+    showRegistrationButton: false,
+    showLearnMoreButton: true,
+    descriptionLines: 0,
+  },
+};
 
-// Calculate relative time
-const eventDate = new Date(event.data.date);
-const now = new Date();
-const diffTime = eventDate.getTime() - now.getTime();
-const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+const display = { ...variantDefaults[variant], ...customDisplay };
 
-let relativeTime = '';
-if (diffDays < 0) {
-  relativeTime = `${Math.abs(diffDays)} days ago`;
-} else if (diffDays === 0) {
-  relativeTime = 'Today';
-} else if (diffDays === 1) {
-  relativeTime = 'Tomorrow';
-} else {
-  relativeTime = `in ${diffDays} days`;
-}
+const formatEventType = (type: string) => {
+  return type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+};
+
+const getStatusColor = (status: string) => {
+  const statusLower = status.toLowerCase();
+  const colorMap: Record<string, string> = {
+    upcoming: 'badge-success',
+    ongoing: 'badge-warning',
+    completed: 'badge-neutral',
+    cancelled: 'badge-error',
+  };
+  return colorMap[statusLower] || 'badge-ghost';
+};
+
+const getEventTypeColor = (type: string) => {
+  const typeLower = type.toLowerCase();
+  const colorMap: Record<string, string> = {
+    workshop: 'badge-primary',
+    meetup: 'badge-secondary',
+    hackathon: 'badge-accent',
+    conference: 'badge-primary',
+    webinar: 'badge-success',
+    networking: 'badge-warning',
+  };
+  return colorMap[typeLower] || 'badge-ghost';
+};
+
+const formatLocation = () => {
+  if (typeof data.location === 'string') return data.location;
+  const parts = [
+    data.location.city,
+    data.location.state,
+    data.location.country,
+  ].filter(Boolean);
+  return parts.join(', ');
+};
+
+const isHappeningSoon = () => {
+  const eventDate = new Date(data.date);
+  const now = new Date();
+  const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  return eventDate > now && eventDate <= sevenDaysFromNow;
+};
+
+const formattedDate = formatEventDate(
+  new Date(data.date),
+  data.endDate ? new Date(data.endDate) : undefined
+);
 ---
 
-<article
-  class="card bg-base-100 shadow-sm border border-base-300 hover:shadow-lg hover:border-primary/30 transition-all duration-200 overflow-hidden"
+<div
+  class={`card bg-base-100 border border-base-300 shadow-xl hover:shadow-2xl hover:border-primary/30 transition-all duration-300 ${featured ? 'ring-2 ring-primary ring-offset-2 ring-offset-base-100' : ''}`}
 >
-  <!-- Cover Image -->
   {
-    display.showCoverImage && event.data.coverImage && (
-      <figure class="relative h-48 w-full overflow-hidden">
+    display.showCoverImage && data.coverImage && (
+      <figure class="relative">
         <img
-          src={event.data.coverImage}
-          alt={event.data.title}
-          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-          loading="lazy"
+          src={data.coverImage}
+          alt={data.title}
+          class="w-full h-48 object-cover"
         />
-
-        {/* Badges overlaid on image */}
-        <div class="absolute top-4 left-4 right-4 flex items-start justify-between gap-3">
-          {display.showEventType && (
-            <div class="badge badge-secondary font-medium capitalize text-xs px-3 py-2">
-              {event.data.eventType}
+        {(featured || data.isFeatured) && (
+          <div class="absolute top-4 left-4">
+            <div class="badge badge-primary badge-md font-semibold">
+              Featured
             </div>
-          )}
-
-          {display.showEventDate && (
-            <div class="badge badge-ghost text-xs font-medium bg-base-100/90 backdrop-blur-sm whitespace-nowrap px-3 py-2">
-              {relativeTime}
-            </div>
-          )}
-        </div>
-
-        {/* Status badge on image */}
-        {display.showStatus && event.data.status !== 'upcoming' && (
-          <div class="absolute bottom-4 left-4">
-            <div
-              class={`badge ${getStatusBadgeClass(event.data.status)} text-xs font-medium capitalize`}
-            >
-              {event.data.status}
+          </div>
+        )}
+        {isHappeningSoon() && data.status.toLowerCase() === 'upcoming' && (
+          <div class="absolute top-4 right-4">
+            <div class="badge badge-warning badge-lg font-bold animate-pulse">
+              Soon!
             </div>
           </div>
         )}
@@ -106,144 +150,195 @@ if (diffDays < 0) {
     )
   }
 
-  <div class="card-body p-5">
-    <!-- Show badges here only if no cover image -->
+  <div class="card-body">
     {
-      !event.data.coverImage && (
-        <>
-          <div class="flex items-start justify-between gap-3 mb-3">
-            <div class="flex flex-wrap gap-1.5 flex-1">
-              {display.showEventType && (
-                <div class="badge badge-secondary font-medium capitalize text-xs px-3 py-2">
-                  {event.data.eventType}
-                </div>
-              )}
-            </div>
-
-            {display.showEventDate && (
-              <div class="badge badge-ghost text-xs font-medium text-base-content/70 whitespace-nowrap bg-base-200 px-3 py-2">
-                {relativeTime}
-              </div>
-            )}
+      display.showBadges && (
+        <div class="flex flex-wrap gap-2 mb-2">
+          <div
+            class={`badge ${getEventTypeColor(data.eventType)} badge-outline`}
+          >
+            {formatEventType(data.eventType)}
           </div>
-
-          {display.showStatus && event.data.status !== 'upcoming' && (
-            <div class="mb-3">
-              <div
-                class={`badge ${getStatusBadgeClass(event.data.status)} text-xs font-medium capitalize`}
-              >
-                {event.data.status}
-              </div>
-            </div>
-          )}
-        </>
+          <div class={`badge ${getStatusColor(data.status)}`}>
+            {data.status.charAt(0).toUpperCase() + data.status.slice(1)}
+          </div>
+        </div>
       )
     }
 
-    <!-- Event Title -->
-    <h2
-      class="text-xl font-bold mb-2 line-clamp-2 text-base-content leading-tight"
-    >
-      {event.data.title}
+    <h2 class="card-title text-xl mb-2 line-clamp-2">
+      {data.title}
     </h2>
 
-    <!-- Event Description -->
-    <p class="text-sm text-base-content/70 mb-4 line-clamp-2 leading-relaxed">
-      {event.data.description}
-    </p>
+    {
+      display.showDescription &&
+        display.descriptionLines &&
+        display.descriptionLines > 0 && (
+          <p
+            class={`text-base-content/70 text-sm mb-4 ${
+              display.descriptionLines === 1
+                ? 'line-clamp-1'
+                : display.descriptionLines === 2
+                  ? 'line-clamp-2'
+                  : display.descriptionLines === 3
+                    ? 'line-clamp-3'
+                    : display.descriptionLines === 4
+                      ? 'line-clamp-4'
+                      : 'line-clamp-5'
+            }`}
+          >
+            {data.description}
+          </p>
+        )
+    }
 
-    <!-- Event Details Footer -->
-    <div
-      class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-3 border-t border-base-300"
-    >
-      <div
-        class="flex flex-wrap items-center gap-4 text-sm font-medium text-base-content/80"
-      >
-        {
-          display.showEventDate && (
-            <span class="flex items-center gap-2">
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              {formatEventDate(
-                new Date(event.data.date),
-                event.data.endDate ? new Date(event.data.endDate) : undefined
-              )}
-            </span>
-          )
-        }
-
-        {
-          display.showLocation && (
-            <span class="flex items-center gap-2">
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-              {event.data.venue || event.data.location}
-            </span>
-          )
-        }
-
-        {
-          display.showSpeakers &&
-            event.data.speakers &&
-            event.data.speakers.length > 0 && (
-              <span class="flex items-center gap-2">
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-                {event.data.speakers.length} Speaker
-                {event.data.speakers.length !== 1 ? 's' : ''}
-              </span>
-            )
-        }
-      </div>
-
-      <!-- <button class={`btn btn-${button.style} ${btnSize} gap-1.5`}>
-        {button.text}
+    <div class="space-y-2 mb-4">
+      <div class="flex items-center gap-2 text-sm">
         <svg
-          class="w-4 h-4"
+          class="w-4 h-4 text-base-content/50"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
-          stroke-width="2"
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          ></path>
         </svg>
-      </button> -->
+        <span class="text-base-content/80">
+          {formattedDate}
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2 text-sm">
+        <svg
+          class="w-4 h-4 text-base-content/50"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+          ></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+        <span class="text-base-content/80 truncate">
+          {formatLocation()}
+        </span>
+      </div>
+
+      {
+        display.showProfiles && data.profiles && data.profiles.length > 0 && (
+          <div class="flex items-center gap-2 text-sm">
+            <svg
+              class="w-4 h-4 text-base-content/50"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              />
+            </svg>
+            <span class="text-base-content/80 truncate">
+              {data.profiles
+                .slice(0, 2)
+                .map(p => p.name)
+                .join(', ')}
+              {data.profiles.length > 2 && ` +${data.profiles.length - 2}`}
+            </span>
+          </div>
+        )
+      }
+
+      {
+        display.showMaxParticipants && data.maxParticipants && (
+          <div class="flex items-center gap-2 text-sm">
+            <svg
+              class="w-4 h-4 text-base-content/50"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            <span class="text-base-content/80">
+              Max {data.maxParticipants} participants
+            </span>
+          </div>
+        )
+      }
     </div>
+
+    {
+      display.showTags && data.tags && data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-1 mb-4">
+          {data.tags.slice(0, 3).map(tag => (
+            <span class="badge badge-ghost badge-sm">{tag}</span>
+          ))}
+          {data.tags.length > 3 && (
+            <span class="badge badge-ghost badge-sm">
+              +{data.tags.length - 3}
+            </span>
+          )}
+        </div>
+      )
+    }
+
+    {
+      (display.showLearnMoreButton || display.showRegistrationButton) && (
+        <div class="card-actions justify-between items-center mt-auto">
+          {display.showLearnMoreButton && (
+            <a href={`/events/${event.slug}`} class="btn btn-primary btn-sm">
+              Learn More
+            </a>
+          )}
+
+          <div class="flex gap-2">
+            {display.showRegistrationButton &&
+              data.registrationLink &&
+              data.status.toLowerCase() === 'upcoming' && (
+                <a
+                  href={data.registrationLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-outline btn-success btn-sm"
+                >
+                  Register
+                </a>
+              )}
+
+            {display.showRegistrationButton &&
+              data.status.toLowerCase() === 'completed' &&
+              data.socialMediaPosts &&
+              data.socialMediaPosts.length > 0 && (
+                <a
+                  href={`/events/${event.slug}#resources`}
+                  class="btn btn-outline btn-info btn-sm"
+                >
+                  Resources
+                </a>
+              )}
+          </div>
+        </div>
+      )
+    }
   </div>
-</article>
+</div>

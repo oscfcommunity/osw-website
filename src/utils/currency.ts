@@ -1,6 +1,3 @@
-/**
- * Format salary range based on currency
- */
 export function formatSalary(salary: {
   min: number;
   max: number;

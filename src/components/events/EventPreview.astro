@@ -9,6 +9,7 @@ const {
   subtitle = 'Join us at our upcoming workshops, hackathons, and community meetups',
   showCount = 3,
   showFeaturedOnly = false,
+  variant = 'compact',
   ctaButton = {
     text: 'View All Events',
     link: '/events',
@@ -23,54 +24,66 @@ if (!enabled) {
   return null;
 }
 
-const allEvents = await getCollection('events', ({ data }) => 
-  (!showFeaturedOnly || data.featured)
+const allEvents = await getCollection(
+  'events',
+  ({ data }) => !showFeaturedOnly || data.featured || data.isFeatured
 );
 
 const events = allEvents
-  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime())
+  .sort(
+    (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
+  )
   .slice(0, showCount);
 
 if (events.length === 0) {
   return null;
 }
 
-const responsiveBtnSize = ctaButton.size === 'lg' 
-  ? 'btn-md md:btn-lg' 
-  : ctaButton.size === 'md'
-  ? 'btn-sm md:btn-md'
-  : 'btn-sm';
+const responsiveBtnSize =
+  ctaButton.size === 'lg'
+    ? 'btn-md md:btn-lg'
+    : ctaButton.size === 'md'
+      ? 'btn-sm md:btn-md'
+      : 'btn-sm';
 ---
 
-<section class:list={["py-16", sectionBackground]} aria-labelledby="events-heading">
+<section
+  class:list={['py-16', sectionBackground]}
+  aria-labelledby="events-heading"
+>
   <Container fluid={useFluidContainer}>
-    
     <div class="text-center mb-8 md:mb-12">
-      <h2 id="events-heading" class="text-3xl md:text-4xl font-bold text-base-content mb-3">
+      <h2
+        id="events-heading"
+        class="text-3xl md:text-4xl font-bold text-base-content mb-3"
+      >
         {title}
       </h2>
-      {subtitle && (
-        <p class="text-base md:text-lg text-base-content/70 max-w-2xl mx-auto">
-          {subtitle}
-        </p>
-      )}
+      {
+        subtitle && (
+          <p class="text-base md:text-lg text-base-content/70 max-w-2xl mx-auto">
+            {subtitle}
+          </p>
+        )
+      }
     </div>
 
     <div class="flex flex-col gap-4 md:gap-5 mb-8 md:mb-12">
-      {events.map((event) => (
-        <EventCard event={event} />
-      ))}
+      {
+        events.map(event => (
+          <EventCard event={event} variant={variant} featured={true} />
+        ))
+      }
     </div>
 
     <div class="text-center">
-      <a 
+      <a
         href={ctaButton.link}
-        class={`btn btn-${ctaButton.style} ${responsiveBtnSize} gap-2 rounded-md`}
+        class={`btn btn-${ctaButton.style} ${responsiveBtnSize} gap-2`}
         aria-label="View all upcoming events"
       >
         {ctaButton.text}
       </a>
     </div>
-
   </Container>
 </section>

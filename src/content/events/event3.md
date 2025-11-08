@@ -3,60 +3,51 @@ title: 'How to Start an Open Source Project & Manage like a Pro'
 description: 'Comprehensive workshop on starting and managing successful open source projects. Learn from Dhaval D., Community Manager at Gluu Inc., covering project setup, community building, and professional management strategies with hands-on Git and GitHub exercises.'
 date: '2025-09-27T10:00:00+05:30'
 endDate: '2025-09-27T13:00:00+05:30'
-location: 'Ahmedabad, Gujarat, India'
+location:
+  city: 'Ahmedabad'
+  state: 'Gujarat'
+  country: 'India'
 venue: 'Silver Oak University, Ahmedabad'
-eventType: 'workshop'
-status: 'completed'
+eventType: 'WORKSHOP'
+status: 'COMPLETED'
 speakers:
   - 'Dhaval D.'
 registrationLink: 'https://luma.com/pc0q0hm8'
 maxParticipants: 100
-tags: ['workshop', 'open-source', 'github', 'git', 'community-building', 'project-management', 'hands-on']
-featured: true
+tags:
+  [
+    'workshop',
+    'open-source',
+    'github',
+    'git',
+    'community-building',
+    'project-management',
+    'hands-on',
+  ]
+isFeatured: true
 coverImage: 'https://placehold.co/1200x630/10b981/white?text=Open+Source+Management'
-agenda:
-  - time: '10:00 AM'
+schedule:
+  - datetime: '2025-09-27T10:00:00+05:30'
     title: 'Registration & Setup Verification'
     speaker: 'OSW Team'
-    type: 'registration'
-    room: 'Workshop Hall'
-    start: '10:00'
-    end: '10:15'
-  - time: '10:15 AM'
+    type: 'REGISTRATION'
+    venue: 'Workshop Hall'
+    startDatetime: '2025-09-27T10:00:00+05:30'
+    endDatetime: '2025-09-27T10:15:00+05:30'
+  - datetime: '2025-09-27T10:15:00+05:30'
     title: 'Introduction to Open Source Project Management'
     speaker: 'Dhaval D.'
-    type: 'lecture'
-    room: 'Workshop Hall'
-    start: '10:15'
-    end: '10:45'
-  - time: '10:45 AM'
+    type: 'TALK'
+    venue: 'Workshop Hall'
+    startDatetime: '2025-09-27T10:15:00+05:30'
+    endDatetime: '2025-09-27T10:45:00+05:30'
+  - datetime: '2025-09-27T10:45:00+05:30'
     title: 'Creating Your First Open Source Project'
     speaker: 'Dhaval D.'
-    type: 'hands-on'
-    room: 'Workshop Hall'
-    start: '10:45'
-    end: '11:30'
-  - time: '11:30 AM'
-    title: 'Git & GitHub Best Practices'
-    speaker: 'Dhaval D.'
-    type: 'hands-on'
-    room: 'Workshop Hall'
-    start: '11:30'
-    end: '12:15'
-  - time: '12:15 PM'
-    title: 'Community Building & Management Strategies'
-    speaker: 'Dhaval D.'
-    type: 'lecture'
-    room: 'Workshop Hall'
-    start: '12:15'
-    end: '12:45'
-  - time: '12:45 PM'
-    title: 'Q&A and Live Project Reviews'
-    speaker: 'Dhaval D.'
-    type: 'discussion'
-    room: 'Workshop Hall'
-    start: '12:45'
-    end: '13:00'
+    type: 'ACTIVITY'
+    venue: 'Workshop Hall'
+    startDatetime: '2025-09-27T10:45:00+05:30'
+    endDatetime: '2025-09-27T11:30:00+05:30'
 ---
 
 ## How to Start an Open Source Project & Manage like a Pro
@@ -147,11 +138,11 @@ By the end of the workshop, participants could:
 
 ## Participant Testimonials
 
-*"Dhaval's practical approach was exactly what I needed. I launched my first open source project the same day!"*
+_"Dhaval's practical approach was exactly what I needed. I launched my first open source project the same day!"_
 
-*"The hands-on exercises made everything clear. No more confusion about Git workflows!"*
+_"The hands-on exercises made everything clear. No more confusion about Git workflows!"_
 
-*"Best workshop on open source management I've attended. The community building strategies were gold."*
+_"Best workshop on open source management I've attended. The community building strategies were gold."_
 
 ## Resources Provided
 

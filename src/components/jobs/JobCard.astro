@@ -24,23 +24,23 @@ interface Props {
   };
 }
 
-const { 
+const {
   job,
   categoryColors = {
-    'Engineering': 'primary',
-    'Design': 'secondary',
-    'Frontend': 'info',
-    'Backend': 'info',
+    Engineering: 'primary',
+    Design: 'secondary',
+    Frontend: 'info',
+    Backend: 'info',
     'Full Stack': 'primary',
-    'Product': 'success',
-    'Marketing': 'warning',
-    'Sales': 'accent',
-    'Support': 'info',
+    Product: 'success',
+    Marketing: 'warning',
+    Sales: 'accent',
+    Support: 'info',
     'Customer Experience': 'success',
-    'DevOps': 'error',
+    DevOps: 'error',
     'Data Science': 'accent',
     'Machine Learning': 'secondary',
-    'Internship': 'secondary',
+    Internship: 'secondary',
   },
   defaultCategoryColor = 'neutral',
   display = {
@@ -66,13 +66,15 @@ const jobUrl = `/jobs/${job.id}`;
   class="card shadow-sm border border-base-300 hover:shadow-lg hover:border-primary/30 transition-all duration-200"
 >
   <div class="card-body p-5">
-    <div class="flex items-start justify-between gap-3 mb-3">
+    <div
+      class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3"
+    >
       {
         display.showCategories && job.data.categories && (
           <div class="flex flex-wrap gap-1.5 flex-1">
             {job.data.categories.map((cat: string) => (
               <div
-                class={`badge ${getCategoryBadgeClass(cat, categoryColors, defaultCategoryColor)} font-medium`}
+                class={`badge badge-sm ${getCategoryBadgeClass(cat, categoryColors, defaultCategoryColor)} font-medium text-xs`}
               >
                 {cat}
               </div>
@@ -83,7 +85,7 @@ const jobUrl = `/jobs/${job.id}`;
 
       {
         display.showPostedDate && (
-          <div class="badge badge-ghost text-xs font-medium text-base-content whitespace-nowrap bg-base-200">
+          <div class="badge badge-sm badge-ghost text-xs font-medium text-base-content whitespace-nowrap bg-base-200">
             {getRelativeTime(new Date(job.data.datePosted))}
           </div>
         )
@@ -189,10 +191,19 @@ const jobUrl = `/jobs/${job.id}`;
         }
       </div>
 
-      <a href={jobUrl} class={`btn btn-${button.style} ${btnSize} gap-1.5 rounded-sm`}>
+      <a href={jobUrl} class={`btn btn-${button.style} ${btnSize} gap-1.5`}>
         {button.text}
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
         </svg>
       </a>
     </div>

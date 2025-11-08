@@ -1,6 +1,88 @@
 import { z } from 'astro:content';
 
-const eventsSchema = z
+// Component Schemas
+export const SocialMediaLinksSchema = z.object({
+  linkedin: z.string().url('LinkedIn must be a valid URL').optional(),
+  github: z.string().url('GitHub must be a valid URL').optional(),
+  gitlab: z.string().url('GitLab must be a valid URL').optional(),
+  twitter: z.string().url('Twitter/X must be a valid URL').optional(),
+  other: z.record(z.string().url()).optional(),
+});
+
+export const ProfileCardSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  image: z.string().url('Image must be a valid URL'),
+  socialMediaLinks: SocialMediaLinksSchema.optional(),
+  role: z.string().optional(),
+  company: z.string().optional(),
+  type: z.enum(['SPEAKER', 'MENTOR', 'VOLUNTEER', 'CORE_TEAM', 'ADVISORY']),
+});
+
+export const ScheduleSchema = z.object({
+  datetime: z
+    .string()
+    .or(z.date())
+    .transform(val => new Date(val)),
+  title: z.string().min(3, 'Title must be at least 3 characters'),
+  speaker: z.string().optional(),
+  type: z.enum([
+    'REGISTRATION',
+    'ACTIVITY',
+    'OPENING',
+    'KEYNOTE',
+    'TALK',
+    'LUNCH',
+    'CLOSING_KEYNOTE',
+    'GOODIES_DISTRIBUTION',
+  ]),
+  venue: z.string().optional(),
+  startDatetime: z
+    .string()
+    .or(z.date())
+    .transform(val => new Date(val)),
+  endDatetime: z
+    .string()
+    .or(z.date())
+    .transform(val => new Date(val)),
+  presentationLink: z
+    .string()
+    .url('Presentation link must be a valid URL')
+    .optional(),
+});
+
+export const SponsorSchema = z.object({
+  name: z.string().min(2, 'Sponsor name must be at least 2 characters'),
+  url: z.string().url('Sponsor URL must be a valid URL'),
+  image: z.string().url('Sponsor image must be a valid URL'),
+  type: z.enum(['PLATINUM', 'GOLD', 'SILVER', 'BRONZE', 'COMMUNITY']),
+});
+
+export const SocialMediaPostSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  link: z.string().url('Link must be a valid URL'),
+  icon: z.string().optional(),
+});
+
+export const LocationSchema = z.object({
+  city: z.string().min(2, 'City name must be at least 2 characters'),
+  state: z.string().optional(),
+  country: z.string().default('India'),
+});
+
+export const SeoSchema = z.object({
+  metaTitle: z
+    .string()
+    .max(60, 'SEO title must not exceed 60 characters')
+    .optional(),
+  metaDescription: z
+    .string()
+    .max(160, 'SEO description must not exceed 160 characters')
+    .optional(),
+  keywords: z.array(z.string()).optional(),
+  metaImageUrl: z.string().url('Meta image must be a valid URL').optional(),
+});
+
+export const eventsSchema = z
   .object({
     title: z
       .string()
@@ -10,7 +92,7 @@ const eventsSchema = z
     description: z
       .string()
       .min(50, 'Description must be at least 50 characters')
-      .max(500, 'Description must not exceed 500 characters'),
+      .max(2000, 'Description must not exceed 2000 characters'),
 
     date: z
       .string()
@@ -23,24 +105,26 @@ const eventsSchema = z
       .transform(val => new Date(val))
       .optional(),
 
-    location: z.string().min(3, 'Location must be at least 3 characters'),
-
+    location: LocationSchema,
     venue: z.string().optional(),
 
     eventType: z.enum([
-      'workshop',
-      'meetup',
-      'hackathon',
-      'conference',
-      'webinar',
-      'networking',
+      'WORKSHOP',
+      'MEETUP',
+      'HACKATHON',
+      'CONFERENCE',
+      'WEBINAR',
+      'NETWORKING',
     ]),
 
     status: z
-      .enum(['upcoming', 'ongoing', 'completed', 'cancelled'])
-      .default('upcoming'),
+      .enum(['UPCOMING', 'ONGOING', 'COMPLETED', 'CANCELLED'])
+      .default('UPCOMING'),
 
-    speakers: z.array(z.string()).optional(),
+    profiles: z.array(ProfileCardSchema).optional(),
+    schedule: z.array(ScheduleSchema).optional(),
+    sponsors: z.array(SponsorSchema).optional(),
+    socialMediaPosts: z.array(SocialMediaPostSchema).optional(),
 
     registrationLink: z
       .string()
@@ -53,30 +137,13 @@ const eventsSchema = z
       .optional(),
 
     tags: z.array(z.string()).default([]),
-
-    featured: z.boolean().default(false),
-
     coverImage: z.string().url('Cover image must be a valid URL').optional(),
 
-    agenda: z
-      .array(
-        z.object({
-          time: z.string(),
-          title: z.string(),
-          speaker: z.string(),
-          type: z.string(),
-          room: z.string(),
-          start: z.string(),
-          end: z.string(),
-          isPanelLeft: z.boolean().optional(),
-          isPanelRight: z.boolean().optional(),
-        })
-      )
-      .optional(),
+    seo: SeoSchema.optional(),
+
+    isFeatured: z.boolean().default(false),
   })
   .refine(
     data => !data.endDate || data.endDate >= data.date,
     'Event end date must be after or equal to start date'
   );
-
-export { eventsSchema };
