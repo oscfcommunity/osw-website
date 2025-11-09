@@ -1,14 +1,14 @@
-@import url("./utils.css");
-@import url("./font.css");
+@import url('./utils.css');
+@import url('./font.css');
 
 /* Third party styles start */
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui";
 @plugin "daisyui/theme" {
-  name: "osw";
+  name: 'osw';
   default: true;
   prefersdark: false;
-  color-scheme: "light";
+  color-scheme: 'light';
   --color-base-100: oklch(100% 0 0);
   --color-base-200: oklch(96.112% 0.0043 198.488);
   --color-base-300: oklch(94% 0 0);
@@ -43,7 +43,7 @@
 
 /* Custom tweaks start*/
 @theme {
-  --font-sans: "Poppins", system-ui, sans-serif;
-  --font-display: "Anton", sans-serif;
+  --font-sans: 'Poppins', system-ui, sans-serif;
+  --font-display: 'Anton', sans-serif;
 }
 /* Custom tweaks end */

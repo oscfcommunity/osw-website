@@ -1,7 +1,7 @@
 ---
 description: daisyUI 5
 alwaysApply: true
-applyTo: "**"
+applyTo: '**'
 ---
 
 # daisyUI 5
@@ -35,7 +35,7 @@ daisyUI 5 provides class names for common UI components
 5. A CSS file with Tailwind CSS and daisyUI looks like this (if it's a node dependency)
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui";
 ```
 
@@ -86,11 +86,13 @@ daisyUI with all the default configs:
 
 ```css
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-  root: ":root";
-  include: ;
-  exclude: ;
-  prefix: ;
+  themes:
+    light --default,
+    dark --prefersdark;
+  root: ':root';
+  include:;
+  exclude:;
+  prefix:;
   logs: true;
 }
 ```
@@ -102,13 +104,44 @@ root scrollbar gutter is excluded. `daisy-` prefix is used for all daisyUI class
 
 ```css
 @plugin "daisyui" {
-  themes: light, dark, cupcake, bumblebee --default, emerald, corporate, synthwave
-      --prefersdark, retro, cyberpunk, valentine, halloween, garden, forest,
-    aqua, lofi, pastel, fantasy, wireframe, black, luxury, dracula, cmyk,
-    autumn, business, acid, lemonade, night, coffee, winter, dim, nord, sunset,
-    caramellatte, abyss, silk;
-  root: ":root";
-  include: ;
+  themes:
+    light,
+    dark,
+    cupcake,
+    bumblebee --default,
+    emerald,
+    corporate,
+    synthwave --prefersdark,
+    retro,
+    cyberpunk,
+    valentine,
+    halloween,
+    garden,
+    forest,
+    aqua,
+    lofi,
+    pastel,
+    fantasy,
+    wireframe,
+    black,
+    luxury,
+    dracula,
+    cmyk,
+    autumn,
+    business,
+    acid,
+    lemonade,
+    night,
+    coffee,
+    winter,
+    dim,
+    nord,
+    sunset,
+    caramellatte,
+    abyss,
+    silk;
+  root: ':root';
+  include:;
   exclude: rootscrollgutter, checkbox;
   prefix: daisy-;
   logs: false;
@@ -158,10 +191,10 @@ root scrollbar gutter is excluded. `daisy-` prefix is used for all daisyUI class
 A CSS file with Tailwind CSS, daisyUI and a custom daisyUI theme looks like this:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui";
 @plugin "daisyui/theme" {
-  name: "mytheme";
+  name: 'mytheme';
   default: true; /* set as default */
   prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
   color-scheme: light; /* color of browser-provided UI */
