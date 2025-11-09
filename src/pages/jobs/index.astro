@@ -19,6 +19,8 @@ const sortedJobs = allJobs.sort(
 const featuredJobs = sortedJobs.filter(job => job.data.isFeatured);
 const urgentJobs = sortedJobs.filter(job => job.data.isUrgent);
 const remoteJobs = sortedJobs.filter(job => job.data.jobType === 'REMOTE');
+// Jobs shown on the "All Jobs" list should not repeat featured jobs
+const nonFeaturedJobs = sortedJobs.filter(job => !job.data.isFeatured);
 ---
 
 <Layout title="Job Opportunities - OSW Community">
@@ -133,14 +135,14 @@ const remoteJobs = sortedJobs.filter(job => job.data.jobType === 'REMOTE');
         <div class="text-center mb-12">
           <h2 class="text-4xl font-bold mb-4">All Job Opportunities</h2>
           <p class="text-lg text-base-content/70">
-            Browse all {sortedJobs.length} available positions
+            Browse all {nonFeaturedJobs.length} available positions
           </p>
         </div>
 
         {
-          sortedJobs.length > 0 ? (
+          nonFeaturedJobs.length > 0 ? (
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedJobs.map(job => (
+              {nonFeaturedJobs.map(job => (
                 <JobCard job={job} />
               ))}
             </div>
