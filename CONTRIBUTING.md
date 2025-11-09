@@ -6,7 +6,7 @@ OSCF serves as a platform for developers, enthusiasts, and organizations to come
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. 
+This project and everyone participating in it is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
 ## Prerequisites
 
@@ -18,6 +18,7 @@ Before contributing, ensure you have the following installed and set up:
 - A GitHub account
 
 > If you don't have pnpm installed, you can install it globally:
+>
 > ```bash
 > npm install -g pnpm
 > ```
@@ -45,15 +46,18 @@ To contribute, follow these steps:
    ```
 
 ## Ways to Contribute
+
 There are many ways to contribute to the OSW website:
 
 **For Beginners:**
+
 - Fix typos and improve documentation
 - Update outdated links or information
 - Add missing alt-text to images
 - Improve accessibility features
 
 **For Developers:**
+
 - Add new features and functionality
 - Fix bugs and issues
 - Improve performance and optimization
@@ -61,6 +65,7 @@ There are many ways to contribute to the OSW website:
 - Create reusable components
 
 **For Designers:**
+
 - Improve UI/UX design
 - Create graphics and illustrations
 - Enhance mobile experience
@@ -69,6 +74,7 @@ There are many ways to contribute to the OSW website:
 ## Best Practices for Open Source Contribution
 
 ### General Guidelines
+
 - Always create an issue before starting work on a new feature or bug fix. This ensures that the work is aligned with the project goals and avoids duplication of effort.
 - Follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit messages. This helps maintain a clean and understandable commit history.
 - Write clear and concise documentation for any new features or changes.
@@ -77,6 +83,7 @@ There are many ways to contribute to the OSW website:
 - Be responsive to feedback during the code review process.
 
 ### Branching and Merging
+
 - Use descriptive branch names following the conventions outlined in the "Branch Naming Conventions" section.
 - Before merging any branch, perform an interactive rebase to clean up the commit history:
   ```bash
@@ -92,6 +99,7 @@ There are many ways to contribute to the OSW website:
   ```
 
 ### Pull Requests
+
 - Keep pull requests small and focused. Avoid bundling multiple unrelated changes in a single PR.
 - Include a clear and detailed description of the changes in the pull request.
 - Reference the issue(s) your pull request addresses.
@@ -122,6 +130,7 @@ There are many ways to contribute to the OSW website:
 - `chore`: Maintenance tasks (`chore: update dependencies`)
 
 ### Code Style
+
 - Write clean, readable code with meaningful variable names.
 - Add comments for complex logic.
 - Follow existing code patterns and structure.
@@ -139,4 +148,4 @@ There are many ways to contribute to the OSW website:
 
 Thank you for being part of the Open Source Weekend community and helping us create amazing experiences for developers and tech enthusiasts worldwide!
 
-**Happy Contributing!**  🚀
+**Happy Contributing!** 🚀
