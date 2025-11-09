@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Container from '../../components/layout/Container.astro';
 import EventCard from '../../components/events/EventCard.astro';
+import Container from '../../components/layout/Container.astro';
+import Layout from '../../layouts/Layout.astro';
 
 // Get all events and sort by date
 const allEvents = await getCollection('events');
@@ -19,87 +19,65 @@ const upcomingEvents = sortedEvents.filter(
 const pastEvents = sortedEvents.filter(
   event => event.data.status.toLowerCase() === 'completed'
 );
-const featuredEvents = sortedEvents.filter(
-  event => event.data.featured || event.data.isFeatured
-);
 ---
 
 <Layout title="Events - OSW Community">
   <main class="min-h-screen bg-base-100">
     {/* Hero Section */}
-    <section
-      class="hero bg-gradient-to-r from-primary to-secondary text-primary-content py-20"
-    >
+    <section class="py-16">
       <Container>
-        <div class="hero-content text-center">
-          <div class="max-w-4xl">
-            <h1 class="text-5xl font-bold mb-6">OSW Community Events</h1>
-            <p class="text-xl mb-8 opacity-90">
-              Join us for workshops, meetups, hackathons, and more! Connect with
-              fellow developers, learn new skills, and contribute to the open
-              source community.
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center">
-              <a
-                href="#upcoming"
-                class="btn btn-lg btn-outline btn-primary-content"
-              >
-                View Upcoming Events
-              </a>
-              <a href="#past" class="btn btn-lg btn-ghost btn-primary-content">
-                Past Events
-              </a>
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            OSW Community Events
+          </h1>
+          <p class="text-lg md:text-xl text-base-content/80 mb-6">
+            Workshops, meetups, hackathons — join the community to learn, build,
+            and contribute to open source.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-3 mb-6">
+            <a
+              href="#upcoming"
+              class="btn btn-primary btn-lg"
+              aria-label="View upcoming events"
+            >
+              View Upcoming Events
+            </a>
+            <a
+              href="#past"
+              class="btn btn-ghost btn-lg"
+              aria-label="View past events"
+            >
+              Past Events
+            </a>
+          </div>
+
+          <div class="h-px w-full bg-base-300 my-8"></div>
+
+          <div class="stats stats-vertical sm:stats-horizontal w-full">
+            <div class="stat">
+              <div class="stat-title">Total Events</div>
+              <div class="stat-value text-primary" aria-live="polite">
+                {allEvents.length}
+              </div>
+              <div class="stat-desc">Since community launch</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">Upcoming</div>
+              <div class="stat-value">{upcomingEvents.length}</div>
+              <div class="stat-desc">This quarter</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">Past</div>
+              <div class="stat-value">{pastEvents.length}</div>
+              <div class="stat-desc">This quarter</div>
             </div>
           </div>
         </div>
       </Container>
     </section>
-
-    {/* Stats Section */}
-    <section class="py-16 bg-base-200">
-      <Container>
-        <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
-          <div class="stat">
-            <div class="stat-title">Total Events</div>
-            <div class="stat-value text-primary">{allEvents.length}</div>
-            <div class="stat-desc">Since community launch</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-title">Upcoming Events</div>
-            <div class="stat-value text-black">{upcomingEvents.length}</div>
-            <div class="stat-desc">This quarter</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-title">Community Impact</div>
-            <div class="stat-value text-accent">500+</div>
-            <div class="stat-desc">Developers reached</div>
-          </div>
-        </div>
-      </Container>
-    </section>
-
-    {/* Featured Events */}
-    {
-      featuredEvents.length > 0 && (
-        <section class="py-16">
-          <Container>
-            <div class="text-center mb-12">
-              <h2 class="text-4xl font-bold mb-4">Featured Events</h2>
-              <p class="text-lg text-base-content/70">
-                Don't miss these highlighted events from our community
-              </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredEvents.map(event => (
-                <EventCard event={event} featured={true} />
-              ))}
-            </div>
-          </Container>
-        </section>
-      )
-    }
 
     {/* Upcoming Events */}
     <section id="upcoming" class="py-16 bg-base-200">
@@ -113,9 +91,9 @@ const featuredEvents = sortedEvents.filter(
 
         {
           upcomingEvents.length > 0 ? (
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex flex-col gap-4 md:gap-5 mb-8 md:mb-12">
               {upcomingEvents.map(event => (
-                <EventCard event={event} />
+                <EventCard event={event} variant={'default'} featured={true} />
               ))}
             </div>
           ) : (
@@ -155,9 +133,9 @@ const featuredEvents = sortedEvents.filter(
 
         {
           pastEvents.length > 0 ? (
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex flex-col gap-4 md:gap-5 mb-8 md:mb-12">
               {pastEvents.map(event => (
-                <EventCard event={event} />
+                <EventCard event={event} variant={'minimal'} featured={true} />
               ))}
             </div>
           ) : (
@@ -171,89 +149,10 @@ const featuredEvents = sortedEvents.filter(
       </Container>
     </section>
 
-    {/* Event Types Filter */}
+    {/* Call to Action */}
     <section class="py-16 bg-base-200">
       <Container>
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Event Categories</h2>
-          <p class="text-lg text-base-content/70">
-            Discover different types of events we organize
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Workshop Card */}
-          <div
-            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
-          >
-            <div class="card-body text-center">
-              <div class="text-4xl mb-4">🛠️</div>
-              <h3 class="card-title justify-center">Workshops</h3>
-              <p class="text-base-content/70">
-                Hands-on learning sessions covering various technologies and
-                best practices.
-              </p>
-              <div class="badge badge-primary badge-outline mt-4">
-                {
-                  allEvents.filter(
-                    e => e.data.eventType.toLowerCase() === 'workshop'
-                  ).length
-                } events
-              </div>
-            </div>
-          </div>
-
-          {/* Meetup Card */}
-          <div
-            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
-          >
-            <div class="card-body text-center">
-              <div class="text-4xl mb-4">🤝</div>
-              <h3 class="card-title justify-center">Meetups</h3>
-              <p class="text-base-content/70">
-                Regular community gatherings for networking and knowledge
-                sharing.
-              </p>
-              <div class="badge badge-secondary badge-outline mt-4">
-                {
-                  allEvents.filter(
-                    e => e.data.eventType.toLowerCase() === 'meetup'
-                  ).length
-                } events
-              </div>
-            </div>
-          </div>
-
-          {/* Hackathon Card */}
-          <div
-            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
-          >
-            <div class="card-body text-center">
-              <div class="text-4xl mb-4">🚀</div>
-              <h3 class="card-title justify-center">Hackathons</h3>
-              <p class="text-base-content/70">
-                Intensive coding events where teams build innovative solutions.
-              </p>
-              <div class="badge badge-accent badge-outline mt-4">
-                {
-                  allEvents.filter(
-                    e => e.data.eventType.toLowerCase() === 'hackathon'
-                  ).length
-                }
-                events
-              </div>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </section>
-
-    {/* Call to Action */}
-    <section class="py-16">
-      <Container>
-        <div
-          class="card bg-gradient-to-r from-primary to-secondary text-primary-content"
-        >
+        <div class="card">
           <div class="card-body text-center">
             <h2 class="card-title justify-center text-3xl mb-4">
               Want to Organize an Event?
@@ -268,12 +167,6 @@ const featuredEvents = sortedEvents.filter(
                 class="btn btn-lg btn-outline btn-primary-content"
               >
                 Contact Event Team
-              </a>
-              <a
-                href="/contribute"
-                class="btn btn-lg btn-ghost btn-primary-content"
-              >
-                Learn More
               </a>
             </div>
           </div>
