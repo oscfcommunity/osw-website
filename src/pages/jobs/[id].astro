@@ -1,0 +1,437 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Container from '../../components/layout/Container.astro';
+import Layout from '../../layouts/Layout.astro';
+import { formatSalary, getRelativeTime } from '../../utils';
+
+export const getStaticPaths = (async () => {
+  const jobs = await getCollection(
+    'jobs',
+    ({ data }) => data.status === 'ACTIVE'
+  );
+  return jobs.map(job => ({
+    params: { id: job.id },
+    props: { job },
+  }));
+}) satisfies GetStaticPaths;
+
+const { job } = Astro.props;
+
+// Calculate days until expiration
+const daysUntilExpiration = Math.ceil(
+  (new Date(job.data.validThrough).getTime() - Date.now()) /
+    (1000 * 60 * 60 * 24)
+);
+---
+
+<Layout
+  title={`${job.data.title} at ${job.data.company.name} - OSW Jobs`}
+  description={job.data.description.substring(0, 160)}
+>
+  <main class="min-h-screen bg-base-100">
+    {/* Header Section */}
+    <section class="py-12 bg-base-200">
+      <Container>
+        <div class="max-w-4xl mx-auto">
+          {/* Back Button */}
+          <a href="/jobs" class="btn btn-ghost btn-sm mb-6">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Back to Jobs
+          </a>
+
+          {/* Company Logo & Basic Info */}
+          <div class="flex flex-col sm:flex-row gap-6 items-start">
+            <div class="avatar">
+              <div
+                class="w-20 h-20 rounded-xl ring-4 ring-base-300 ring-offset-2 ring-offset-base-200"
+              >
+                <img src={job.data.company.logo} alt={job.data.company.name} />
+              </div>
+            </div>
+
+            <div class="flex-1">
+              <h1 class="text-3xl md:text-4xl font-bold mb-2">
+                {job.data.title}
+              </h1>
+
+              <div class="flex flex-wrap items-center gap-3 mb-4">
+                <a
+                  href={job.data.company.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xl font-semibold text-primary hover:underline"
+                >
+                  {job.data.company.name}
+                </a>
+                <div class="badge badge-lg badge-neutral">
+                  {job.data.company.size}
+                </div>
+              </div>
+
+              {/* Badges */}
+              <div class="flex flex-wrap gap-2 mb-4">
+                {
+                  job.data.categories.map(category => (
+                    <div class="badge badge-outline badge-lg">{category}</div>
+                  ))
+                }
+
+                {
+                  job.data.isFeatured && (
+                    <div class="badge badge-warning badge-lg">⭐ Featured</div>
+                  )
+                }
+
+                {
+                  job.data.isUrgent && (
+                    <div class="badge badge-error badge-lg">🔥 Urgent</div>
+                  )
+                }
+              </div>
+
+              {/* Posted Date & Expiration */}
+              <div class="flex flex-wrap gap-4 text-sm text-base-content/70">
+                <span>
+                  Posted {getRelativeTime(new Date(job.data.datePosted))}
+                </span>
+                {
+                  daysUntilExpiration > 0 && (
+                    <span>• Expires in {daysUntilExpiration} days</span>
+                  )
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    {/* Main Content */}
+    <section class="py-12">
+      <Container>
+        <div class="max-w-4xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left Column - Job Details */}
+            <div class="lg:col-span-2">
+              <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                  <h2 class="card-title text-2xl mb-4">Job Description</h2>
+
+                  <div class="prose max-w-none">
+                    <p class="text-base-content/80 mb-6">
+                      {job.data.description}
+                    </p>
+
+                    {
+                      job.body && (
+                        <>
+                          <div class="divider" />
+                          <div
+                            class="whitespace-pre-line text-base-content/80"
+                            set:html={job.body}
+                          />
+                        </>
+                      )
+                    }
+                  </div>
+
+                  {/* Skills */}
+                  {
+                    job.data.qualification?.skills &&
+                      job.data.qualification.skills.length > 0 && (
+                        <div class="mt-8">
+                          <h3 class="text-xl font-bold mb-4">
+                            Required Skills
+                          </h3>
+                          <div class="flex flex-wrap gap-2">
+                            {job.data.qualification.skills.map(skill => (
+                              <div class="badge badge-primary badge-lg">
+                                {skill}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                  }
+
+                  {/* Benefits */}
+                  {
+                    job.data.benefits && (
+                      <div class="mt-8">
+                        <h3 class="text-xl font-bold mb-4">Benefits</h3>
+                        <div class="prose max-w-none">
+                          <p class="text-base-content/80 whitespace-pre-line">
+                            {job.data.benefits}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Job Info & Apply */}
+            <div class="lg:col-span-1">
+              <div class="sticky top-4 space-y-6">
+                {/* Apply Card */}
+                <div class="card bg-primary text-primary-content shadow-xl">
+                  <div class="card-body">
+                    <h3 class="card-title mb-4">Ready to Apply?</h3>
+
+                    {
+                      job.data.application.url && (
+                        <a
+                          href={job.data.application.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="btn btn-secondary btn-block btn-lg"
+                        >
+                          Apply Now
+                          <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
+                        </a>
+                      )
+                    }
+
+                    {
+                      job.data.application.applyEmail && (
+                        <a
+                          href={`mailto:${job.data.application.applyEmail}`}
+                          class="btn btn-outline btn-secondary btn-block"
+                        >
+                          Email Application
+                        </a>
+                      )
+                    }
+
+                    {
+                      job.data.application.instructions && (
+                        <div class="text-sm mt-4 opacity-90">
+                          <strong>Instructions:</strong>
+                          <p class="mt-2">
+                            {job.data.application.instructions}
+                          </p>
+                        </div>
+                      )
+                    }
+                  </div>
+                </div>
+
+                {/* Job Details Card */}
+                <div class="card bg-base-100 shadow-xl">
+                  <div class="card-body">
+                    <h3 class="card-title mb-4">Job Details</h3>
+
+                    <div class="space-y-4">
+                      {/* Salary */}
+                      {
+                        job.data.salary && (
+                          <div>
+                            <div class="text-sm text-base-content/70 mb-1">
+                              Salary
+                            </div>
+                            <div class="font-bold text-lg">
+                              {formatSalary(job.data.salary)}
+                            </div>
+                          </div>
+                        )
+                      }
+
+                      <div class="divider my-2"></div>
+
+                      {/* Location */}
+                      <div>
+                        <div class="text-sm text-base-content/70 mb-1">
+                          Location
+                        </div>
+                        <div class="font-semibold flex items-center gap-2">
+                          <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                            ></path>
+                          </svg>
+                          {job.data.location.city}, {
+                            job.data.location.state || job.data.location.country
+                          }
+                        </div>
+                      </div>
+
+                      <div class="divider my-2"></div>
+
+                      {/* Job Type */}
+                      <div>
+                        <div class="text-sm text-base-content/70 mb-1">
+                          Job Type
+                        </div>
+                        <div class="badge badge-lg capitalize">
+                          {job.data.jobType.toLowerCase().replace('_', ' ')}
+                        </div>
+                      </div>
+
+                      <div class="divider my-2"></div>
+
+                      {/* Employment Type */}
+                      <div>
+                        <div class="text-sm text-base-content/70 mb-1">
+                          Employment Type
+                        </div>
+                        <div class="badge badge-lg capitalize">
+                          {
+                            job.data.employmentType
+                              .toLowerCase()
+                              .replace('_', ' ')
+                          }
+                        </div>
+                      </div>
+
+                      {/* Experience */}
+                      {
+                        job.data.qualification?.experience && (
+                          <>
+                            <div class="divider my-2" />
+                            <div>
+                              <div class="text-sm text-base-content/70 mb-1">
+                                Experience
+                              </div>
+                              <div class="font-semibold">
+                                {job.data.qualification.experience.min}
+                                {job.data.qualification.experience.max &&
+                                  ` - ${job.data.qualification.experience.max}`}{' '}
+                                years
+                              </div>
+                              {job.data.qualification.experience.level && (
+                                <div class="badge badge-sm mt-1 capitalize">
+                                  {job.data.qualification.experience.level
+                                    .toLowerCase()
+                                    .replace('_', ' ')}
+                                </div>
+                              )}
+                            </div>
+                          </>
+                        )
+                      }
+
+                      {/* Education */}
+                      {
+                        job.data.qualification?.education && (
+                          <>
+                            <div class="divider my-2" />
+                            <div>
+                              <div class="text-sm text-base-content/70 mb-1">
+                                Education
+                              </div>
+                              <div class="font-semibold capitalize">
+                                {job.data.qualification.education.level
+                                  .toLowerCase()
+                                  .replace('_', ' ')}
+                              </div>
+                              {job.data.qualification.education.field && (
+                                <div class="text-sm text-base-content/70 mt-1">
+                                  {job.data.qualification.education.field}
+                                </div>
+                              )}
+                              {!job.data.qualification.education.required && (
+                                <div class="badge badge-sm badge-ghost mt-1">
+                                  Not Required
+                                </div>
+                              )}
+                            </div>
+                          </>
+                        )
+                      }
+                    </div>
+                  </div>
+                </div>
+
+                {/* Company Info Card */}
+                {
+                  job.data.company.about && (
+                    <div class="card bg-base-100 shadow-xl">
+                      <div class="card-body">
+                        <h3 class="card-title mb-4">
+                          About {job.data.company.name}
+                        </h3>
+                        <p class="text-sm text-base-content/80">
+                          {job.data.company.about}
+                        </p>
+
+                        {job.data.company.website && (
+                          <a
+                            href={job.data.company.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-ghost btn-sm mt-4"
+                          >
+                            Visit Website
+                            <svg
+                              class="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                              />
+                            </svg>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    {/* Related Jobs Section */}
+    <section class="py-12 bg-base-200">
+      <Container>
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-4">Explore More Opportunities</h2>
+          <p class="text-base-content/70 mb-8">
+            Check out other positions that might interest you
+          </p>
+          <a href="/jobs" class="btn btn-primary btn-lg"> View All Jobs </a>
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>
