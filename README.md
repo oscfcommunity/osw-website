@@ -12,6 +12,7 @@
 The Open Source Weekend (OSW) Website is the central hub for the OSW community, providing information about events, resources, and opportunities to collaborate on open-source projects. OSW is a community-driven initiative that promotes open source technologies through events, workshops, and celebrations. The website aims to connect developers, enthusiasts, and organizations, making open source accessible and inclusive for everyone.
 
 ## 🛠️ Tech Stack
+
 - **Astro**: Modern static site builder
 - **Tailwind CSS**: Utility-first CSS framework
 - **daisyUI**: UI component library for Tailwind CSS
@@ -23,6 +24,7 @@ The Open Source Weekend (OSW) Website is the central hub for the OSW community, 
 We welcome contributions from everyone! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before making changes.
 
 ## 📁 Project Structure
+
 ```
 /
 ├── public/
@@ -42,11 +44,13 @@ We welcome contributions from everyone! Please read our [Contributing Guide](CON
 - **src/styles/**: CSS files
 
 ## 📚 Resources
+
 - [Astro Documentation](https://docs.astro.build/)
 - [Open Source Weekend Events](https://osd.opensourceweekend.org)
 - [Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 
 ## 🛡️ License
+
 This project is open source and available under the MIT License.
 
 ---
