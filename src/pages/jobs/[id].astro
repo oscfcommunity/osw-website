@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import type { GetStaticPaths } from 'astro';
 import Container from '../../components/layout/Container.astro';
 import Layout from '../../layouts/Layout.astro';
 import JobDetailHeader from '../../components/jobs/JobDetailHeader.astro';
@@ -9,24 +8,26 @@ import JobApplicationCard from '../../components/jobs/JobApplicationCard.astro';
 import JobDetailsCard from '../../components/jobs/JobDetailsCard.astro';
 import JobCompanyCard from '../../components/jobs/JobCompanyCard.astro';
 
-export const getStaticPaths = (async () => {
-  const jobs = await getCollection(
-    'jobs',
-    ({ data }) => data.status === 'ACTIVE'
-  );
-  return jobs.map(job => ({
-    params: { id: job.id },
-    props: { job },
-  }));
-}) satisfies GetStaticPaths;
+// Required by Astro for dynamic routes
+export const getStaticPaths = async () => {
+  const jobs = await getCollection('jobs');
+  return jobs
+    .filter(j => j.data?.status === 'ACTIVE')
+    .map(j => ({ params: { id: j.id }, props: { job: j } }));
+};
 
-const { job } = Astro.props;
+const job = (Astro.props && Astro.props.job) || null;
 
-// Calculate days until expiration
-const daysUntilExpiration = Math.ceil(
-  (new Date(job.data.validThrough).getTime() - Date.now()) /
-    (1000 * 60 * 60 * 24)
-);
+// Calculate days until expiration (always a number)
+const daysUntilExpiration = job?.data?.validThrough
+  ? Math.max(
+      0,
+      Math.ceil(
+        (new Date(job.data.validThrough).getTime() - Date.now()) /
+          (1000 * 60 * 60 * 24)
+      )
+    )
+  : 0;
 ---
 
 <Layout
@@ -47,7 +48,8 @@ const daysUntilExpiration = Math.ceil(
         <div class="max-w-4xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Column - Job Details */}
-            <div class="lg:col-span-2">
+            <div class="lg:col-span-2 space-y-6">
+              <JobDetailsCard job={job} />
               <JobDescription job={job} />
             </div>
 
@@ -56,9 +58,6 @@ const daysUntilExpiration = Math.ceil(
               <div class="sticky top-4 space-y-6">
                 {/* Apply Card */}
                 <JobApplicationCard application={job.data.application} />
-
-                {/* Job Details Card */}
-                <JobDetailsCard job={job} />
 
                 {/* Company Info Card */}
                 <JobCompanyCard company={job.data.company} />

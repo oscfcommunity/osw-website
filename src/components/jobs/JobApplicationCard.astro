@@ -15,45 +15,8 @@ const { application } = Astro.props;
     <h3 class="card-title mb-4">Ready to Apply?</h3>
 
     {
-      application.url && (
-        <a
-          href={application.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-secondary btn-block btn-lg"
-        >
-          Apply Now
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            />
-          </svg>
-        </a>
-      )
-    }
-
-    {
-      application.applyEmail && (
-        <a
-          href={`mailto:${application.applyEmail}`}
-          class="btn btn-outline btn-secondary btn-block"
-        >
-          Email Application
-        </a>
-      )
-    }
-
-    {
       application.instructions && (
-        <div class="text-sm mt-4 opacity-90">
+        <div class="text-sm opacity-90">
           <strong>Instructions:</strong>
           <p class="mt-2">{application.instructions}</p>
         </div>
