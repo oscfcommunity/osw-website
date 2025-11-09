@@ -19,10 +19,6 @@ const sortedJobs = allJobs.sort(
 const featuredJobs = sortedJobs.filter(job => job.data.isFeatured);
 const urgentJobs = sortedJobs.filter(job => job.data.isUrgent);
 const remoteJobs = sortedJobs.filter(job => job.data.jobType === 'REMOTE');
-
-// Get unique categories
-const allCategories = new Set(sortedJobs.flatMap(job => job.data.categories));
-const categories = Array.from(allCategories);
 ---
 
 <Layout title="Job Opportunities - OSW Community">
@@ -82,24 +78,6 @@ const categories = Array.from(allCategories);
         </div>
       </Container>
     </section>
-
-    {/* Categories Section */}
-    {
-      categories.length > 0 && (
-        <section class="py-8 bg-base-200">
-          <Container>
-            <div class="text-center mb-6">
-              <h2 class="text-2xl font-bold mb-4">Browse by Category</h2>
-              <div class="flex flex-wrap justify-center gap-2">
-                {categories.map(category => (
-                  <div class="badge badge-lg badge-outline">{category}</div>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </section>
-      )
-    }
 
     {/* Featured Jobs */}
     {
