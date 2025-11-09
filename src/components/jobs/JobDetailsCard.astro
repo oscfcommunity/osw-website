@@ -78,7 +78,7 @@ const { job } = Astro.props;
               <div class="font-semibold">
                 {job.data.qualification.experience.min}
                 {job.data.qualification.experience.max &&
-                  ` - ${job.data.qualification.experience.max}`}{' '}
+                  ` - ${job.data.qualification.experience.max}`}
                 years
               </div>
               {job.data.qualification.experience.level && (
@@ -117,6 +117,27 @@ const { job } = Astro.props;
           </>
         )
       }
+
+      {/* Apply Now button inside Job Details */}
+      <div class="divider my-2"></div>
+      <div>
+        {
+          job.data.application?.url ? (
+            <a
+              href={job.data.application.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-block"
+            >
+              Apply Now
+            </a>
+          ) : (
+            <button class="btn btn-primary btn-block" disabled>
+              Apply Now
+            </button>
+          )
+        }
+      </div>
     </div>
   </div>
 </div>

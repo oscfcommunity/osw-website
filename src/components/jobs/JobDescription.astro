@@ -56,5 +56,28 @@ const { job } = Astro.props;
         </div>
       )
     }
+
+    {/* Apply Now after description ends */}
+    <div class="mt-8">
+      {
+        job.data.application?.url ? (
+          <a
+            href={job.data.application.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary btn-lg btn-block"
+          >
+            Apply Now
+          </a>
+        ) : job.data.application?.applyEmail ? (
+          <a
+            href={`mailto:${job.data.application.applyEmail}`}
+            class="btn btn-primary btn-lg btn-block"
+          >
+            Apply Now
+          </a>
+        ) : null
+      }
+    </div>
   </div>
 </div>
