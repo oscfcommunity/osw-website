@@ -86,7 +86,7 @@ There are many ways to contribute to the OSW website:
 - Always update your branch with the latest changes from `main` before creating a pull request:
   ```bash
   git checkout main
-  git pull origin main
+  git pull origin main --rebase
   git checkout your-branch
   git rebase main
   ```
