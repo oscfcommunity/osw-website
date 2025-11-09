@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Container from '../../components/Container.astro';
-import EventCard from '../../components/EventCard.astro';
+import Container from '../../components/layout/Container.astro';
+import EventCard from '../../components/events/EventCard.astro';
 
 // Get all events and sort by date
 const allEvents = await getCollection('events');
@@ -12,12 +12,16 @@ const sortedEvents = allEvents.sort(
 
 // Categorize events
 const upcomingEvents = sortedEvents.filter(
-  event => event.data.status === 'upcoming' || event.data.status === 'ongoing'
+  event =>
+    event.data.status.toLowerCase() === 'upcoming' ||
+    event.data.status.toLowerCase() === 'ongoing'
 );
 const pastEvents = sortedEvents.filter(
-  event => event.data.status === 'completed'
+  event => event.data.status.toLowerCase() === 'completed'
 );
-const featuredEvents = sortedEvents.filter(event => event.data.featured);
+const featuredEvents = sortedEvents.filter(
+  event => event.data.featured || event.data.isFeatured
+);
 ---
 
 <Layout title="Events - OSW Community">
@@ -190,7 +194,11 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
                 best practices.
               </p>
               <div class="badge badge-primary badge-outline mt-4">
-                {allEvents.filter(e => e.data.eventType === 'workshop').length} events
+                {
+                  allEvents.filter(
+                    e => e.data.eventType.toLowerCase() === 'workshop'
+                  ).length
+                } events
               </div>
             </div>
           </div>
@@ -207,7 +215,11 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
                 sharing.
               </p>
               <div class="badge badge-secondary badge-outline mt-4">
-                {allEvents.filter(e => e.data.eventType === 'meetup').length} events
+                {
+                  allEvents.filter(
+                    e => e.data.eventType.toLowerCase() === 'meetup'
+                  ).length
+                } events
               </div>
             </div>
           </div>
@@ -223,7 +235,11 @@ const featuredEvents = sortedEvents.filter(event => event.data.featured);
                 Intensive coding events where teams build innovative solutions.
               </p>
               <div class="badge badge-accent badge-outline mt-4">
-                {allEvents.filter(e => e.data.eventType === 'hackathon').length}
+                {
+                  allEvents.filter(
+                    e => e.data.eventType.toLowerCase() === 'hackathon'
+                  ).length
+                }
                 events
               </div>
             </div>

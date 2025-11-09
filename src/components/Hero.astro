@@ -1,16 +1,33 @@
 ---
-import { getEntry } from 'astro:content';
-import Container from './Container.astro';
+import Container from './layout/Container.astro';
 import CodeTerminal from './CodeTerminal.astro';
 
-const homeConfig = await getEntry('homeConfig', 'home');
-const heroSection = homeConfig?.data.sections.hero;
+const {
+  enabled = true,
+  badge = {
+    text: 'Open Source Day 2025 on 5th October',
+    icon: '🎉',
+    showIcon: false,
+  },
+  headline = {
+    line1: 'Open Source',
+    line2: 'Day',
+    subtitle: 'A Community-Driven Initiative',
+    description: 'Empowering developers through events, workshops, and celebrations of open source technology',
+  },
+  cta = {
+    primary: {
+      text: 'Register for OSD 2025',
+      link: 'https://osd.opensourceweekend.org/',
+      external: true,
+    },
+  },
+  showTerminal = true,
+} = Astro.props;
 
-if (!heroSection?.enabled) {
+if (!enabled) {
   return null;
 }
-
-const { badge, headline, cta, showTerminal } = heroSection;
 ---
 
 <section

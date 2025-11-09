@@ -3,60 +3,51 @@ title: 'Creating AI Agents for Open Source Projects Workshop'
 description: 'Hands-on workshop exploring how AI can enhance collaborative open source development. Learn to build your own AI agent app with Ashish Patel, Senior Principal Architect AI/ML & DS at Oracle.'
 date: '2025-09-27T14:00:00+05:30'
 endDate: '2025-09-27T17:00:00+05:30'
-location: 'Ahmedabad, Gujarat, India'
+location:
+  city: 'Ahmedabad'
+  state: 'Gujarat'
+  country: 'India'
 venue: 'Silver Oak University, Ahmedabad'
-eventType: 'workshop'
-status: 'completed'
+eventType: 'WORKSHOP'
+status: 'COMPLETED'
 speakers:
   - 'Ashish Patel'
 registrationLink: 'https://luma.com/pc0q0hm8'
 maxParticipants: 100
-tags: ['workshop', 'ai', 'machine-learning', 'open-source', 'hands-on', 'oracle', 'ai-agents']
-featured: true
+tags:
+  [
+    'workshop',
+    'ai',
+    'machine-learning',
+    'open-source',
+    'hands-on',
+    'oracle',
+    'ai-agents',
+  ]
+isFeatured: true
 coverImage: 'https://placehold.co/1200x630/7c3aed/white?text=AI+Agents+Workshop'
-agenda:
-  - time: '2:00 PM'
+schedule:
+  - datetime: '2025-09-27T14:00:00+05:30'
     title: 'Welcome & Prerequisites Check'
     speaker: 'OSW Team'
-    type: 'introduction'
-    room: 'Workshop Hall'
-    start: '14:00'
-    end: '14:15'
-  - time: '2:15 PM'
+    type: 'ACTIVITY'
+    venue: 'Workshop Hall'
+    startDatetime: '2025-09-27T14:00:00+05:30'
+    endDatetime: '2025-09-27T14:15:00+05:30'
+  - datetime: '2025-09-27T14:15:00+05:30'
     title: 'Introduction to AI Agents in Open Source'
     speaker: 'Ashish Patel'
-    type: 'lecture'
-    room: 'Workshop Hall'
-    start: '14:15'
-    end: '14:45'
-  - time: '2:45 PM'
-    title: 'Setting Up Your Development Environment'
-    speaker: 'Ashish Patel'
-    type: 'hands-on'
-    room: 'Workshop Hall'
-    start: '14:45'
-    end: '15:15'
-  - time: '3:15 PM'
+    type: 'TALK'
+    venue: 'Workshop Hall'
+    startDatetime: '2025-09-27T14:15:00+05:30'
+    endDatetime: '2025-09-27T14:45:00+05:30'
+  - datetime: '2025-09-27T14:45:00+05:30'
     title: 'Building Your First AI Agent'
     speaker: 'Ashish Patel'
-    type: 'hands-on'
-    room: 'Workshop Hall'
-    start: '15:15'
-    end: '16:15'
-  - time: '4:15 PM'
-    title: 'Q&A and Project Showcases'
-    speaker: 'Ashish Patel'
-    type: 'discussion'
-    room: 'Workshop Hall'
-    start: '16:15'
-    end: '16:45'
-  - time: '4:45 PM'
-    title: 'Closing & Networking'
-    speaker: 'All'
-    type: 'networking'
-    room: 'Workshop Hall'
-    start: '16:45'
-    end: '17:00'
+    type: 'TALK'
+    venue: 'Workshop Hall'
+    startDatetime: '2025-09-27T14:45:00+05:30'
+    endDatetime: '2025-09-27T16:15:00+05:30'
 ---
 
 ## Creating AI Agents for Open Source Projects - Workshop
@@ -131,11 +122,11 @@ The workshop received overwhelming positive responses:
 
 ### What Participants Said
 
-*"Ashish's teaching style made complex AI concepts accessible. I built my first working AI agent in just 3 hours!"*
+_"Ashish's teaching style made complex AI concepts accessible. I built my first working AI agent in just 3 hours!"_
 
-*"The hands-on approach was perfect. I learned by doing, not just listening to theory."*
+_"The hands-on approach was perfect. I learned by doing, not just listening to theory."_
 
-*"As someone new to AI, this workshop gave me the confidence to explore AI integration in my own projects."*
+_"As someone new to AI, this workshop gave me the confidence to explore AI integration in my own projects."_
 
 ## Resources & Next Steps
 
