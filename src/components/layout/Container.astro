@@ -5,7 +5,7 @@ const { fluid = false, className } = Astro.props;
 <div
   class:list={[
     'mx-auto w-full last:space-y-0',
-    { 'max-w-7xl md:px-14 px-4 py-4': !fluid },
+    { 'max-w-7xl md:px-14 px-3 py-2 md:py-4': !fluid },
     { 'px-2': fluid },
     className,
   ]}

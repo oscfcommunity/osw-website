@@ -1,99 +1,98 @@
 ---
-title: "Software Engineer III, Infrastructure - Google Cloud Security and Privacy"
+title: 'Software Engineer III, Infrastructure - Google Cloud Security and Privacy'
 description: "Join Google Cloud's Security and Privacy team as a Software Engineer III to develop and maintain enterprise-grade infrastructure solutions. Work on critical projects involving large-scale distributed systems, security infrastructure, and privacy-preserving technologies. Design, develop, test, deploy, and enhance software solutions that serve customers in 200+ countries. Collaborate with cross-functional teams, participate in design reviews, and tackle full-stack challenges while managing project priorities and deliverables."
-datePosted: "2025-09-20"
-validThrough: "2025-12-31"
+datePosted: '2025-09-20'
+validThrough: '2025-12-31'
 
 company:
-  name: "Google"
-  logo: "https://placehold.co/48x48/4285f4/white?text=G"
-  website: "https://careers.google.com"
+  name: 'Google'
+  logo: 'https://placehold.co/48x48/4285f4/white?text=G'
+  website: 'https://careers.google.com'
   about: "Global technology leader providing innovative products and services that organize the world's information and make it universally accessible and useful."
-  size: "ENTERPRISE"
+  size: 'ENTERPRISE'
 
 location:
-  city: "Bangalore"
-  state: "Karnataka"
-  country: "India"
-  remote: false
-  remoteType: "HYBRID"
+  city: 'Bangalore'
+  state: 'Karnataka'
+  country: 'India'
 
-employmentType: "FULL_TIME"
+jobType: 'HYBRID'
+employmentType: 'FULL_TIME'
 
 salary:
   min: 2800000
   max: 7500000
-  currency: "INR"
-  period: "YEAR"
+  currency: 'INR'
+  period: 'YEAR'
 
-experienceLevel: "MID_LEVEL"
+qualification:
+  experience:
+    min: 2
+    max: 5
+    level: 'MID_LEVEL'
+  education:
+    level: 'BACHELOR_DEGREE'
+    field: 'Computer Science, Engineering, or related technical field'
+    required: false
+  skills:
+    - 'Software Development'
+    - 'Data Structures and Algorithms'
+    - 'C++'
+    - 'Java'
+    - 'Python'
+    - 'Distributed Systems'
+    - 'System Design'
+    - 'Infrastructure Development'
+    - 'Security Engineering'
+    - 'Cloud Computing'
+    - 'Performance Analysis'
+    - 'Code Review'
+    - 'Testing and Debugging'
+    - 'API Development'
 
-experience:
-  min: 2
-  max: 5
+benefits: |
+  **Health & Wellness:**
+  - Comprehensive health insurance
+  - Wellness programs
+  - Mental health support
 
-education:
-  level: "BACHELOR_DEGREE"
-  field: "Computer Science, Engineering, or related technical field"
-  required: false
+  **Time Off:**
+  - Flexible time off
+  - Parental leave
+  - Sabbatical opportunities
 
-skills:
-  - "Software Development"
-  - "Data Structures and Algorithms"
-  - "C++"
-  - "Java"
-  - "Python"
-  - "Distributed Systems"
-  - "System Design"
-  - "Infrastructure Development"
-  - "Security Engineering"
-  - "Cloud Computing"
-  - "Performance Analysis"
-  - "Code Review"
-  - "Testing and Debugging"
-  - "API Development"
-
-benefits:
-  health:
-    - "Comprehensive health insurance"
-    - "Wellness programs"
-    - "Mental health support"
-  timeOff:
-    - "Flexible time off"
-    - "Parental leave"
-    - "Sabbatical opportunities"
-  other:
-    - "Stock equity (GSU)"
-    - "Performance bonuses"
-    - "Learning and development budget"
-    - "On-site facilities and perks"
-    - "Relocation assistance"
-    - "Career growth opportunities"
+  **Other Benefits:**
+  - Stock equity (GSU)
+  - Performance bonuses
+  - Learning and development budget
+  - On-site facilities and perks
+  - Relocation assistance
+  - Career growth opportunities
 
 application:
-  applyUrl: "https://www.linkedin.com/jobs/view/4308883078"
-  instructions: "Apply through LinkedIn or Google Careers website. Include resume highlighting software development experience, relevant projects, and technical skills. Be prepared to discuss data structures, algorithms, and system design in technical interviews."
+  url: 'https://www.linkedin.com/jobs/view/4308883078'
+  instructions: 'Apply through LinkedIn or Google Careers website. Include resume highlighting software development experience, relevant projects, and technical skills. Be prepared to discuss data structures, algorithms, and system design in technical interviews.'
 
 categories:
-  - "Software Engineering"
-  - "Infrastructure"
-  - "Cloud Computing"
-  - "Security"
-  - "Backend Development"
+  - 'Software Engineering'
+  - 'Infrastructure'
+  - 'Cloud Computing'
+  - 'Security'
+  - 'Backend Development'
 
 seo:
-  metaTitle: "Software Engineer III Jobs at Google Cloud Security"
-  metaDescription: "Join Google Cloud Security team as Software Engineer III. Work on distributed systems, infrastructure, and privacy technologies with competitive compensation."
+  metaTitle: 'Software Engineer III Jobs at Google Cloud Security'
+  metaDescription: 'Join Google Cloud Security team as Software Engineer III. Work on distributed systems, infrastructure, and privacy technologies with competitive compensation.'
   keywords:
-    - "Google Software Engineer Jobs"
-    - "Cloud Security Engineer"
-    - "Infrastructure Engineer India"
-    - "Google Bangalore Jobs"
-    - "Distributed Systems Engineer"
+    - 'Google Software Engineer Jobs'
+    - 'Cloud Security Engineer'
+    - 'Infrastructure Engineer India'
+    - 'Google Bangalore Jobs'
+    - 'Distributed Systems Engineer'
 
-status: "ACTIVE"
-featured: true
-urgent: false
+status: 'ACTIVE'
+isFeatured: true
+isUrgent: false
 ---
 
 ## Role Overview
