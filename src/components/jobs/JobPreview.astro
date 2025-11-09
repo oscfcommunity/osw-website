@@ -25,7 +25,8 @@ if (!enabled) {
 
 const allJobs = await getCollection(
   'jobs',
-  ({ data }) => data.status === 'ACTIVE' && (!showFeaturedOnly || data.featured)
+  ({ data }) =>
+    data.status === 'ACTIVE' && (!showFeaturedOnly || data.isFeatured)
 );
 
 const jobs = allJobs
