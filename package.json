@@ -20,7 +20,8 @@
     "astro": "^5.14.4",
     "date-fns": "^4.1.0",
     "tailwindcss": "^4.1.13",
-    "typed.js": "^2.1.0"
+    "typed.js": "^2.1.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "daisyui": "^5.2.3",
