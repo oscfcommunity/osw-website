@@ -54,8 +54,12 @@ const remoteJobs = sortedJobs.filter(job => job.data.jobType === 'REMOTE');
 
           <div class="h-px w-full bg-base-300 my-8"></div>
 
-          <div class="stats stats-vertical sm:stats-horizontal w-full">
-            <div class="stat">
+          <div
+            class="stats stats-horizontal w-full flex-nowrap gap-4 overflow-x-auto"
+            role="list"
+            aria-label="Job statistics"
+          >
+            <div class="stat w-1/3 min-w-0" role="listitem">
               <div class="stat-title">Total Jobs</div>
               <div class="stat-value text-primary" aria-live="polite">
                 {sortedJobs.length}
@@ -63,13 +67,13 @@ const remoteJobs = sortedJobs.filter(job => job.data.jobType === 'REMOTE');
               <div class="stat-desc">Active opportunities</div>
             </div>
 
-            <div class="stat">
+            <div class="stat w-1/3 min-w-0" role="listitem">
               <div class="stat-title">Featured</div>
               <div class="stat-value">{featuredJobs.length}</div>
               <div class="stat-desc">Top picks</div>
             </div>
 
-            <div class="stat">
+            <div class="stat w-1/3 min-w-0" role="listitem">
               <div class="stat-title">Remote</div>
               <div class="stat-value">{remoteJobs.length}</div>
               <div class="stat-desc">Work from anywhere</div>
