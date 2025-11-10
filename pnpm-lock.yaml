@@ -31,7 +31,7 @@ importers:
         version: 2.1.0
     devDependencies:
       daisyui:
-        specifier: ^5.2.3
+        specifier: ^5.4.7
         version: 5.4.7
       husky:
         specifier: ^9.1.7
