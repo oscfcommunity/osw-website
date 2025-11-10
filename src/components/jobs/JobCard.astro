@@ -90,14 +90,14 @@ const jobUrl = `/jobs/${job.id}`;
     }
 
     <h2
-      class="card-title text-xl font-bold mb-2 line-clamp-2 text-base-content"
+      class="card-title text-xl font-bold mb-1.5 line-clamp-2 text-base-content"
     >
       {job.data.title}
     </h2>
 
     {
       display.showPostedDate && (
-        <div class="text-xs text-base-content/70 mb-2">
+        <div class="text-xs text-base-content/70 mb-1.5">
           Posted {getRelativeTime(new Date(job.data.datePosted))}
         </div>
       )
@@ -128,6 +128,7 @@ const jobUrl = `/jobs/${job.id}`;
             <span class="flex items-center gap-2 capitalize">
               <svg
                 class="w-5 h-5"
+                fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 stroke-width="2"
@@ -148,6 +149,7 @@ const jobUrl = `/jobs/${job.id}`;
             <span class="flex items-center gap-2">
               <svg
                 class="w-5 h-5"
+                fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 stroke-width="2"
@@ -170,6 +172,7 @@ const jobUrl = `/jobs/${job.id}`;
             <span class="flex items-center gap-2 font-bold text-base-content">
               <svg
                 class="w-5 h-5"
+                fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 stroke-width="2"
@@ -193,6 +196,7 @@ const jobUrl = `/jobs/${job.id}`;
         {button.text}
         <svg
           class="w-4 h-4"
+          fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
           stroke-width="2"
