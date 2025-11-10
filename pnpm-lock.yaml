@@ -24,7 +24,7 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       tailwindcss:
-        specifier: ^4.1.13
+        specifier: ^4.1.17
         version: 4.1.17
       typed.js:
         specifier: ^2.1.0
