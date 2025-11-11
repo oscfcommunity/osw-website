@@ -32,6 +32,9 @@ const {
 
 const { data } = event;
 
+// Generate slug from event id (e.g., "event1.md" -> "event1")
+const eventSlug = event.id.replace(/\.md$/, '');
+
 const variantDefaults: Record<Variant, DisplayOptions> = {
   default: {
     showCoverImage: true,
@@ -306,7 +309,7 @@ const formattedDate = formatEventDate(
       (display.showLearnMoreButton || display.showRegistrationButton) && (
         <div class="card-actions justify-between items-center mt-auto">
           {display.showLearnMoreButton && (
-            <a href={`/events/${event.slug}`} class="btn btn-primary btn-sm">
+            <a href={`/events/${eventSlug}`} class="btn btn-primary btn-sm">
               Learn More
             </a>
           )}
@@ -330,7 +333,7 @@ const formattedDate = formatEventDate(
               data.socialMediaPosts &&
               data.socialMediaPosts.length > 0 && (
                 <a
-                  href={`/events/${event.slug}#resources`}
+                  href={`/events/${eventSlug}#resources`}
                   class="btn btn-outline btn-info btn-sm"
                 >
                   Resources

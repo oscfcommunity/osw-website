@@ -1,0 +1,148 @@
+---
+import { getSponsorTierBadgeClass } from '../../utils';
+
+interface Sponsor {
+  name: string;
+  url: string;
+  image: string;
+  type: 'PLATINUM' | 'GOLD' | 'SILVER' | 'BRONZE' | 'COMMUNITY';
+}
+
+interface Props {
+  sponsors: Sponsor[];
+  showCTA?: boolean;
+}
+
+const { sponsors, showCTA = true } = Astro.props;
+
+// Group sponsors by tier
+const groupedSponsors = sponsors.reduce(
+  (acc, sponsor) => {
+    if (!acc[sponsor.type]) {
+      acc[sponsor.type] = [];
+    }
+    acc[sponsor.type].push(sponsor);
+    return acc;
+  },
+  {} as Record<string, Sponsor[]>
+);
+
+// Define tier order and display properties
+const tierConfig = {
+  PLATINUM: { label: 'Platinum Sponsors', size: 'w-48 md:w-56', order: 1 },
+  GOLD: { label: 'Gold Sponsors', size: 'w-40 md:w-48', order: 2 },
+  SILVER: { label: 'Silver Sponsors', size: 'w-32 md:w-40', order: 3 },
+  BRONZE: { label: 'Bronze Sponsors', size: 'w-28 md:w-36', order: 4 },
+  COMMUNITY: { label: 'Community Partners', size: 'w-24 md:w-32', order: 5 },
+};
+
+// Sort tiers
+const sortedTiers = Object.keys(groupedSponsors).sort(
+  (a, b) =>
+    tierConfig[a as keyof typeof tierConfig].order -
+    tierConfig[b as keyof typeof tierConfig].order
+);
+---
+
+{
+  sponsors && sponsors.length > 0 && (
+    <section id="sponsors" class="py-16 md:py-24 bg-base-200">
+      <div class="container mx-auto px-4 max-w-6xl">
+        {/* Section Header */}
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Our Sponsors & Partners
+          </h2>
+          <p class="text-base-content/70 max-w-2xl mx-auto">
+            This event is made possible by the generous support of our sponsors
+            and community partners. Thank you for believing in open source!
+          </p>
+        </div>
+
+        {/* Sponsor Tiers */}
+        <div class="space-y-16">
+          {sortedTiers.map(tier => {
+            const config = tierConfig[tier as keyof typeof tierConfig];
+            const tierSponsors = groupedSponsors[tier];
+
+            return (
+              <div class="space-y-6">
+                {/* Tier Title */}
+                <div class="text-center">
+                  <div class="inline-flex items-center gap-2 mb-2">
+                    <h3 class="text-xl md:text-2xl font-bold">
+                      {config.label}
+                    </h3>
+                    <div class={`badge ${getSponsorTierBadgeClass(tier)}`}>
+                      {tier.charAt(0) + tier.slice(1).toLowerCase()}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sponsor Grid */}
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                  {tierSponsors.map(sponsor => (
+                    <a
+                      href={sponsor.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class={`${config.size} transition-all duration-300 hover:scale-110 group`}
+                      title={sponsor.name}
+                    >
+                      <div class="bg-base-100 rounded-lg p-6 shadow-md hover:shadow-xl border border-base-300 hover:border-primary/50 transition-all duration-300">
+                        <img
+                          src={sponsor.image}
+                          alt={sponsor.name}
+                          class="w-full h-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Become a Sponsor CTA */}
+        {showCTA && (
+          <div class="mt-16 text-center">
+            <div class="card bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 max-w-2xl mx-auto">
+              <div class="card-body items-center text-center">
+                <h3 class="card-title text-2xl mb-2">
+                  Interested in Sponsoring?
+                </h3>
+                <p class="text-base-content/70 mb-4">
+                  Partner with us to support the open source community and gain
+                  visibility among passionate developers.
+                </p>
+                <div class="card-actions">
+                  <a href="/contact" class="btn btn-primary gap-2">
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    Become a Sponsor
+                  </a>
+                  <a href="/sponsorship" class="btn btn-outline gap-2">
+                    View Packages
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}

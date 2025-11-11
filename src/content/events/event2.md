@@ -1,165 +1,216 @@
 ---
-title: 'Creating AI Agents for Open Source Projects Workshop'
-description: 'Hands-on workshop exploring how AI can enhance collaborative open source development. Learn to build your own AI agent app with Ashish Patel, Senior Principal Architect AI/ML & DS at Oracle.'
-date: '2025-09-27T14:00:00+05:30'
-endDate: '2025-09-27T17:00:00+05:30'
+title: 'Open Source with AI Workshop | Open Source Day 2025'
+description: 'A full-day dedicated workshop to celebrate, learn, and contribute to the world of open source. From beginner to intermediate level, learn to make your first open source contribution, create AI agents for your projects, and solve real open source community problems.'
+date: '2025-09-27T09:00:00+05:30'
+endDate: '2025-09-27T18:00:00+05:30'
 location:
   city: 'Ahmedabad'
   state: 'Gujarat'
   country: 'India'
-venue: 'Silver Oak University, Ahmedabad'
+venue: 'Aubergine Solutions Pvt. Ltd., A2, Tenth Floor, Safal Profitaire, Corporate Rd, Prahlad Nagar, Ahmedabad, Gujarat 380015'
 eventType: 'WORKSHOP'
 status: 'COMPLETED'
-speakers:
-  - 'Ashish Patel'
 registrationLink: 'https://luma.com/pc0q0hm8'
 maxParticipants: 100
 tags:
   [
     'workshop',
     'ai',
-    'machine-learning',
     'open-source',
     'hands-on',
-    'oracle',
     'ai-agents',
+    'community',
+    'networking',
+    'design-thinking',
+    'contribution',
   ]
 isFeatured: true
-coverImage: 'https://placehold.co/1200x630/7c3aed/white?text=AI+Agents+Workshop'
+coverImage: '/assets/brands/oswithai.jpg'
 schedule:
-  - datetime: '2025-09-27T14:00:00+05:30'
-    title: 'Welcome & Prerequisites Check'
+  - datetime: '2025-09-27T09:30:00+05:30'
+    title: 'Event Introduction & Icebreaker'
     speaker: 'OSW Team'
     type: 'ACTIVITY'
-    venue: 'Workshop Hall'
+    venue: 'Aubergine Solutions'
+    startDatetime: '2025-09-27T09:30:00+05:30'
+    endDatetime: '2025-09-27T10:00:00+05:30'
+  - datetime: '2025-09-27T10:00:00+05:30'
+    title: 'Introduction to Open Source'
+    speaker: 'OSW Team'
+    type: 'TALK'
+    venue: 'Aubergine Solutions'
+    startDatetime: '2025-09-27T10:00:00+05:30'
+    endDatetime: '2025-09-27T11:00:00+05:30'
+  - datetime: '2025-09-27T11:00:00+05:30'
+    title: 'How to Start an Open Source Project & Contribution Process'
+    speaker: 'OSW Team'
+    type: 'WORKSHOP'
+    venue: 'Aubergine Solutions'
+    startDatetime: '2025-09-27T11:00:00+05:30'
+    endDatetime: '2025-09-27T12:30:00+05:30'
+  - datetime: '2025-09-27T12:30:00+05:30'
+    title: 'Creating a Community Around Open Source Projects'
+    speaker: 'OSW Team'
+    type: 'TALK'
+    venue: 'Aubergine Solutions'
+    startDatetime: '2025-09-27T12:30:00+05:30'
+    endDatetime: '2025-09-27T13:00:00+05:30'
+  - datetime: '2025-09-27T13:00:00+05:30'
+    title: 'Lunch Break'
+    speaker: ''
+    type: 'BREAK'
+    venue: 'Aubergine Solutions'
+    startDatetime: '2025-09-27T13:00:00+05:30'
+    endDatetime: '2025-09-27T14:00:00+05:30'
+  - datetime: '2025-09-27T14:00:00+05:30'
+    title: 'Open Design & Design Thinking in Open Source'
+    speaker: 'OSW Team'
+    type: 'WORKSHOP'
+    venue: 'Aubergine Solutions'
     startDatetime: '2025-09-27T14:00:00+05:30'
-    endDatetime: '2025-09-27T14:15:00+05:30'
-  - datetime: '2025-09-27T14:15:00+05:30'
-    title: 'Introduction to AI Agents in Open Source'
-    speaker: 'Ashish Patel'
-    type: 'TALK'
-    venue: 'Workshop Hall'
-    startDatetime: '2025-09-27T14:15:00+05:30'
-    endDatetime: '2025-09-27T14:45:00+05:30'
-  - datetime: '2025-09-27T14:45:00+05:30'
-    title: 'Building Your First AI Agent'
-    speaker: 'Ashish Patel'
-    type: 'TALK'
-    venue: 'Workshop Hall'
-    startDatetime: '2025-09-27T14:45:00+05:30'
-    endDatetime: '2025-09-27T16:15:00+05:30'
+    endDatetime: '2025-09-27T15:00:00+05:30'
+  - datetime: '2025-09-27T15:00:00+05:30'
+    title: 'AI Agents in Open Source Projects'
+    speaker: 'OSW Team'
+    type: 'WORKSHOP'
+    venue: 'Aubergine Solutions'
+    startDatetime: '2025-09-27T15:00:00+05:30'
+    endDatetime: '2025-09-27T16:00:00+05:30'
+  - datetime: '2025-09-27T16:00:00+05:30'
+    title: 'Project Development & Demo'
+    speaker: 'OSW Team'
+    type: 'WORKSHOP'
+    venue: 'Aubergine Solutions'
+    startDatetime: '2025-09-27T16:00:00+05:30'
+    endDatetime: '2025-09-27T17:00:00+05:30'
+  - datetime: '2025-09-27T17:00:00+05:30'
+    title: 'Closing Remarks'
+    speaker: 'OSW Team'
+    type: 'ACTIVITY'
+    venue: 'Aubergine Solutions'
+    startDatetime: '2025-09-27T17:00:00+05:30'
+    endDatetime: '2025-09-27T17:30:00+05:30'
 ---
 
-## Creating AI Agents for Open Source Projects - Workshop
+## Open Source with AI Workshop | Open Source Day 2025
 
-An exciting hands-on workshop where participants learned to build AI agents that enhance collaborative open source development. Led by Ashish Patel, Senior Principal Architect AI/ML & DS at Oracle, this session provided practical experience in creating intelligent automation for open source workflows.
+🌐 **Open Source Day 2025** is a dedicated full-day workshop to celebrate, learn, and contribute to the world of open source. Whether you're a beginner looking to take your first step or an experienced contributor aiming to make a bigger impact, this event is designed for you!
 
-## Workshop Highlights
+Open Source isn't just about code—it's about **collaboration, community, and innovation**. 🚀
 
-### 🎯 Learning Outcomes
+## Why Attend?
 
-Participants gained practical knowledge in:
+✨ **Beginner to Intermediate Level** - Perfect for all skill levels
+✨ **Hands-on Workshop** - Learn by doing, not just watching
+✨ **Make First Open Source Contribution** - Start your open source journey
+✨ **Create an AI Agent** for your project
+✨ **Develop Project and Pitch** - Build something real
+✨ **Solve Open Source Communities Problems** - Make real impact
+✨ **Workshop Exclusive Goodies** - Special swag for all contributors
 
-- **AI Agent Architecture**: Understanding the fundamentals of building intelligent agents for software development
-- **Open Source Integration**: Techniques to integrate AI capabilities into existing open source projects
-- **Hands-On Development**: Building a simple yet functional AI agent app from scratch
-- **Best Practices**: Industry-standard approaches to AI/ML implementation in collaborative environments
+### 🌟 What to Expect
 
-### 👨‍💻 Expert Instruction
+- **Hands-on workshops** on contributing to open source projects
+- **Best practices** for collaboration in the open source ecosystem
+- **Insights** from open source maintainers and community leaders
+- **Networking** with developers, engineers, and open source enthusiasts
+- **Not Just Talks but also Networking** 🌐
+- **Snacks & Beverages** 🍕
+- **Network** with the brightest minds in Open Source 🔗
+- **Connect** with industry professionals and visionaries 🌟
+- **Explore** opportunities for growth and innovation 🚀
+- **Special Goodies** for all the Contributors 🎁
 
-**Ashish Patel** brought extensive experience from Oracle's AI/ML division to guide participants through:
+## Prerequisites
 
-- Real-world use cases of AI agents in enterprise open source projects
-- Practical implementation strategies for AI-driven automation
-- Common pitfalls and how to avoid them in AI agent development
-- Future trends in AI-powered developer tools
+Please ensure you have the following ready:
 
-### 🛠️ Hands-On Experience
+- **Bring your laptops** for the hands-on session
+- **Install Git** on your laptop
+- **Create your GitHub account** (if not yet created)
 
-The workshop featured:
-
-- **Live coding sessions** where participants built their own AI agent
-- **Interactive demos** showcasing real open source AI integrations
-- **Collaborative problem-solving** with fellow developers
-- **Personalized guidance** from the instructor and assistants
-
-## Prerequisites & Setup
-
-Participants were required to bring:
-
-- **Laptops** with at least 8GB RAM for smooth development experience
-- **Git installed** for version control and collaboration
-- **GitHub account** to access workshop repositories and resources
-- **Basic Python knowledge** (helpful but not mandatory)
+> **Event is free for all, open for all, no hidden charges**
 
 ## Event Details
 
-### 📅 Event Information
+### 📅 Date & Time
 
-- **Date**: September 27, 2025
-- **Time**: 2:00 PM - 5:00 PM IST
-- **Duration**: 3 hours of intensive hands-on learning
-- **Location**: Silver Oak University, Ahmedabad
-- **Attendance**: 80+ developers and AI enthusiasts
-- **Format**: Hybrid (in-person with live streaming option)
+- **Date**: 27th September 2025
+- **Time**: 09:00 AM to 06:00 PM IST
+- **Duration**: Full day workshop (9 hours)
 
-### 🎁 What Participants Received
+### 📍 Venue
 
-- **Workshop materials** including code samples and reference documentation
-- **Certificate of participation** for completing the workshop
-- **Special goodies** from Open Source Weekend
-- **Access to private Slack channel** for continued learning and support
-- **Recording access** to revisit workshop content
+**Aubergine Solutions Pvt. Ltd.**
+A2, Tenth Floor, Safal Profitaire, Corporate Rd, Prahlad Nagar, Ahmedabad, Gujarat 380015, India
 
-## Participant Feedback
+### 👥 Capacity
 
-The workshop received overwhelming positive responses:
+**Limited 100 seats only** - First Come First Serve basis
 
-- **95% satisfaction rate** from post-event surveys
-- **78% participants** successfully built and deployed their first AI agent
-- **Multiple collaboration opportunities** emerged from networking sessions
-- **Strong demand** for advanced follow-up workshops
+> ⚠️ **Rights of Admission Reserved**
+> Registration is compulsory for every individual (No Group Registration)
 
-### What Participants Said
+### 🎁 What You'll Receive
 
-_"Ashish's teaching style made complex AI concepts accessible. I built my first working AI agent in just 3 hours!"_
+- **Hands-on workshop experience** on open source contribution
+- **Special Goodies** for all contributors from Open Source Day
+- **Networking opportunities** with industry professionals
+- **Snacks & Beverages** throughout the day
+- **Certificate** of participation
+- **Access to workshop materials** and resources
 
-_"The hands-on approach was perfect. I learned by doing, not just listening to theory."_
+## Workshop Agenda
 
-_"As someone new to AI, this workshop gave me the confidence to explore AI integration in my own projects."_
+### Morning Session
 
-## Resources & Next Steps
+- **09:30 AM - 10:00 AM** | Event Introduction & Icebreaker (30 mins)
+- **10:00 AM - 11:00 AM** | Introduction to Open Source (60 mins)
+- **11:00 AM - 12:30 PM** | How to Start an Open Source Project & Contribution Process (90 mins)
+- **12:30 PM - 01:00 PM** | Creating a Community Around Open Source Projects (30 mins)
 
-### Workshop Materials
+### Lunch Break
 
-All participants received access to:
+- **01:00 PM - 02:00 PM** | Lunch Break (1 Hour)
 
-- Complete source code repository on GitHub
-- Detailed documentation and tutorials
-- Recommended reading list for advanced topics
-- Links to related open source projects
+### Afternoon Session
 
-### Continue Learning
+- **02:00 PM - 03:00 PM** | Open Design & Design Thinking in Open Source (60 mins)
+- **03:00 PM - 04:00 PM** | AI Agents in Open Source Projects (60 mins)
+- **04:00 PM - 05:00 PM** | Project Development & Demo (60 mins)
+- **05:00 PM** | Closing Remarks
 
-Join our community to keep learning:
+📄 **Detailed Agenda**: [Check Content](https://drive.google.com/file/d/1mC7UdkK6k-go_MxTFPjLp5s-bblHWplV/view?usp=sharing)
 
-- **Discord server** for ongoing discussions and support
-- **Monthly AI/ML meetups** hosted by Open Source Weekend
-- **Contribution opportunities** in OSW's AI-focused projects
-- **Advanced workshops** coming in Q4 2025
+## Join Our Community
 
-## Thank You
+**WhatsApp Group**: [Join Here](https://chat.whatsapp.com/Fi50G9prGcH4b7891LrPir)
 
-Special thanks to:
+Join us to discover how open source can accelerate learning, boost careers, and drive innovation across industries. 🌟
 
-- **Ashish Patel** for an outstanding workshop and sharing Oracle's AI expertise
-- **Oracle** for supporting open source education initiatives
-- **Silver Oak University** for providing excellent workshop facilities
-- **All participants** who brought enthusiasm and curiosity
-- **OSW volunteers** who ensured smooth workshop operations
+📍 **Don't miss out** on this opportunity to be part of the movement that powers the world's software.
 
-## Pre-Conference Series
+## Contact Information
 
-This workshop was part of our pre-conference series leading up to Open Source Day 2025. Check out other workshops in the series focusing on open source contribution, project management, and advanced technical topics.
+📞 **Phone**: +91-898-080-8222 and +91-840-133-9936
+📧 **Email**: [email protected]
 
-Looking forward to seeing you at the next workshop! 🤖
+### Follow Us
+
+- **Facebook**: [https://www.facebook.com/OSWeekend](https://www.facebook.com/OSWeekend)
+- **Twitter**: [https://twitter.com/OSWeekend](https://twitter.com/OSWeekend)
+- **Instagram**: [https://instagram.com/OSWeekend](https://instagram.com/OSWeekend)
+- **LinkedIn**: [https://www.linkedin.com/company/open-source-weekend/](https://www.linkedin.com/company/open-source-weekend/)
+- **Website**: [www.opensourceweekend.org](http://www.opensourceweekend.org)
+
+## Important Notes
+
+⚠️ **Tickets are Non-Refundable and Non-Transferable**
+
+## Hashtags
+
+#OpenSourceDay #OpenSourceTechnology #OpenSourceProjects #OpenSourceCommunity #OpenDesign #OpenData #OpenSourceAi #OpenSourceWeb3 #OpenHardware #CommunityDriven #BuildTogether #OpenSource #OpenSourceProduct #OpenSourceWeekend #OSWeekend #OSW #OSD #Conference #OSD2025 #CommunityBuilding
+
+---
+
+**See you at Open Source Day 2025!** 🚀
