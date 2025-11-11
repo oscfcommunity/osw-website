@@ -26,7 +26,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "daisyui": "^5.2.3",
+    "daisyui": "^5.5.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
