@@ -1,0 +1,26 @@
+---
+interface Props {
+  application: {
+    url?: string;
+    applyEmail?: string;
+    instructions?: string;
+  };
+}
+
+const { application } = Astro.props;
+---
+
+<div class="card bg-primary text-primary-content shadow-xl">
+  <div class="card-body">
+    <h3 class="card-title mb-4">Ready to Apply?</h3>
+
+    {
+      application.instructions && (
+        <div class="text-sm opacity-90">
+          <strong>Instructions:</strong>
+          <p class="mt-2">{application.instructions}</p>
+        </div>
+      )
+    }
+  </div>
+</div>

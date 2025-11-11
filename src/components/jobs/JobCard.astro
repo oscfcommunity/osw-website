@@ -58,40 +58,18 @@ const {
   },
 } = Astro.props;
 
-const btnSize = { sm: 'btn-sm', md: 'btn-md', lg: 'btn-lg' }[button.size];
+const btnSize = { sm: 'btn-sm', md: 'btn-md', lg: 'btn-lg' }[
+  button.size || 'sm'
+];
 const jobUrl = `/jobs/${job.id}`;
 ---
 
-<article
-  class="card shadow-sm border border-base-300 hover:shadow-lg hover:border-primary/30 transition-all duration-200"
+<a
+  href={jobUrl}
+  class="card shadow-sm border border-base-300 hover:shadow-lg hover:border-primary/30 transition-all duration-200 block text-current"
+  aria-label={`View details for ${job.data.title}`}
 >
   <div class="card-body p-5">
-    <div
-      class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3"
-    >
-      {
-        display.showCategories && job.data.categories && (
-          <div class="flex flex-wrap gap-1.5 flex-1">
-            {job.data.categories.map((cat: string) => (
-              <div
-                class={`badge badge-sm ${getCategoryBadgeClass(cat, categoryColors, defaultCategoryColor)} font-medium text-xs`}
-              >
-                {cat}
-              </div>
-            ))}
-          </div>
-        )
-      }
-
-      {
-        display.showPostedDate && (
-          <div class="badge badge-sm badge-ghost text-xs font-medium text-base-content whitespace-nowrap bg-base-200">
-            {getRelativeTime(new Date(job.data.datePosted))}
-          </div>
-        )
-      }
-    </div>
-
     {
       display.showCompanyLogo && (
         <div class="flex items-center gap-3 mb-3">
@@ -112,14 +90,32 @@ const jobUrl = `/jobs/${job.id}`;
     }
 
     <h2
-      class="card-title text-xl font-bold mb-2 line-clamp-2 text-base-content"
+      class="card-title text-xl font-bold mb-1.5 line-clamp-2 text-base-content"
     >
       {job.data.title}
     </h2>
 
-    <p class="text-sm text-base-content/80 mb-4 line-clamp-2 leading-relaxed">
-      {job.data.description}
-    </p>
+    {
+      display.showPostedDate && (
+        <div class="text-xs text-base-content/70 mb-1.5">
+          Posted {getRelativeTime(new Date(job.data.datePosted))}
+        </div>
+      )
+    }
+
+    {
+      display.showCategories && job.data.categories && (
+        <div class="flex flex-wrap gap-1.5 mb-3">
+          {job.data.categories.map((cat: string) => (
+            <div
+              class={`badge badge-sm ${getCategoryBadgeClass(cat, categoryColors, defaultCategoryColor)} font-medium text-xs`}
+            >
+              {cat}
+            </div>
+          ))}
+        </div>
+      )
+    }
 
     <div
       class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-3 border-t-2 border-base-300"
@@ -164,7 +160,9 @@ const jobUrl = `/jobs/${job.id}`;
                   d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-              {job.data.location.remote ? 'Remote' : job.data.location.city}
+              {job.data.jobType === 'REMOTE'
+                ? 'Remote'
+                : job.data.location.city}
             </span>
           )
         }
@@ -191,7 +189,10 @@ const jobUrl = `/jobs/${job.id}`;
         }
       </div>
 
-      <a href={jobUrl} class={`btn btn-${button.style} ${btnSize} gap-1.5`}>
+      <span
+        class={`btn btn-${button.style} ${btnSize} gap-1.5`}
+        aria-hidden="true"
+      >
         {button.text}
         <svg
           class="w-4 h-4"
@@ -205,7 +206,7 @@ const jobUrl = `/jobs/${job.id}`;
             stroke-linejoin="round"
             d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
         </svg>
-      </a>
+      </span>
     </div>
   </div>
-</article>
+</a>

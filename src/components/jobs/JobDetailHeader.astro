@@ -1,0 +1,88 @@
+---
+import { getRelativeTime } from '../../utils';
+
+interface Props {
+  job: any;
+  daysUntilExpiration: number;
+}
+
+const { job, daysUntilExpiration } = Astro.props;
+---
+
+<div>
+  {/* Back Button */}
+  <a href="/jobs" class="btn btn-ghost btn-sm mb-6">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Back to Jobs
+  </a>
+
+  {/* Company Logo & Basic Info */}
+  <div class="flex flex-col sm:flex-row gap-6 items-start">
+    <div class="avatar">
+      <div
+        class="w-20 h-20 rounded-xl ring-4 ring-base-300 ring-offset-2 ring-offset-base-200"
+      >
+        <img src={job.data.company.logo} alt={job.data.company.name} />
+      </div>
+    </div>
+
+    <div class="flex-1">
+      <h1 class="text-3xl md:text-4xl font-bold mb-2">
+        {job.data.title}
+      </h1>
+
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <a
+          href={job.data.company.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xl font-semibold text-primary hover:underline"
+        >
+          {job.data.company.name}
+        </a>
+        <div class="badge badge-lg badge-neutral">
+          {job.data.company.size}
+        </div>
+      </div>
+
+      {/* Badges */}
+      <div class="flex flex-wrap gap-2 mb-4">
+        {
+          job.data.categories.map((category: string) => (
+            <div class="badge badge-outline badge-lg">{category}</div>
+          ))
+        }
+
+        {
+          job.data.isFeatured && (
+            <div class="badge badge-warning badge-lg">⭐ Featured</div>
+          )
+        }
+
+        {
+          job.data.isUrgent && (
+            <div class="badge badge-error badge-lg">🔥 Urgent</div>
+          )
+        }
+      </div>
+
+      {/* Posted Date & Expiration */}
+      <div class="flex flex-wrap gap-4 text-sm text-base-content/70">
+        <span>
+          Posted {getRelativeTime(new Date(job.data.datePosted))}
+        </span>
+        {
+          daysUntilExpiration > 0 && (
+            <span>• Expires in {daysUntilExpiration} days</span>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>

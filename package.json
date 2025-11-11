@@ -14,6 +14,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.5",
     "@fontsource/anton": "^5.2.7",
     "@fontsource/poppins": "^5.2.7",
     "@tailwindcss/vite": "^4.1.13",
@@ -21,6 +22,10 @@
     "date-fns": "^4.1.0",
     "tailwindcss": "^4.1.17",
     "typed.js": "^2.1.0"
+    "tailwindcss": "^4.1.13",
+    "typed.js": "^2.1.0",
+    "typescript": "^5.9.3",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "daisyui": "^5.4.7",

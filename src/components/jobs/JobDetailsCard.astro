@@ -1,0 +1,143 @@
+---
+import { formatSalary } from '../../utils';
+
+interface Props {
+  job: any;
+}
+
+const { job } = Astro.props;
+---
+
+<div class="card bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h3 class="card-title mb-4">Job Details</h3>
+
+    <div class="space-y-4">
+      {/* Salary */}
+      {
+        job.data.salary && (
+          <div>
+            <div class="text-sm text-base-content/70 mb-1">Salary</div>
+            <div class="font-bold text-lg">{formatSalary(job.data.salary)}</div>
+          </div>
+        )
+      }
+
+      <div class="divider my-2"></div>
+
+      {/* Location */}
+      <div>
+        <div class="text-sm text-base-content/70 mb-1">Location</div>
+        <div class="font-semibold flex items-center gap-2">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            ></path>
+          </svg>
+          {job.data.location.city}, {
+            job.data.location.state || job.data.location.country
+          }
+        </div>
+      </div>
+
+      <div class="divider my-2"></div>
+
+      {/* Job Type */}
+      <div>
+        <div class="text-sm text-base-content/70 mb-1">Job Type</div>
+        <div class="badge badge-lg capitalize">
+          {job.data.jobType.toLowerCase().replace('_', ' ')}
+        </div>
+      </div>
+
+      <div class="divider my-2"></div>
+
+      {/* Employment Type */}
+      <div>
+        <div class="text-sm text-base-content/70 mb-1">Employment Type</div>
+        <div class="badge badge-lg capitalize">
+          {job.data.employmentType.toLowerCase().replace('_', ' ')}
+        </div>
+      </div>
+
+      {/* Experience */}
+      {
+        job.data.qualification?.experience && (
+          <>
+            <div class="divider my-2" />
+            <div>
+              <div class="text-sm text-base-content/70 mb-1">Experience</div>
+              <div class="font-semibold">
+                {job.data.qualification.experience.min}
+                {job.data.qualification.experience.max &&
+                  ` - ${job.data.qualification.experience.max}`}
+                years
+              </div>
+              {job.data.qualification.experience.level && (
+                <div class="badge badge-sm mt-1 capitalize">
+                  {job.data.qualification.experience.level
+                    .toLowerCase()
+                    .replace('_', ' ')}
+                </div>
+              )}
+            </div>
+          </>
+        )
+      }
+
+      {/* Education */}
+      {
+        job.data.qualification?.education && (
+          <>
+            <div class="divider my-2" />
+            <div>
+              <div class="text-sm text-base-content/70 mb-1">Education</div>
+              <div class="font-semibold capitalize">
+                {job.data.qualification.education.level
+                  .toLowerCase()
+                  .replace('_', ' ')}
+              </div>
+              {job.data.qualification.education.field && (
+                <div class="text-sm text-base-content/70 mt-1">
+                  {job.data.qualification.education.field}
+                </div>
+              )}
+              {!job.data.qualification.education.required && (
+                <div class="badge badge-sm badge-ghost mt-1">Not Required</div>
+              )}
+            </div>
+          </>
+        )
+      }
+
+      {/* Apply Now button inside Job Details */}
+      <div class="divider my-2"></div>
+      <div>
+        {
+          job.data.application?.url ? (
+            <a
+              href={job.data.application.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-block"
+            >
+              Apply Now
+            </a>
+          ) : (
+            <button class="btn btn-primary btn-block" disabled>
+              Apply Now
+            </button>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>

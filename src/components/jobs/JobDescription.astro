@@ -1,0 +1,83 @@
+---
+interface Props {
+  job: any;
+}
+
+const { job } = Astro.props;
+---
+
+<div class="card bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title text-2xl mb-4">Job Description</h2>
+
+    <div class="prose max-w-none">
+      <p class="text-base-content/80 mb-6">
+        {job.data.description}
+      </p>
+
+      {
+        job.body && (
+          <>
+            <div class="divider" />
+            <div
+              class="whitespace-pre-line text-base-content/80"
+              set:html={job.body}
+            />
+          </>
+        )
+      }
+    </div>
+
+    {/* Skills */}
+    {
+      job.data.qualification?.skills &&
+        job.data.qualification.skills.length > 0 && (
+          <div class="mt-8">
+            <h3 class="text-xl font-bold mb-4">Required Skills</h3>
+            <div class="flex flex-wrap gap-2">
+              {job.data.qualification.skills.map((skill: string) => (
+                <div class="badge badge-primary badge-lg">{skill}</div>
+              ))}
+            </div>
+          </div>
+        )
+    }
+
+    {/* Benefits */}
+    {
+      job.data.benefits && (
+        <div class="mt-8">
+          <h3 class="text-xl font-bold mb-4">Benefits</h3>
+          <div class="prose max-w-none">
+            <p class="text-base-content/80 whitespace-pre-line">
+              {job.data.benefits}
+            </p>
+          </div>
+        </div>
+      )
+    }
+
+    {/* Apply Now after description ends */}
+    <div class="mt-8">
+      {
+        job.data.application?.url ? (
+          <a
+            href={job.data.application.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary btn-lg btn-block"
+          >
+            Apply Now
+          </a>
+        ) : job.data.application?.applyEmail ? (
+          <a
+            href={`mailto:${job.data.application.applyEmail}`}
+            class="btn btn-primary btn-lg btn-block"
+          >
+            Apply Now
+          </a>
+        ) : null
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,185 @@
+---
+import { getCollection } from 'astro:content';
+import JobCard from '../../components/jobs/JobCard.astro';
+import Container from '../../components/layout/Container.astro';
+import Layout from '../../layouts/Layout.astro';
+
+// Get all active jobs and sort by date posted
+const allJobs = await getCollection(
+  'jobs',
+  ({ data }) => data.status === 'ACTIVE'
+);
+const sortedJobs = allJobs.sort(
+  (a, b) =>
+    new Date(b.data.datePosted).getTime() -
+    new Date(a.data.datePosted).getTime()
+);
+
+// Categorize jobs
+const featuredJobs = sortedJobs.filter(job => job.data.isFeatured);
+const urgentJobs = sortedJobs.filter(job => job.data.isUrgent);
+const remoteJobs = sortedJobs.filter(job => job.data.jobType === 'REMOTE');
+// Jobs shown on the "All Jobs" list should not repeat featured jobs
+const nonFeaturedJobs = sortedJobs.filter(job => !job.data.isFeatured);
+---
+
+<Layout title="Job Opportunities - OSW Community">
+  <main class="min-h-screen bg-base-100">
+    {/* Hero Section */}
+    <section class="py-16">
+      <Container>
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            Open Source Job Opportunities
+          </h1>
+          <p class="text-lg md:text-xl text-base-content/80 mb-6">
+            Discover exciting career opportunities in the open source community.
+            Join innovative teams building the future of technology.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-3 mb-6">
+            <a
+              href="#all-jobs"
+              class="btn btn-primary btn-lg"
+              aria-label="View all jobs"
+            >
+              Browse All Jobs
+            </a>
+            <a
+              href="#featured"
+              class="btn btn-ghost btn-lg"
+              aria-label="View featured jobs"
+            >
+              Featured Jobs
+            </a>
+          </div>
+
+          <div class="h-px w-full bg-base-300 my-8"></div>
+
+          <div
+            class="stats stats-horizontal w-full flex-nowrap gap-4 overflow-x-auto"
+            role="list"
+            aria-label="Job statistics"
+          >
+            <div class="stat w-1/3 min-w-0" role="listitem">
+              <div class="stat-title">Total Jobs</div>
+              <div class="stat-value text-primary" aria-live="polite">
+                {sortedJobs.length}
+              </div>
+              <div class="stat-desc">Active opportunities</div>
+            </div>
+
+            <div class="stat w-1/3 min-w-0" role="listitem">
+              <div class="stat-title">Featured</div>
+              <div class="stat-value">{featuredJobs.length}</div>
+              <div class="stat-desc">Top picks</div>
+            </div>
+
+            <div class="stat w-1/3 min-w-0" role="listitem">
+              <div class="stat-title">Remote</div>
+              <div class="stat-value">{remoteJobs.length}</div>
+              <div class="stat-desc">Work from anywhere</div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    {/* Featured Jobs */}
+    {
+      featuredJobs.length > 0 && (
+        <section id="featured" class="py-16">
+          <Container>
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-bold mb-4">Featured Jobs</h2>
+              <p class="text-lg text-base-content/70">
+                Hand-picked opportunities from leading tech companies
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {featuredJobs.map(job => (
+                <JobCard job={job} />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )
+    }
+
+    {/* Urgent Jobs */}
+    {
+      urgentJobs.length > 0 && (
+        <section class="py-16 bg-base-200">
+          <Container>
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-bold mb-4">Urgent Hiring</h2>
+              <p class="text-lg text-base-content/70">
+                These positions are being filled quickly
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-4 max-w-5xl mx-auto">
+              {urgentJobs.map(job => (
+                <JobCard job={job} />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )
+    }
+
+    {/* All Jobs */}
+    <section id="all-jobs" class="py-16">
+      <Container>
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-4">All Job Opportunities</h2>
+          <p class="text-lg text-base-content/70">
+            Browse all {nonFeaturedJobs.length} available positions
+          </p>
+        </div>
+
+        {
+          nonFeaturedJobs.length > 0 ? (
+            <div class="flex flex-col gap-4 max-w-5xl mx-auto">
+              {nonFeaturedJobs.map(job => (
+                <JobCard job={job} />
+              ))}
+            </div>
+          ) : (
+            <div class="card bg-base-100 shadow-xl">
+              <div class="card-body text-center">
+                <h3 class="card-title justify-center text-2xl">
+                  No Jobs Available
+                </h3>
+                <p class="text-base-content/70">
+                  Check back soon for new opportunities!
+                </p>
+              </div>
+            </div>
+          )
+        }
+      </Container>
+    </section>
+
+    {/* CTA Section */}
+    <section class="py-16 bg-base-200">
+      <Container>
+        <div class="card bg-primary text-primary-content shadow-xl">
+          <div class="card-body text-center">
+            <h2 class="card-title justify-center text-3xl mb-4">
+              Don't see the right fit?
+            </h2>
+            <p class="text-lg mb-6">
+              Join our community and get notified when new opportunities are
+              posted
+            </p>
+            <div class="card-actions justify-center">
+              <a href="/" class="btn btn-secondary btn-lg"> Join Community </a>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>
