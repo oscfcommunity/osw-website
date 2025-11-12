@@ -4,6 +4,10 @@ export {
   getRelativeTimeBetween,
   formatEventDate,
   formatTime,
+  formatDateTime,
+  calculateDuration,
+  isPastDate,
+  formatDateRange,
 } from './date';
 
 // Currency utilities
@@ -14,4 +18,8 @@ export {
   getBadgeClass,
   getCategoryBadgeClass,
   getStatusBadgeClass,
+  getEventTypeBadgeClass,
+  getSessionTypeBadgeClass,
+  getProfileTypeBadgeClass,
+  getSponsorTierBadgeClass,
 } from './badge';

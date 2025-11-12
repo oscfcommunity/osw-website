@@ -1,0 +1,321 @@
+---
+import { getCollection, type CollectionEntry, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import EventHero from '../../components/events/EventHero.astro';
+import EventInfo from '../../components/events/EventInfo.astro';
+import ProfileCard from '../../components/events/ProfileCard.astro';
+import ScheduleTimeline from '../../components/events/ScheduleTimeline.astro';
+import SponsorGrid from '../../components/events/SponsorGrid.astro';
+import SocialMediaPost from '../../components/events/SocialMediaPost.astro';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map(event => {
+    // Extract slug from id (e.g., "event1.md" -> "event1")
+    const slug = event.id.replace(/\.md$/, '');
+    return {
+      params: { slug },
+      props: { event },
+    };
+  });
+}
+
+interface Props {
+  event: CollectionEntry<'events'>;
+}
+
+const { event } = Astro.props;
+const { data } = event;
+const { Content } = await render(event);
+
+// Calculate derived data
+const speakerCount =
+  data.profiles?.filter(p => p.type === 'SPEAKER').length || 0;
+const communityPartnerCount =
+  data.sponsors?.filter(s => s.type === 'COMMUNITY').length || 0;
+
+// Group profiles by type
+const groupedProfiles =
+  data.profiles?.reduce(
+    (acc, profile) => {
+      if (!acc[profile.type]) {
+        acc[profile.type] = [];
+      }
+      acc[profile.type].push(profile);
+      return acc;
+    },
+    {} as Record<string, typeof data.profiles>
+  ) || {};
+
+// Define profile type order and labels
+const profileTypeConfig = {
+  SPEAKER: { label: 'Speakers', order: 1 },
+  MENTOR: { label: 'Mentors', order: 2 },
+  CORE_TEAM: { label: 'Core Team', order: 3 },
+  ADVISORY: { label: 'Advisory Board', order: 4 },
+  VOLUNTEER: { label: 'Volunteers', order: 5 },
+};
+
+const sortedProfileTypes = Object.keys(groupedProfiles).sort(
+  (a, b) =>
+    profileTypeConfig[a as keyof typeof profileTypeConfig].order -
+    profileTypeConfig[b as keyof typeof profileTypeConfig].order
+);
+
+// Status checks
+const isCompleted = data.status.toLowerCase() === 'completed';
+const isUpcoming = data.status.toLowerCase() === 'upcoming';
+
+// SEO metadata
+const metaTitle = data.seo?.metaTitle || data.title;
+const metaDescription = data.seo?.metaDescription || data.description;
+const metaImage =
+  data.seo?.metaImageUrl ||
+  data.coverImage ||
+  'https://opensourceweekend.org/og-image.png';
+const keywords = data.seo?.keywords?.join(', ') || data.tags.join(', ');
+
+// Format location for structured data
+const formatLocation = () => {
+  const parts = [
+    data.location.city,
+    data.location.state,
+    data.location.country,
+  ].filter(Boolean);
+  return parts.join(', ');
+};
+
+// Structured data for SEO (JSON-LD)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: data.title,
+  description: data.description,
+  startDate: data.date.toISOString(),
+  endDate: data.endDate?.toISOString() || data.date.toISOString(),
+  eventStatus:
+    data.status === 'CANCELLED'
+      ? 'https://schema.org/EventCancelled'
+      : data.status === 'COMPLETED'
+        ? 'https://schema.org/EventScheduled'
+        : 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: data.venue || formatLocation(),
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: data.location.city,
+      addressRegion: data.location.state,
+      addressCountry: data.location.country,
+    },
+  },
+  image: [data.coverImage],
+  organizer: {
+    '@type': 'Organization',
+    name: 'Open Source Weekend',
+    url: 'https://opensourceweekend.org',
+  },
+};
+
+if (data.maxParticipants) {
+  structuredData['maximumAttendeeCapacity'] = data.maxParticipants;
+}
+
+if (data.registrationLink && isUpcoming) {
+  structuredData['offers'] = {
+    '@type': 'Offer',
+    url: data.registrationLink,
+    price: '0',
+    priceCurrency: 'INR',
+    availability: 'https://schema.org/InStock',
+  };
+}
+---
+
+<Layout>
+  <Fragment slot="head">
+    {/* Primary Meta Tags */}
+    <title>{metaTitle}</title>
+    <meta name="title" content={metaTitle} />
+    <meta name="description" content={metaDescription} />
+    <meta name="keywords" content={keywords} />
+
+    {/* Open Graph / Facebook */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={metaImage} />
+
+    {/* Twitter */}
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={metaTitle} />
+    <meta property="twitter:description" content={metaDescription} />
+    <meta property="twitter:image" content={metaImage} />
+
+    {/* Structured Data */}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
+
+  <EventHero event={data} />
+
+  {/* Main Content Area */}
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Main Content Column */}
+        <div class="lg:col-span-2 space-y-12">
+          {/* Event Description/Content */}
+          <article
+            id="highlights"
+            class="card bg-base-100 border border-base-300 shadow-lg"
+          >
+            <div
+              class="card-body prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-base-content prose-p:text-base-content/80 prose-a:text-primary prose-strong:text-base-content prose-ul:text-base-content/80 prose-ol:text-base-content/80"
+            >
+              <Content />
+            </div>
+          </article>
+
+          {/* Profiles Section - Only show if profiles exist */}
+          {
+            data.profiles &&
+              data.profiles.length > 0 &&
+              sortedProfileTypes.length > 0 && (
+                <div id="team" class="space-y-12">
+                  {sortedProfileTypes.map(type => {
+                    const config =
+                      profileTypeConfig[type as keyof typeof profileTypeConfig];
+                    const profiles = groupedProfiles[type];
+
+                    if (!profiles || profiles.length === 0) return null;
+
+                    return (
+                      <div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center lg:text-left">
+                          {config.label}
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {profiles.map(profile => (
+                            <ProfileCard
+                              name={profile.name}
+                              image={profile.image}
+                              role={profile.role}
+                              company={profile.company}
+                              type={profile.type}
+                              socialMediaLinks={profile.socialMediaLinks}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )
+          }
+        </div>
+
+        {/* Sidebar Column */}
+        <div class="lg:col-span-1">
+          <EventInfo event={data} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Schedule Section */}
+  {
+    data.schedule && data.schedule.length > 0 && (
+      <ScheduleTimeline schedule={data.schedule} isCompleted={isCompleted} />
+    )
+  }
+
+  {/* Sponsors Section */}
+  {
+    data.sponsors && data.sponsors.length > 0 && (
+      <SponsorGrid sponsors={data.sponsors} showCTA={isUpcoming} />
+    )
+  }
+
+  {/* Social Media Section */}
+  {
+    data.socialMediaPosts && data.socialMediaPosts.length > 0 && (
+      <SocialMediaPost posts={data.socialMediaPosts} />
+    )
+  }
+
+  {/* CTA Section */}
+  <section
+    class="py-16 md:py-24 bg-gradient-to-br from-primary/10 to-secondary/10"
+  >
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        {isUpcoming && 'Join Us at This Event!'}
+        {isCompleted && 'Stay Connected with Open Source Weekend'}
+      </h2>
+      <p class="text-lg text-base-content/70 mb-8 max-w-2xl mx-auto">
+        {
+          isUpcoming &&
+            "Don't miss this opportunity to connect with the open source community. Register now to secure your spot!"
+        }
+        {
+          isCompleted &&
+            'Join our community to stay updated on upcoming events, workshops, and open source initiatives.'
+        }
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        {
+          isUpcoming && data.registrationLink && (
+            <a
+              href={data.registrationLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-lg gap-2"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                />
+              </svg>
+              Register Now
+            </a>
+          )
+        }
+        <a href="/events" class="btn btn-outline btn-lg"> View All Events </a>
+        {
+          isCompleted && (
+            <a href="/contact" class="btn btn-primary btn-lg gap-2">
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              Join Community
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

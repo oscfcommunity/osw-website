@@ -31,7 +31,9 @@ export const ScheduleSchema = z.object({
     'OPENING',
     'KEYNOTE',
     'TALK',
+    'WORKSHOP',
     'LUNCH',
+    'BREAK',
     'CLOSING_KEYNOTE',
     'GOODIES_DISTRIBUTION',
   ]),
@@ -137,7 +139,7 @@ export const eventsSchema = z
       .optional(),
 
     tags: z.array(z.string()).default([]),
-    coverImage: z.string().url('Cover image must be a valid URL').optional(),
+    coverImage: z.string().optional(),
 
     seo: SeoSchema.optional(),
 
