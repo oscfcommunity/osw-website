@@ -1,19 +1,64 @@
 [
   {
-    "title": "Open Source Day 2025 - Gujarat Biggest Open Source Festival",
-    "startDate": "2025-11-14T08:00:00+05:30",
-    "endDate": "2025-11-17T08:00:00+05:30",
+    "title": "Open Source with AI Workshop | Open Source Day 2025",
+    "startDate": "2025-09-27T09:00:00+05:30",
+    "endDate": "2025-09-27T18:00:00+05:30",
+    "websiteLink": "https://luma.com/pc0q0hm8",
+    "isFeatured": false
+  },
+  {
+    "title": "Open Source Day 2025 - Gujarat's Biggest Open Source Festival",
+    "startDate": "2025-10-05T08:00:00+05:30",
+    "endDate": "2025-10-05T18:00:00+05:30",
     "websiteLink": "https://osd.opensourceweekend.org",
     "isFeatured": true
   },
   {
-    "title": "Open Source with AI Workshop | Open Source Day 2025",
-    "startDate": "2025-09-27T09:00:00+05:30",
-    "websiteLink": "https://luma.com/pc0q0hm8"
+    "title": "DevFest Gandhinagar 2025",
+    "startDate": "2025-11-02T09:00:00+05:30",
+    "endDate": "2025-11-02T18:30:00+05:30",
+    "websiteLink": "https://gdg.community.dev/events/details/google-gdg-gandhinagar-presents-devfest-gandhinagar-1/cohost-gdg-gandhinagar",
+    "isFeatured": true
   },
   {
-    "title": "How to Start an Open Source Project & Manage like a Pro",
-    "startDate": "2025-09-27T10:00:00+05:30",
-    "websiteLink": "https://luma.com/pc0q0hm8"
+    "title": "GDG Ahmedabad DevFest 2025 - Season 11",
+    "startDate": "2025-11-15T08:00:00+05:30",
+    "endDate": "2025-11-15T17:30:00+05:30",
+    "websiteLink": "https://devfest25.gdgahmedabad.com/",
+    "isFeatured": true
+  },
+  {
+    "title": "Developing and Deploying Cloud-Native Application Securely using Workload Identity Federation",
+    "startDate": "2025-11-16T11:00:00+05:30",
+    "endDate": "2025-11-16T13:00:00+05:30",
+    "websiteLink": "https://gdg.community.dev/events/details/google-gdg-cloud-gandhinagar-presents-developing-and-deploying-cloud-native-application-securely-using-workload-identity-federation/",
+    "isFeatured": false
+  },
+  {
+    "title": "AI X DevOps X Web Meetup - Powered by Fiberplane",
+    "startDate": "2025-11-22T10:00:00+05:30",
+    "endDate": "2025-11-22T13:00:00+05:30",
+    "websiteLink": "https://www.meetup.com/gujarat-devoops-meetup-group/events/311925701/",
+    "isFeatured": false
+  },
+  {
+    "title": "Product Meetup Ahmedabad",
+    "startDate": "2025-11-23T10:00:00+05:30",
+    "endDate": "2025-11-23T13:00:00+05:30",
+    "isFeatured": false
+  },
+  {
+    "title": "The Hacker's Meetup - Ahmedabad Chapter",
+    "startDate": "2025-11-30T10:00:00+05:30",
+    "endDate": "2025-11-30T14:00:00+05:30",
+    "websiteLink": "https://luma.com/user/usr-HPrnuEkDzxKiz3O",
+    "isFeatured": false
+  },
+  {
+    "title": "Grafana Labs: Ahmedabad Happy Hours #6",
+    "startDate": "2025-12-06T10:00:00+05:30",
+    "endDate": "2025-12-06T13:00:00+05:30",
+    "websiteLink": "https://www.meetup.com/grafana-and-friends-ahmedabad-happy-hour/events/311918044/",
+    "isFeatured": false
   }
 ]
