@@ -29,9 +29,7 @@ const allJobs = await getCollection(
     data.status === 'ACTIVE' && (!showFeaturedOnly || data.isFeatured)
 );
 
-const jobs = allJobs
-  .sort((a, b) => b.data.datePosted.getTime() - a.data.datePosted.getTime())
-  .slice(0, showCount);
+const jobs = allJobs.slice(0, showCount);
 
 if (jobs.length === 0) {
   return null;
