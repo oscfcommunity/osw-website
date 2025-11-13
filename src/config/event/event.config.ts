@@ -4,7 +4,7 @@ import { eventsSchema } from './event.schema';
 
 const events = defineCollection({
   loader: glob({
-    pattern: '**/*.md',
+    pattern: '**/*.event.json',
     base: './src/content/events',
   }),
   schema: eventsSchema,
