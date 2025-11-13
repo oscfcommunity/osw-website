@@ -4,23 +4,17 @@ import JobCard from '../../components/jobs/JobCard.astro';
 import Container from '../../components/layout/Container.astro';
 import Layout from '../../layouts/Layout.astro';
 
-// Get all active jobs and sort by date posted
+// Get all active jobs
 const allJobs = await getCollection(
   'jobs',
   ({ data }) => data.status === 'ACTIVE'
 );
-const sortedJobs = allJobs.sort(
-  (a, b) =>
-    new Date(b.data.datePosted).getTime() -
-    new Date(a.data.datePosted).getTime()
-);
 
 // Categorize jobs
-const featuredJobs = sortedJobs.filter(job => job.data.isFeatured);
-const urgentJobs = sortedJobs.filter(job => job.data.isUrgent);
-const remoteJobs = sortedJobs.filter(job => job.data.jobType === 'REMOTE');
+const featuredJobs = allJobs.filter(job => job.data.isFeatured);
+const urgentJobs = allJobs.filter(job => job.data.isUrgent);
 // Jobs shown on the "All Jobs" list should not repeat featured jobs
-const nonFeaturedJobs = sortedJobs.filter(job => !job.data.isFeatured);
+const nonFeaturedJobs = allJobs.filter(job => !job.data.isFeatured);
 ---
 
 <Layout title="Job Opportunities - OSW Community">
@@ -45,13 +39,17 @@ const nonFeaturedJobs = sortedJobs.filter(job => !job.data.isFeatured);
             >
               Browse All Jobs
             </a>
-            <a
-              href="#featured"
-              class="btn btn-ghost btn-lg"
-              aria-label="View featured jobs"
-            >
-              Featured Jobs
-            </a>
+            {
+              featuredJobs.length > 0 && (
+                <a
+                  href="#featured"
+                  class="btn btn-ghost btn-lg"
+                  aria-label="View featured jobs"
+                >
+                  Featured Jobs
+                </a>
+              )
+            }
           </div>
 
           <div class="h-px w-full bg-base-300 my-8"></div>
@@ -61,24 +59,18 @@ const nonFeaturedJobs = sortedJobs.filter(job => !job.data.isFeatured);
             role="list"
             aria-label="Job statistics"
           >
-            <div class="stat w-1/3 min-w-0" role="listitem">
+            <div class="stat w-1/2 min-w-0" role="listitem">
               <div class="stat-title">Total Jobs</div>
               <div class="stat-value text-primary" aria-live="polite">
-                {sortedJobs.length}
+                {allJobs.length}
               </div>
               <div class="stat-desc">Active opportunities</div>
             </div>
 
-            <div class="stat w-1/3 min-w-0" role="listitem">
+            <div class="stat w-1/2 min-w-0" role="listitem">
               <div class="stat-title">Featured</div>
               <div class="stat-value">{featuredJobs.length}</div>
               <div class="stat-desc">Top picks</div>
-            </div>
-
-            <div class="stat w-1/3 min-w-0" role="listitem">
-              <div class="stat-title">Remote</div>
-              <div class="stat-value">{remoteJobs.length}</div>
-              <div class="stat-desc">Work from anywhere</div>
             </div>
           </div>
         </div>

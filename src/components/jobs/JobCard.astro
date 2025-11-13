@@ -1,212 +1,59 @@
 ---
-import {
-  formatSalary,
-  getCategoryBadgeClass,
-  getRelativeTime,
-} from '../../utils';
-
 interface Props {
   job: any;
-  categoryColors?: Record<string, string>;
-  defaultCategoryColor?: string;
-  display?: {
-    showCompanyLogo?: boolean;
-    showSalary?: boolean;
-    showLocation?: boolean;
-    showCategories?: boolean;
-    showEmploymentType?: boolean;
-    showPostedDate?: boolean;
-  };
-  button?: {
-    style?: string;
-    size?: string;
-    text?: string;
-  };
 }
 
-const {
-  job,
-  categoryColors = {
-    Engineering: 'primary',
-    Design: 'secondary',
-    Frontend: 'info',
-    Backend: 'info',
-    'Full Stack': 'primary',
-    Product: 'success',
-    Marketing: 'warning',
-    Sales: 'accent',
-    Support: 'info',
-    'Customer Experience': 'success',
-    DevOps: 'error',
-    'Data Science': 'accent',
-    'Machine Learning': 'secondary',
-    Internship: 'secondary',
-  },
-  defaultCategoryColor = 'neutral',
-  display = {
-    showCompanyLogo: true,
-    showSalary: true,
-    showLocation: true,
-    showCategories: true,
-    showEmploymentType: true,
-    showPostedDate: true,
-  },
-  button = {
-    style: 'primary',
-    size: 'sm',
-    text: 'More Details',
-  },
-} = Astro.props;
+const { job } = Astro.props;
 
-const btnSize = { sm: 'btn-sm', md: 'btn-md', lg: 'btn-lg' }[
-  button.size || 'sm'
-];
-const jobUrl = `/jobs/${job.id}`;
+// Determine the application URL or email
+const applicationHref = job.data.application.url
+  ? job.data.application.url
+  : job.data.application.applyEmail
+    ? `mailto:${job.data.application.applyEmail}`
+    : '#';
+
+const isExternal = job.data.application.url ? true : false;
 ---
 
-<a
-  href={jobUrl}
-  class="card shadow-sm border border-base-300 hover:shadow-lg hover:border-primary/30 transition-all duration-200 block text-current"
-  aria-label={`View details for ${job.data.title}`}
+<div
+  class="card bg-base-100 shadow-sm border border-base-300 hover:shadow-lg hover:border-primary/30 transition-all duration-200"
 >
   <div class="card-body p-5">
-    {
-      display.showCompanyLogo && (
-        <div class="flex items-center gap-3 mb-3">
-          <div class="avatar">
-            <div class="w-10 h-10 rounded-lg ring-2 ring-base-300 ring-offset-2 ring-offset-base-100">
-              <img
-                src={job.data.company.logo}
-                alt={job.data.company.name}
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <span class="text-sm font-semibold text-base-content">
-            {job.data.company.name}
-          </span>
-        </div>
-      )
-    }
-
-    <h2
-      class="card-title text-xl font-bold mb-1.5 line-clamp-2 text-base-content"
-    >
+    <h2 class="card-title text-xl font-bold mb-2 text-base-content">
       {job.data.title}
     </h2>
 
-    {
-      display.showPostedDate && (
-        <div class="text-xs text-base-content/70 mb-1.5">
-          Posted {getRelativeTime(new Date(job.data.datePosted))}
-        </div>
-      )
-    }
+    <p class="text-base-content/80 mb-4">
+      {job.data.company.name}
+    </p>
 
-    {
-      display.showCategories && job.data.categories && (
-        <div class="flex flex-wrap gap-1.5 mb-3">
-          {job.data.categories.map((cat: string) => (
-            <div
-              class={`badge badge-sm ${getCategoryBadgeClass(cat, categoryColors, defaultCategoryColor)} font-medium text-xs`}
+    <div class="card-actions justify-end">
+      <a
+        href={applicationHref}
+        class="btn btn-primary btn-sm"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        aria-label={`Apply for ${job.data.title} at ${job.data.company.name}`}
+      >
+        Apply Now
+        {
+          isExternal && (
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
             >
-              {cat}
-            </div>
-          ))}
-        </div>
-      )
-    }
-
-    <div
-      class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-3 border-t-2 border-base-300"
-    >
-      <div
-        class="flex flex-wrap items-center gap-4 text-sm font-semibold text-base-content"
-      >
-        {
-          display.showEmploymentType && (
-            <span class="flex items-center gap-2 capitalize">
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              {job.data.employmentType.toLowerCase().replace('_', ' ')}
-            </span>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
           )
         }
-
-        {
-          display.showLocation && (
-            <span class="flex items-center gap-2">
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-              {job.data.jobType === 'REMOTE'
-                ? 'Remote'
-                : job.data.location.city}
-            </span>
-          )
-        }
-
-        {
-          display.showSalary && job.data.salary && (
-            <span class="flex items-center gap-2 font-bold text-base-content">
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              {formatSalary(job.data.salary)}
-            </span>
-          )
-        }
-      </div>
-
-      <span
-        class={`btn btn-${button.style} ${btnSize} gap-1.5`}
-        aria-hidden="true"
-      >
-        {button.text}
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-        </svg>
-      </span>
+      </a>
     </div>
   </div>
-</a>
+</div>
