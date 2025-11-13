@@ -8,8 +8,6 @@ const {
   title = 'Upcoming Events',
   subtitle = 'Join us at our upcoming workshops, hackathons, and community meetups',
   showCount = 3,
-  showFeaturedOnly = false,
-  variant = 'compact',
   ctaButton = {
     text: 'View All Events',
     link: '/events',
@@ -24,15 +22,11 @@ if (!enabled) {
   return null;
 }
 
-const allEvents = await getCollection(
-  'events',
-  ({ data }) => !showFeaturedOnly || data.featured || data.isFeatured
-);
+const allEvents = await getCollection('events');
 
 const events = allEvents
-  .sort(
-    (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
-  )
+  .flatMap(i => i.data)
+  .filter(i => i.isFeatured)
   .slice(0, showCount);
 
 if (events.length === 0) {
@@ -71,7 +65,12 @@ const responsiveBtnSize =
     <div class="flex flex-col gap-4 md:gap-5 mb-8 md:mb-12">
       {
         events.map(event => (
-          <EventCard event={event} variant={variant} featured={true} />
+          <EventCard
+            eventStartDate={event.startDate}
+            eventEndDate={event?.endDate}
+            eventTitle={event.title}
+            eventWebsite={event.websiteLink ?? ''}
+          />
         ))
       }
     </div>
