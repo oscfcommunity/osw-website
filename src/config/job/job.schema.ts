@@ -24,7 +24,7 @@ export const ApplicationSchema = z
 export const jobsSchema = z.object({
   title: z
     .string()
-    .min(10, 'Title must be at least 10 characters')
+    .min(3, 'Title must be at least 3 characters')
     .max(100, 'Title must not exceed 100 characters'),
 
   company: CompanySchema,
