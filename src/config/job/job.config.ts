@@ -1,12 +1,9 @@
-import { glob } from 'astro/loaders';
+import { file } from 'astro/loaders';
 import { defineCollection } from 'astro:content';
 import { jobsSchema } from './job.schema';
 
 const jobs = defineCollection({
-  loader: glob({
-    pattern: '**/*.md',
-    base: './src/content/jobs',
-  }),
+  loader: file('./src/content/jobs.json'),
   schema: jobsSchema,
 });
 
