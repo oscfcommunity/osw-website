@@ -2,8 +2,12 @@ name = "osw"
 compatibility_date = "2025-10-03"
 preview_urls = true
 workers_dev = true
-routes = [{ pattern = "beta.opensourceweekend.org", custom_domain = true }]
+
+[[routes]]
+pattern = "opensourceweekend.org"
+custom_domain = true
 
 [assets]
 directory = "./dist"
 not_found_handling = "404-page"
+html_handling = "drop-trailing-slash"
