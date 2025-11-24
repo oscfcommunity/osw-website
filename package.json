@@ -18,7 +18,7 @@
     "@fontsource/anton": "^5.2.7",
     "@fontsource/poppins": "^5.2.7",
     "@tailwindcss/vite": "^4.1.13",
-    "astro": "^5.15.5",
+    "astro": "^5.16.0",
     "date-fns": "^4.1.0",
     "tailwindcss": "^4.1.17",
     "typed.js": "^2.1.0",
