@@ -12,10 +12,11 @@ export function getRelativeTimeBetween(
 }
 
 export function formatEventDate(date: Date, endDate?: Date): string {
-  const startStr = format(date, 'MMM d, yyyy');
+  const eventDateFormat = 'dd MMM yyyy, h:mm a';
+  const startStr = format(date, eventDateFormat);
 
   if (endDate) {
-    const endStr = format(endDate, 'MMM d, yyyy');
+    const endStr = format(endDate, eventDateFormat);
     return `${startStr} - ${endStr}`;
   }
 
