@@ -70,6 +70,19 @@ export function isPastDate(date: Date): boolean {
 }
 
 /**
+ * Format date for event card display
+ * Single date: "27 Sep 2025, 9:00 AM"
+ * Date range: "27 Sep 2025, 9:00 AM - 28 Sep 2025, 6:00 PM"
+ */
+export function formatCardDate(date: Date, endDate?: Date): string {
+  const formatted = format(date, 'dd MMM yyyy, h:mm a');
+  if (endDate) {
+    return `${formatted} - ${format(endDate, 'dd MMM yyyy, h:mm a')}`;
+  }
+  return formatted;
+}
+
+/**
  * Format a date range with smart formatting
  * Same day: "October 5, 2025 • 9:00 AM - 6:00 PM"
  * Different days: "October 5 - 7, 2025"

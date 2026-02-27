@@ -1,5 +1,5 @@
 ---
-import { format } from 'date-fns';
+import { formatCardDate } from '@/utils/date';
 
 interface Props {
   eventStartDate: Date;
@@ -10,7 +10,7 @@ interface Props {
 
 const { eventStartDate, eventEndDate, eventTitle, eventWebsite } = Astro.props;
 
-const eventDate = `${eventEndDate ? `${format(eventStartDate, 'Pp')} - ${format(eventEndDate, 'Pp')}` : format(eventStartDate, 'Pp')}`;
+const eventDate = formatCardDate(eventStartDate, eventEndDate);
 ---
 
 <div

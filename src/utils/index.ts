@@ -8,6 +8,7 @@ export {
   calculateDuration,
   isPastDate,
   formatDateRange,
+  formatCardDate,
 } from './date';
 
 // Currency utilities
